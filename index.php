@@ -17,6 +17,7 @@
             <p>Livraison en moins de 48h </p>
             <a href="#" class="btn-primary">En savoir plus </a>
         </div>
+        <img src="data/globe.png" alt="Globe">
     </section>
 
     <section class="annonces">
