@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $users = [
     'admin' => ['password' => 'adminpass', 'role' => 'admin'],
     'user1' => ['password' => 'userpass', 'role' => 'user']
@@ -23,4 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Identifiants incorrects";
     }
 }
+
+include 'header.html';
+if (isset($error)) {
+    echo "<p style='color: red; text-align:center;'>$error</p>";
+}
+include 'connexion.html';
+include 'footer.html';
 ?>

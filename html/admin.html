@@ -1,33 +1,21 @@
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - BagShare</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <section>
-        <h2>Page Admin</h2>
-        <form method="post">
-            <div>
-                <label for="new_username">Nom d'utilisateur :</label>
-                <input type="text" id="new_username" name="new_username" required>
-            </div>
-            <div>
-                <label for="new_password">Mot de passe :</label>
-                <input type="password" id="new_password" name="new_password" required>
-            </div>
-            <div>
-                <label for="role">Rôle :</label>
-                <select id="role" name="role">
-                    <option value="user">Utilisateur</option>
-                    <option value="admin">Admin</option>
-                </select>
-            </div>
-            <button type="submit">Créer utilisateur</button>
-        </form>
-    </section>
-</body>
-</html>
+<section>
+    <h2>Créer un utilisateur</h2>
+    <form method="post" action="../admin.php">
+        <div>
+            <label for="new_username">Nom d'utilisateur :</label>
+            <input type="text" id="new_username" name="new_username" required>
+        </div>
+        <div>
+            <label for="new_password">Mot de passe :</label>
+            <input type="password" id="new_password" name="new_password" required>
+        </div>
+        <div>
+            <label for="role">Rôle :</label>
+            <select id="role" name="role">
+                <option value="user">Utilisateur</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button type="submit">Créer utilisateur</button>
+    </form>
+</section>
