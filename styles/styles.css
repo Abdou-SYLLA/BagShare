@@ -82,7 +82,7 @@ nav a:hover{
 }
 
 .hero-content {
-    max-width: 400px;
+    max-width: 500px;
 }
 
 .hero h1 {
@@ -131,7 +131,7 @@ nav a:hover{
 }
 
 .annonce p {
-    font-size: 14px;
+    font-size: 18px;
     color: #666;
 }
 
@@ -142,4 +142,17 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
+    
+}
+
+
+footer nav a{
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    justify-content: center;
+}
+
+footer nav {
+    justify-content: center;
 }
