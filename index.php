@@ -21,27 +21,49 @@
     </section>
 
     <section class="annonces">
-        <h2>Prochains departs </h2>
-        <div class="annonce-list">
-            <?php
-            $annonces = [
-                ['destination' => 'Italie', 'kilos_disponibles' => 10, 'prix_par_kilo' => 10,'date' =>  '2024-10-20'],
-                ['destination' => 'France', 'kilos_disponibles' => 5, 'prix_par_kilo' => 8,'date' =>  '2024-11-20'],
-                ['destination' => 'Espagne', 'kilos_disponibles' => 15, 'prix_par_kilo' => 12,'date' =>  '2024-12-20'],
-                ['destination' => 'Espagne', 'kilos_disponibles' => 7, 'prix_par_kilo' => 10,'date' =>  '2024-20-20']
-            ];
+    <h2>Prochains départs</h2>
+    <div class="annonce-list">
+        <?php
+        // Connexion à la base de données
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "bagshare";
 
-            foreach ($annonces as $annonce) {
+        // Créer une connexion
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Vérifier la connexion
+        if ($conn->connect_error) {
+            die("Connexion échouée: " . $conn->connect_error);
+        }
+
+        // Requête pour récupérer les annonces
+        $sql = "SELECT description, depart, arrivee, date, kilos_disponibles, prix_par_kilo, nom FROM annonces NATURAL JOIN users WHERE date >= CURDATE()";
+
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Afficher chaque annonce
+            while($row = $result->fetch_assoc()) {
                 echo "<div class='annonce'>
-                        <h3>Destination: {$annonce['destination']}</h3>
-                        <p>Kilos disponibles: {$annonce['kilos_disponibles']} kg</p>
-                        <p>Prix par kilo: {$annonce['prix_par_kilo']} €/kg</p>
-                        <p>Date: {$annonce['date']} </p>
+                        <h3>Destination: " . $row["arrivee"] . "</h3>
+                        <p>Départ: " . $row["depart"] . "</p>
+                        <p>Kilos disponibles: " . $row["kilos_disponibles"] . " kg</p>
+                        <p>Prix par kilo: " . $row["prix_par_kilo"] . " €/kg</p>
+                        <p>Date: " . $row["date"] . "</p>
+                        <p>Voyageur: " . $row["nom"] . "</p>
                       </div>";
             }
-            ?>
-        </div>
-    </section>
+        } else {
+            echo "Aucune annonce trouvée.";
+        }
+
+        // Fermer la connexion
+        $conn->close();
+        ?>
+    </div>
+</section>
 
     <section id="about-link" class="about-section" >
         <div class="container">
