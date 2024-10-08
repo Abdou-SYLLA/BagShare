@@ -142,6 +142,9 @@ nav a:hover{
     background-color: #00a5bd;
 }
 
+.about-section img {
+    width: 400;
+}
 
 
 /* Annonces */

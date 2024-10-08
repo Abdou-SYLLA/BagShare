@@ -59,6 +59,7 @@
             <!-- Bouton pour revenir à la page d'accueil -->
             <a href="index.php" class="btn-secondary">Retour à l'accueil</a>
         </div>
+        <img src="data\apropos.png" alt="apropos">
     </section>
 
     <!-- Inclusion du footer -->
