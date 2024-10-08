@@ -11,27 +11,28 @@ CREATE TABLE users (
     role ENUM('user', 'admin')
 );
 
-/*creation de  la table annonces */
+/* Création de la table annonces */
 CREATE TABLE annonces (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     description TEXT,
     depart VARCHAR(100),
     arrivee VARCHAR(100),
-    date DATE
+    date DATE,
+    kilos_disponibles INT,
+    prix_par_kilo DECIMAL(10, 2),
+    numero INT UNSIGNED,
+    FOREIGN KEY (numero) REFERENCES users(numero)
 );
-
-/*Ajout de collonnes manquantes*/
-ALTER TABLE annonces
-ADD COLUMN kilos_disponibles INT,
-ADD COLUMN prix_par_kilo DECIMAL(10, 2);
 
 
 /*peupler la table annonces */
-INSERT INTO annonces (description, depart, arrivee, date, kilos_disponibles, prix_par_kilo) VALUES 
-('Voyage vers Italie', 'France', 'Italie', '2024-10-20', 10, 10), 
-('Voyage vers France', 'Allemagne', 'France', '2024-11-20', 5, 8), 
-('Voyage vers Espagne', 'Bali', 'Espagne', '2024-12-20', 15, 12), 
-('Voyage vers Espagne', 'USA', 'Espagne', '2024-12-20', 7, 10);
+INSERT INTO annonces (description, depart, arrivee, date, kilos_disponibles, prix_par_kilo, numero) 
+VALUES 
+('Voyage vers Italie', 'France', 'Italie', '2024-10-20', 10, 10, 0753320000), 
+('Voyage vers France', 'Allemagne', 'France', '2024-11-20', 5, 8, 0652360000), 
+('Voyage vers Espagne', 'Bali', 'Espagne', '2024-12-20', 15, 12, 0652360000), 
+('Voyage vers Espagne', 'USA', 'Espagne', '2024-12-20', 7, 10, 0753320000);
+
 
 /*Peupler la table users*/
 
