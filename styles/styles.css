@@ -7,11 +7,15 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Couleur de fond par défaut */
     color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-image: url('../images/background.jpg'); /* Chemin vers l'image de fond */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Header styles */
@@ -29,14 +33,12 @@ html {
     scroll-behavior: smooth;
 }
 
-header nav{
+header nav {
     font-size: 14px;
     flex-grow: 0.5;
     display: flex;
-    justify-content: space-between; /* Move items to the right */
+    justify-content: space-between; /* Aligne les éléments à droite */
 }
-
-
 
 .logo img {
     max-width: 200px;
@@ -51,13 +53,12 @@ nav a {
     color: #333;
     text-decoration: none;
     font-size: 1.8em;
-    justify-content: space-between;
-    
 }
 
-nav a:hover{
+nav a:hover {
     color: #0a4e44;
 }
+
 .cta-buttons {
     display: flex;
     gap: 10px;
@@ -106,7 +107,7 @@ nav a:hover{
     margin: 20px 0;
 }
 
-/*Section A propos*/
+/* Section À propos */
 .about-section {
     padding: 50px;
     background-color: #f7f9fc;
@@ -143,9 +144,8 @@ nav a:hover{
 }
 
 .about-section img {
-    width: 400;
+    width: 400px; /* Ajout d'unités pour éviter les erreurs */
 }
-
 
 /* Annonces */
 .annonces {
@@ -191,11 +191,9 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
-    
 }
 
-
-footer nav a{
+footer nav a {
     color: white;
     font-size: 18px;
     text-align: center;
@@ -204,4 +202,67 @@ footer nav a{
 
 footer nav {
     justify-content: center;
+}
+
+/* Page de connexion */
+.connexion-section {
+    background-color: rgba(255, 255, 255, 0.9); /* Fond blanc semi-transparent */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 100px auto; /* Centrer la section sur la page */
+    text-align: center;
+}
+
+.connexion-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Formulaire */
+.connexion-section form div {
+    margin-bottom: 20px;
+}
+
+.connexion-section label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.connexion-section input[type="text"],
+.connexion-section input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.connexion-section input[type="text"]:focus,
+.connexion-section input[type="password"]:focus {
+    border-color: #00c0d7; /* Couleur de la bordure lors du focus */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+/* Bouton de soumission */
+.connexion-section button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #00c0d7; /* Couleur principale du bouton */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Ajout de la transformation */
+    width: 100%;
+}
+
+.connexion-section button[type="submit"]:hover {
+    background-color: #007f8a; /* Couleur du bouton au survol */
+    transform: translateY(-2px); /* Légère élévation du bouton au survol */
 }
