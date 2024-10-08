@@ -19,3 +19,23 @@ CREATE TABLE annonces (
     arrivee VARCHAR(100),
     date DATE
 );
+
+/*Ajout de collonnes manquantes*/
+ALTER TABLE annonces
+ADD COLUMN kilos_disponibles INT,
+ADD COLUMN prix_par_kilo DECIMAL(10, 2);
+
+
+/*peupler la table annonces */
+INSERT INTO annonces (description, depart, arrivee, date, kilos_disponibles, prix_par_kilo) VALUES 
+('Voyage vers Italie', 'France', 'Italie', '2024-10-20', 10, 10), 
+('Voyage vers France', 'Allemagne', 'France', '2024-11-20', 5, 8), 
+('Voyage vers Espagne', 'Bali', 'Espagne', '2024-12-20', 15, 12), 
+('Voyage vers Espagne', 'USA', 'Espagne', '2024-12-20', 7, 10);
+
+/*Peupler la table users*/
+
+INSERT INTO users (nom, prenom, numero, role)
+VALUES
+('Abdou', 'Sylla', 0753320000, 'admin'),
+('Ely', 'Sada', 0652360000, 'user');
