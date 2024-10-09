@@ -1,23 +1,21 @@
-<?php
-session_start();
-
-// Vérification si l'utilisateur est un admin
-if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
-    header('Location: connexion.php');
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $new_username = $_POST['new_username'];
-    $new_password = $_POST['new_password'];
-    $new_role = $_POST['role'];
-
-    // Stockage des nouveaux utilisateurs dans la base de données à implémenter
-    // Pour l'instant on affiche simplement le nouvel utilisateur créé
-    echo "Nouvel utilisateur $new_username créé avec le rôle $new_role.";
-}
-
-include 'header.html';
-include 'admin.html';
-include 'footer.html';
-?>
+<section>
+    <h2>Créer un utilisateur</h2>
+    <form method="post" action="creer_utilisateur.php">
+        <div>
+            <label for="new_username">Nom d'utilisateur :</label>
+            <input type="text" id="new_username" name="new_username" required>
+        </div>
+        <div>
+            <label for="new_password">Mot de passe :</label>
+            <input type="password" id="new_password" name="new_password" required>
+        </div>
+        <div>
+            <label for="role">Rôle :</label>
+            <select id="role" name="role">
+                <option value="user">Utilisateur</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button type="submit">Créer utilisateur</button>
+    </form>
+</section>
