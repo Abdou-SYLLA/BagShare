@@ -17,9 +17,6 @@
                 // L'utilisateur n'est pas connecté
                 echo "<a href=\"html\connexion.html\" class=\"btn-secondary\">Connexion</a>";
             }
-
-
-            echo "role : " . htmlspecialchars($_SESSION['role']) . ", nom = " . htmlspecialchars($_SESSION['nom']);
             ?>
     </nav>
 </header>

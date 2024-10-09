@@ -7,9 +7,9 @@ if (!isset($_SESSION['user'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Connexion à la base de données
-    $servername = "localhost";
+    $servername = "127.0.0.1";
     $username = "root";
-    $password = "";
+    $password = "12345678";
     $dbname = "bagshare";
 
     $conn = new mysqli($servername, $username, $password, $dbname);

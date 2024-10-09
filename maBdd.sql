@@ -88,11 +88,11 @@ VALUES (
 
 
 
-    <?php
+       <?php
 // Connexion à la base de données
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
-$password = "";
+$password = "12345678";
 $dbname = "bagshare";
 
 // Créer une connexion
@@ -104,14 +104,14 @@ if ($conn->connect_error) {
 }
 
 // Informations de l'utilisateur
-$user = 0753320000; // Numéro de l'utilisateur
+$user = '753320000'; // Numéro de l'utilisateur sans le zéro devant
 $username = 'usernameExemple123';
 $password = 'MotDePasseExemple1!'; // Mot de passe clair
 $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hachage du mot de passe
 
 // Étape 1 : Vérifier si l'utilisateur existe dans `users`
 $stmt = $conn->prepare("SELECT numero FROM users WHERE numero = ?");
-$stmt->bind_param("i", $user);
+$stmt->bind_param("s", $user); // S'assurer d'utiliser 's' pour les strings si nécessaire
 $stmt->execute();
 $stmt->store_result();
 
@@ -119,7 +119,7 @@ if ($stmt->num_rows == 0) {
     // L'utilisateur n'existe pas, insérer dans `users`
     $stmt->close();
     $stmt = $conn->prepare("INSERT INTO users (numero) VALUES (?)");
-    $stmt->bind_param("i", $user);
+    $stmt->bind_param("s", $user); // Remplacer "i" par "s" si c'est une chaîne de caractère
     $stmt->execute();
 }
 
@@ -127,7 +127,7 @@ $stmt->close();
 
 // Étape 2 : Insérer les informations de l'utilisateur dans `account`
 $stmt = $conn->prepare("INSERT INTO account (user, username, hashed_password) VALUES (?, ?, ?)");
-$stmt->bind_param("iss", $user, $username, $hashed_password);
+$stmt->bind_param("iss", $user, $username, $hashed_password); // Utilise toujours les bons types pour les colonnes
 
 if ($stmt->execute()) {
     echo "Utilisateur ajouté avec succès.";

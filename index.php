@@ -25,9 +25,9 @@
     <div class="annonce-list">
         <?php
         // Connexion à la base de données
-        $servername = "localhost";
+        $servername = "127.0.0.1";
         $username = "root";
-        $password = "";
+        $password = "12345678";
         $dbname = "bagshare";
 
         // Créer une connexion
@@ -65,36 +65,14 @@
     </div>
 </section>
 
-<section class="ajouter-annonce">
-    <h2>Ajouter une annonce</h2>
-    <form method="post" action="ajouter_annonce.php">
-        <div>
-            <label for="description">Description :</label>
-            <input type="text" id="description" name="description" required>
-        </div>
-        <div>
-            <label for="depart">Départ :</label>
-            <input type="text" id="depart" name="depart" required>
-        </div>
-        <div>
-            <label for="arrivee">Arrivée :</label>
-            <input type="text" id="arrivee" name="arrivee" required>
-        </div>
-        <div>
-            <label for="date">Date :</label>
-            <input type="date" id="date" name="date" required>
-        </div>
-        <div>
-            <label for="kilos_disponibles">Kilos disponibles :</label>
-            <input type="number" id="kilos_disponibles" name="kilos_disponibles" required>
-        </div>
-        <div>
-            <label for="prix_par_kilo">Prix par kilo :</label>
-            <input type="number" id="prix_par_kilo" name="prix_par_kilo" required>
-        </div>
-        <button type="submit">Ajouter annonce</button>
-    </form>
-</section>
+    <!-- ajout d'annonce avec php pour mode connecté -->
+    <?php 
+    
+    if (isset($_SESSION['user'])) {
+        # code...
+    }
+    
+    ?>
 
 
     <section id="about-link" class="about-section" >
@@ -115,7 +93,7 @@
         </div>
         <img src="data\apropos.png" alt="apropos">
     </section>
-
+    
     <!-- Inclusion du footer -->
     <?php include 'html/footer.html'; ?>
 </body>

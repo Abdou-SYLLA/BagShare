@@ -2,9 +2,9 @@
 session_start();
 
 // Connexion à la base de données
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
-$password = "";
+$password = "12345678";
 $dbname = "bagshare";
 
 // Créer une connexion
@@ -20,54 +20,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Préparer et exécuter la requête pour vérifier les identifiants
-    $stmt = $conn->prepare("SELECT hashed_password, role, nom FROM account NATURAL JOIN users WHERE username = ?");
+    $stmt = $conn->prepare("SELECT hashed_password, role, nom FROM account inner JOIN users on (user = numero) WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt->store_result();
     
     if ($stmt->num_rows > 0) {
+        // Si un utilisateur est trouvé, lier les résultats
         $stmt->bind_result($hashed_password, $role, $nom);
         $stmt->fetch();
-            // Affiche les valeurs pour débogage
-            echo "Récupéré - Mot de passe haché: $hashed_password, Rôle: $role, Nom: $nom<br>";
-        } else {
-            echo "Aucun utilisateur trouvé avec ce nom d'utilisateur.<br>";
-        }
-        
+
+
         // Vérifier le mot de passe
+        echo "Mot de passe fourni: $password<br>";
+        echo "Mot de passe haché récupéré: $hashed_password<br>";
+        var_dump(password_verify($password, $hashed_password)); // Affiche true ou false
+
         if (password_verify($password, $hashed_password)) {
             // Enregistrement des données de session
             $_SESSION['user'] = $username; // Enregistre le nom d'utilisateur
             $_SESSION['role'] = $role; // Enregistre le rôle
             $_SESSION['nom'] = $nom; // Enregistre le nom
 
-            // Affichage pour débogage
-            echo htmlspecialchars($nom) . " : nom, role : " . htmlspecialchars($role);
-
             // Redirection en fonction du rôle
             if ($role == 'admin') {
-                header('Location: index.php'); // Pas d'espace supplémentaire ici
+                header('Location: index.php'); // Redirection pour admin
             } else {
-                header('Location: index.php'); // Pas d'espace supplémentaire ici
+                header('Location: index.php'); // Redirection pour utilisateur
             }
             exit();
         } else {
-            $error = "Identifiants incorrects"; // Message d'erreur pour mot de passe incorrect
+            $error = "Mot de passe incorrect."; // Message d'erreur si le mot de passe est incorrect
         }
     } else {
-        $error = "Identifiants incorrects"; // Message d'erreur pour utilisateur non trouvé
+        $error = "Nom d'utilisateur introuvable."; // Message d'erreur si l'utilisateur n'est pas trouvé
     }
+
     $stmt->close();
 }
 
-// Inclusion du header HTML
-include 'html/header.html';
+// Redirection vers la page de connexion avec l'erreur si applicable
 if (isset($error)) {
-    echo "<p style='color: red; text-align:center;'>$error</p>"; // Affichage du message d'erreur
+    header('Location: html/connexion.html?error=' . urlencode($error));
+    exit();
 }
-include 'html/connexion.html'; // Inclusion du formulaire de connexion
-include 'html/footer.html'; // Inclusion du footer
 
 // Fermer la connexion
 $conn->close();
+
 ?>

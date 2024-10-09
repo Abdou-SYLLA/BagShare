@@ -19,3 +19,96 @@
         <button type="submit">Créer utilisateur</button>
     </form>
 </section>
+
+<hr>
+
+<section>
+    <h2>Liste des utilisateurs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom d'utilisateur</th>
+                <th>Rôle</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Connexion à la base de données
+            $conn = new mysqli('localhost', 'root', '', 'bagshare');  // Modifier les valeurs de connexion selon ton environnement
+
+            // Vérification de la connexion
+            if ($conn->connect_error) {
+                die("Échec de la connexion : " . $conn->connect_error);
+            }
+
+            // Requête pour récupérer les utilisateurs
+            $sql = "SELECT id, username, role FROM users";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Affichage des utilisateurs
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>
+                            <td>" . $row["username"] . "</td>
+                            <td>" . $row["role"] . "</td>
+                            <td>
+                                <form method='post' action='../admin.php'>
+                                    <input type='hidden' name='delete_user_id' value='" . $row["id"] . "'>
+                                    <button type='submit'>Supprimer</button>
+                                </form>
+                            </td>
+                          </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='3'>Aucun utilisateur trouvé</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</section>
+
+<hr>
+
+<section>
+    <h2>Liste des annonces</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Kilos disponibles</th>
+                <th>Prix par kilo</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Requête pour récupérer les annonces
+            $sql = "SELECT id, destination, kilos_disponibles, prix_par_kilo FROM annonces";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                // Affichage des annonces
+                while($row = $result->fetch_assoc()) {
+                    echo "<tr>
+                            <td>" . $row["destination"] . "</td>
+                            <td>" . $row["kilos_disponibles"] . "</td>
+                            <td>" . $row["prix_par_kilo"] . "</td>
+                            <td>
+                                <form method='post' action='../admin.php'>
+                                    <input type='hidden' name='delete_annonce_id' value='" . $row["id"] . "'>
+                                    <button type='submit'>Supprimer</button>
+                                </form>
+                            </td>
+                          </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>Aucune annonce trouvée</td></tr>";
+            }
+
+            // Fermeture de la connexion
+            $conn->close();
+            ?>
+        </tbody>
+    </table>
+</section>
