@@ -1,0 +1,7 @@
+    Commande pour corriger les probleme de commit:
+
+git config --global user.name "Abdou-SYLLA"
+git config --global user.email "syllaa@3il.fr"
+git credential-osxkeychain erase
+ssh-keygen -t rsa -b 4096 -C "syllaa@3il.fr"\n
+git remote set-url origin git@github.com:Abdou-SYLLA/BagShare.git
