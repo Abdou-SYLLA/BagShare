@@ -2,18 +2,6 @@
 <?php include 'header.php'; ?>
 <section class="contact-section">
     <div class="container">
-        <div class="header">
-            <h1>Nous contacter</h1>
-        </div>
-        
-        <div class="nav-links">
-            <a href="#">Conditions générales</a>
-            <a href="#">Politique de confidentialité</a>
-            <a href="#">Informations sur la livraison et le paiement</a>
-            <a href="#">Politique de retour</a>
-            <a href="#">Nous contacter</a>
-        </div>
-        
         <div class="form-container">
             <h2>Nous contacter</h2>
             <p>Nous vous répondrons sous un jour ouvrable.</p>

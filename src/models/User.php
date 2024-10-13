@@ -12,5 +12,4 @@ class User {
         // Code pour récupérer les informations d'un utilisateur via son ID
     }
 }
-
 ?>
