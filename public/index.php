@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Inclusion du header -->
-    <?php include 'html/header.php'; ?>
+    <?php include '../src/views/header.php'; ?>
 
     <section class="hero">
         <div class="hero-content">
@@ -17,7 +17,7 @@
             <p>Livraison en moins de 48h*</p>
             <a href="#" class="btn-primary">En savoir plus </a>
         </div>
-        <img src="data/globe.png" alt="Globe">
+        <img src="data/images/globe.png" alt="Globe">
     </section>
 
     <section class="annonces">
@@ -75,7 +75,7 @@
     ?>
     
     <!-- Inclusion du footer -->
-    <?php include 'html/footer.html'; ?>
+    <?php include '../src/views/footer.php'; ?>
 </body>
 </html>
 

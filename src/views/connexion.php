@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Connexion - BagShare</title>
     
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="/bagshare/public/styles/styles.css"> 
 </head>
 
 <body>
     <section class="connexion-section">
         <h2>Connexion</h2>
-        <form method="post" action="../connexion.php">
+        <form method="post" action="../src/controllers/AuthController.php">
             <div>
                 <label for="username">Nom d'utilisateur :</label>
                 <input type="text" id="username" name="username" required>
