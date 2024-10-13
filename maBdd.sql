@@ -138,3 +138,7 @@ if ($stmt->execute()) {
 $stmt->close();
 $conn->close();
 ?>
+
+
+
+docker run --detach --name bagshare --env MARIADB_ROOT_PASSWORD=12345678  mariadb:latest
