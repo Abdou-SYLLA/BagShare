@@ -15,13 +15,11 @@
             <img src="../../public/data/images/logo2.png" alt="BagShare"> <!-- Chemin absolu ou relatif -->
         </div>
         <nav>
-            <a href="../../public/index.php">Accueil</a> <!-- Chemin absolu ou relatif -->
-            <a href="#ajouterAnnonce">Ajouter</a>
-            <a href="#supprimerAnnonce">Supprimer</a>
-            
+            <a href="../../public/index.php">Accueil</a> <!-- Chemin absolu ou relatif -->           
             <?php
-            session_start();
             if (isset($_SESSION['user'])) {
+                echo "<a href=\"#ajouterAnnonce\">Ajouter</a>";
+                echo "<a href=\"#supprimerAnnonce\">Supprimer</a>";
                 // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
                 echo "<a href='#'>" . htmlspecialchars($_SESSION['nom']) . "</a>";
                 echo "<a href='/bagshare/src/controllers/disconnect.php' class=\"btn-secondary\">Déconnexion</a>";
