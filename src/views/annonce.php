@@ -10,15 +10,25 @@
 
 <div class="content-container">
     <!-- Header pour la section Annonces -->
-    <header class="annonce-header">
-        <nav class="navbar">
-            <div class="logo">
-                <a class="nav-link"><img src="../../public/data/images/logo2.png" alt="Logo" class="logo-image"></a> <!-- Assurez-vous de mettre le bon chemin pour votre logo -->
-            </div>
-            <a href="../../public/index.php" class="nav-link">Accueil</a>
-            <a href="#ajouterAnnonce" class="nav-link">Ajouter</a>
-            <a href="#supprimerAnnonce" class="nav-link">Supprimer</a>
-                
+    <header>
+        <div class="logo">
+            <img src="../../public/data/images/logo2.png" alt="BagShare"> <!-- Chemin absolu ou relatif -->
+        </div>
+        <nav>
+            <a href="../../public/index.php">Accueil</a> <!-- Chemin absolu ou relatif -->
+            <a href="#ajouterAnnonce">Ajouter</a>
+            <a href="#supprimerAnnonce">Supprimer</a>
+            
+            <?php
+            session_start();
+            if (isset($_SESSION['user'])) {
+                // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
+                echo "<a href='#'>" . htmlspecialchars($_SESSION['nom']) . "</a>";
+                echo "<a href='/bagshare/src/controllers/disconnect.php' class=\"btn-secondary\">Déconnexion</a>";
+            } else {
+                echo "<a href='/bagshare/src/views/connexion.php' class=\"btn-secondary\">Connexion</a>";
+            }
+            ?>
         </nav>
     </header>
 
