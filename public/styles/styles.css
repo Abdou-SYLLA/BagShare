@@ -18,49 +18,34 @@ body {
 }
 
 /* Header styles */
+
+/* Styles de base du header */
 header {
-    background-color: #fff;
     display: flex;
-    position: relative;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-header nav {
-    font-size: 14px;
-    flex-grow: 0.5;
-    display: flex;
-    justify-content: space-between; /* Aligne les éléments à droite */
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    position: relative;
+    z-index: 100;
 }
 
 .logo img {
-    max-width: 200px;
+    max-width: 150px;
+    height: auto;
 }
 
+/* Style du menu de navigation */
 nav {
     display: flex;
     gap: 20px;
 }
 
 nav a {
-    color: #333;
     text-decoration: none;
-    font-size: 1.2em;
-}
-
-nav a:hover {
-    color: #0a4e44;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 10px;
+    color: #333;
+    font-size: 1em;
+    padding: 10px;
 }
 
 .btn-primary, .btn-secondary {
@@ -304,6 +289,33 @@ nav a:hover {
     .steps {
         flex-direction: column; /* Empile les éléments sur mobile */
         align-items: center;
+    }
+    header {
+        flex-direction: column; /* Wrap du header sur petits écrans */
+        align-items: center;
+    }
+    
+    .logo img {
+        display: none; /* Masquer le logo image */
+    }
+    
+    .logo::before {
+        content: "BagShare"; /* Remplacer le logo par du texte */
+        font-size: 2em;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Cacher l'image de la section hero */
+    .hero img {
+        display: none;
+    }
+    
+    /* Adapter la taille du menu */
+    nav {
+        flex-direction: column; /* Empiler les liens de navigation */
+        align-items: center;
+        gap: 10px;
     }
 }
 
