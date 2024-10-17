@@ -29,7 +29,7 @@
         <div class="hero-content">
             <h1>Rentabilisez vos bagages, expédiez à prix réduit</h1>
             <p>Trouvez des voyageurs pour envoyer vos colis rapidement et en toute sécurité, à des tarifs compétitifs.</p>
-            <a href="#" class="btn-primary">Commencez à envoyer maintenant</a>
+            <a href="../src/views/annonce.php" class="btn-primary">Commencez à envoyer maintenant</a>
         </div>
         <img src="data/images/globe.png" alt="Illustration de BagShare : globe avec moyens de transport">
     </section>
