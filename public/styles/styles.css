@@ -321,6 +321,7 @@ nav a {
 
 
 /* Style des cartes d'annonces */
+/* Zoom sur l'annonce au survol */
 .annonce {
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -332,17 +333,35 @@ nav a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Ajoute une transition douce */
 }
 
-.annonce h2 {
-    font-size: 18px;
-    color: #007bff;
-    margin: 0 0 10px;
+.annonce:hover {
+    transform: scale(1.05); /* Agrandir au survol */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Ombre plus intense */
 }
 
-.annonce p {
-    margin: 5px 0;
-    color: #555;
+/* Bouton de réservation masqué par défaut */
+.annonce .btn-reserver {
+    display: none;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Style du bouton lors du survol */
+.annonce .btn-reserver:hover {
+    background-color: #0056b3;
+}
+
+/* Lorsque l'annonce est cliquée, le bouton devient visible */
+.annonce.clicked .btn-reserver {
+    display: block;
 }
 
 .actions {

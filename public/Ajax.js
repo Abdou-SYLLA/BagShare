@@ -18,8 +18,22 @@ $(document).ready(function() {
                             <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
                             <p>Date: ${annonce.date}</p>
                             <p>Voyageur: ${annonce.nom}</p>
+                            <button class="btn-reserver">Réserver maintenant</button>
                         </div>
                     `);
+                });
+
+                // Ajoute l'effet de clic sur chaque annonce
+                $('.annonce').on('click', function() {
+                    // Enlever la classe 'clicked' des autres annonces pour ne garder que celle-ci active
+                    $('.annonce').removeClass('clicked');
+                    $(this).addClass('clicked');
+                });
+
+                // Ajoute le comportement du bouton de réservation
+                $('.btn-reserver').on('click', function(e) {
+                    e.stopPropagation(); // Empêche le clic sur l'annonce elle-même
+                    alert("Vous avez réservé cette annonce !");
                 });
             } else {
                 annonceList.append('<p>Aucune annonce trouvée.</p>');
