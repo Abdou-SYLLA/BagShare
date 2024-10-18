@@ -381,10 +381,22 @@ nav a {
     color: white;
 }
 
-.btn-danger {
-    background-color: #dc3545;
+/* Bouton "Supprimer" rouge, masqué par défaut */
+.btn-supprimer {
+    display: none; /* Masqué par défaut */
+    background-color: #dc3545; /* Rouge */
     color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
+
+/* Quand l'annonce est cliquée, le bouton "Supprimer" devient visible */
+.annonce.clicked .btn-supprimer {
+    display: block; /* Rendre le bouton visible sur l'annonce cliquée */
+}
+
 
 /* Section d'ajout d'annonce */
 .form-ajout {

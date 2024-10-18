@@ -12,12 +12,11 @@ $(document).ready(function() {
             if (data.length > 0) {
                 data.forEach(function(annonce) {
                     let buttons = `<button class="btn-reserver">Réserver maintenant</button>`;
-                    
-                    // Si l'utilisateur est connecté, ajouter le bouton "Supprimer"
+                    isUserLoggedIn = true; //test boutton
+                    // Si l'utilisateur est connecté, ajouter le bouton "Supprimer" masqué par défaut
                     if (isUserLoggedIn) {
-                        buttons += `<button class="btn-supprimer btn-danger">Supprimer</button>`;
-                    }
-
+                        buttons += `<button class="btn-supprimer" style="display: none;">Supprimer</button>`;
+                    }                    
                     // Ajouter l'annonce avec les boutons
                     annonceList.append(`
                         <div class='annonce'>
@@ -39,6 +38,14 @@ $(document).ready(function() {
                     // Enlever la classe 'clicked' des autres annonces pour ne garder que celle-ci active
                     $('.annonce').removeClass('clicked');
                     $(this).addClass('clicked');
+
+                    // Si l'utilisateur est connecté, rendre le bouton "Supprimer" visible dans l'annonce cliquée
+                    if (isUserLoggedIn) {
+                        $(this).find('.btn-supprimer').show();
+                    }
+
+                    // Cacher les boutons "Supprimer" des autres annonces
+                    $('.annonce').not(this).find('.btn-supprimer').hide();
                 });
 
                 // Comportement du bouton de réservation
