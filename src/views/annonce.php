@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="../../public/styles/styles.css"> <!-- Fichier CSS partagé -->
 </head>
 <body>
+    
+<script type="text/javascript">
+    var isUserLoggedIn = <?php echo isset($_SESSION['user']) ? 'true' : 'false'; ?>;
+</script>
 
 <div class="content-container">
     <!-- Header pour la section Annonces -->
