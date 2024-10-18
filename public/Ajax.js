@@ -12,7 +12,7 @@ $(document).ready(function() {
             if (data.length > 0) {
                 data.forEach(function(annonce) {
                     let buttons = `<button class="btn-reserver">Réserver maintenant</button>`;
-                    isUserLoggedIn = true; //test boutton
+                    // isUserLoggedIn = true; //test boutton
                     // Si l'utilisateur est connecté, ajouter le bouton "Supprimer" masqué par défaut
                     if (isUserLoggedIn) {
                         buttons += `<button class="btn-supprimer" style="display: none;">Supprimer</button>`;

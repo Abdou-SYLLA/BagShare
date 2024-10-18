@@ -11,6 +11,12 @@
 
 <body>
     <section class="connexion-section">
+        <!-- Ajout du logo -->
+        <div class="logo-container">
+            <img src="/bagshare/public/data/images/logo2.png" alt="Logo BagShare" class="logo">
+            <span class="logo-text">BagShare</span> <!-- Texte de remplacement pour petit écran -->
+        </div>
+
         <h2>Connexion</h2>
         <form method="post" action="../src/controllers/AuthController.php">
             <div>
@@ -23,6 +29,8 @@
             </div>
             <button type="submit">Se connecter</button>
         </form>
+        <button class="btn-home" onclick="window.location.href='../../public/index.php'">Retour à l'accueil</button>
     </section>
 </body>
+
 </html>
