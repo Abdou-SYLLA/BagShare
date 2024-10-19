@@ -653,7 +653,7 @@ footer nav {
 }
 
 /* Sur les petits écrans, remplacer le logo par du texte */
-@media (max-width: 768px) {
+@media (max-width: 400px) {
     .logo-container .logo {
         display: none; /* Masquer le logo image */
     }

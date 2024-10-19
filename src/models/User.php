@@ -1,49 +1,51 @@
 <?php
+
 class User {
     private $conn;
 
     // Constructeur pour établir la connexion à la base de données
     public function __construct() {
+        // Informations de connexion (à externaliser idéalement dans un fichier de config)
         $servername = "127.0.0.1";
         $username = "root";
         $password = "12345678";
         $dbname = "bagshare";
 
-        // Créer une connexion
+        // Connexion à la base de données
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         // Vérifier la connexion
         if ($this->conn->connect_error) {
-            die("Connexion échouée: " . $this->conn->connect_error);
+            throw new Exception("Connexion échouée: " . $this->conn->connect_error);
         }
     }
 
-    // Méthode pour gérer l'authentification de l'utilisateur
+    // Méthode pour l'authentification de l'utilisateur
     public function authenticate($username, $password) {
-        // Préparer et exécuter la requête pour vérifier les identifiants
+        // Préparer et exécuter la requête pour récupérer les informations d'utilisateur
         $stmt = $this->conn->prepare("SELECT hashed_password, role, nom FROM account INNER JOIN users ON (user = numero) WHERE username = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->store_result();
-        
+
+        // Si l'utilisateur est trouvé
         if ($stmt->num_rows > 0) {
-            // Lier les résultats si un utilisateur est trouvé
             $stmt->bind_result($hashed_password, $role, $nom);
             $stmt->fetch();
 
             // Vérifier le mot de passe
             if (password_verify($password, $hashed_password)) {
-                // Si le mot de passe est valide, enregistrer les informations de session
-                $_SESSION['user'] = $username; // Nom d'utilisateur
-                $_SESSION['role'] = $role; // Rôle de l'utilisateur
-                $_SESSION['nom'] = $nom; // Nom de l'utilisateur
+                // Si authentification réussie, créer la session
+                $_SESSION['user'] = $username;
+                $_SESSION['role'] = $role;
+                $_SESSION['nom'] = $nom;
 
-                return true; // Authentification réussie
+                return true; // Retourner true pour indiquer que l'authentification a réussi
             } else {
-                return "Mot de passe incorrect."; // Mot de passe invalide
+                return false; // Mot de passe incorrect
             }
         } else {
-            return "Nom d'utilisateur introuvable."; // Aucun utilisateur trouvé
+            return false; // Aucun utilisateur trouvé
         }
 
         $stmt->close();
@@ -51,48 +53,35 @@ class User {
 
     // Méthode pour déconnecter l'utilisateur
     public function logout() {
-        session_unset(); // Supprimer toutes les variables de session
-        session_destroy(); // Détruire la session
+        session_unset();
+        session_destroy();
     }
 
-    // Méthode pour vérifier si l'utilisateur est connecté
+    // Vérifie si un utilisateur est connecté
     public function isAuthenticated() {
         return isset($_SESSION['user']);
     }
 
-    // Méthode pour vérifier si l'utilisateur est un administrateur
+    // Vérifie si l'utilisateur est un administrateur
     public function isAdmin() {
         return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
     }
 
-    // Méthode pour supprimer un utilisateur
+    // Supprimer un utilisateur
     public function deleteUser($username) {
-        // Vérifier si l'utilisateur est connecté
-        if (!$this->isAuthenticated()) {
-            return "Utilisateur non authentifié.";
-        }
-
-        // Vérifier si l'utilisateur est l'admin ou l'utilisateur lui-même
         if ($this->isAdmin() || ($_SESSION['user'] === $username)) {
-            // Préparer la requête pour supprimer l'utilisateur
             $stmt = $this->conn->prepare("DELETE FROM account WHERE username = ?");
             $stmt->bind_param("s", $username);
             $stmt->execute();
 
-            // Vérifier si la suppression a réussi
-            if ($stmt->affected_rows > 0) {
-                return "Utilisateur supprimé avec succès.";
-            } else {
-                return "Erreur lors de la suppression de l'utilisateur ou utilisateur introuvable.";
-            }
+            return $stmt->affected_rows > 0;
         } else {
-            return "Vous n'avez pas l'autorisation de supprimer cet utilisateur.";
+            return false; // L'utilisateur n'a pas l'autorisation
         }
     }
 
-    // Fermer la connexion lorsque l'objet est détruit
+    // Fermer la connexion lors de la destruction de l'objet
     public function __destruct() {
         $this->conn->close();
     }
 }
-?>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Connexion - BagShare</title>
     
-    <link rel="stylesheet" href="/bagshare/public/styles/styles.css"> 
+    <link rel="stylesheet" href="/bagshare/public/styles/styles.css"> <!-- Lien vers votre feuille de style -->
 </head>
 
 <body>
@@ -18,7 +18,9 @@
         </div>
 
         <h2>Connexion</h2>
-        <form method="post" action="../src/controllers/AuthController.php">
+
+        <!-- Formulaire de connexion -->
+        <form method="post" action="../controllers/AuthController.php">
             <div>
                 <label for="username">Nom d'utilisateur :</label>
                 <input type="text" id="username" name="username" required>
@@ -27,10 +29,18 @@
                 <label for="password">Mot de passe :</label>
                 <input type="password" id="password" name="password" required>
             </div>
+
+            <!-- Bouton de connexion -->
             <button type="submit">Se connecter</button>
         </form>
+
+        <!-- Bouton retour à l'accueil -->
         <button class="btn-home" onclick="window.location.href='../../public/index.php'">Retour à l'accueil</button>
+
+        <!-- Affichage d'un message d'erreur en cas de problème de connexion -->
+        <?php if (isset($_GET['error'])): ?>
+            <p class="error-message"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <?php endif; ?>
     </section>
 </body>
-
 </html>
