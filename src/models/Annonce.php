@@ -3,11 +3,11 @@ class Annonce {
     private $conn;
 
     // Constructeur pour établir la connexion à la base de données
-    public function __construct() {
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "12345678";
-        $dbname = "bagshare";
+public function __construct() {
+        $servername = "mysql-asylla.alwaysdata.net";
+        $username = "asylla";
+        $password = "Sylla@2024";
+        $dbname = "asylla_bagshare";
 
         // Créer une connexion
         $this->conn = new mysqli($servername, $username, $password, $dbname);

@@ -68,7 +68,6 @@
         </nav>
     </section>
 
-
     <!-- Inclusion du footer -->
     <?php include '../src/views/footer.php'; ?>
 </body>
