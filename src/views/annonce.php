@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Annonces</title>
-    <link rel="stylesheet" href="../../public/styles/styles.css"> <!-- Fichier CSS partagé -->
+    <link rel="stylesheet" href="/public/styles/styles.css"> <!-- Fichier CSS partagé -->
 </head>
 <body>
     
@@ -21,7 +21,7 @@
     <header>
         
         <div class="logo">
-            <img src="../../public/data/images/logo2.png" alt="BagShare"> <!-- Chemin absolu ou relatif -->
+            <img src="/public/data/images/logo2.png" alt="BagShare"> <!-- Chemin absolu ou relatif -->
         </div>
         <nav>
             <a href="../../public/index.php">Accueil</a> <!-- Chemin absolu ou relatif -->           
@@ -30,9 +30,9 @@
                 echo "<a href=\"#ajouterAnnonce\">Ajouter</a>";
                 // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
                 echo "<a href='#'>" . htmlspecialchars($_SESSION['nom']) . "</a>";
-                echo "<a href='/bagshare/src/controllers/disconnect.php' class=\"btn-secondary\">Déconnexion</a>";
+                echo "<a href='/src/controllers/disconnect.php' class=\"btn-secondary\">Déconnexion</a>";
             } else {
-                echo "<a href='/bagshare/src/views/connexion.php' class=\"btn-secondary\">Connexion</a>";
+                echo "<a href='/src/views/connexion.php' class=\"btn-secondary\">Connexion</a>";
             }
             ?>
         </nav>
