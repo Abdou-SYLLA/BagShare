@@ -4,19 +4,18 @@ class User {
     private $conn;
 
     // Constructeur pour établir la connexion à la base de données
-    public function __construct() {
-        // Informations de connexion (à externaliser idéalement dans un fichier de config)
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "12345678";
-        $dbname = "bagshare";
+public function __construct() {
+        $servername = "mysql-asylla.alwaysdata.net";
+        $username = "asylla";
+        $password = "Sylla@2024";
+        $dbname = "asylla_bagshare";
 
-        // Connexion à la base de données
+        // Créer une connexion
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         // Vérifier la connexion
         if ($this->conn->connect_error) {
-            throw new Exception("Connexion échouée: " . $this->conn->connect_error);
+            die("Connexion échouée: " . $this->conn->connect_error);
         }
     }
 
@@ -78,6 +77,39 @@ class User {
         } else {
             return false; // L'utilisateur n'a pas l'autorisation
         }
+    }
+
+    public function createUser($user, $username, $password) {
+        // Hachage du mot de passe
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Étape 1 : Vérifier si l'utilisateur existe dans `users`
+        $stmt = $this->conn->prepare("SELECT numero FROM users WHERE numero = ?");
+        $stmt->bind_param("s", $user); // Utiliser 's' si 'user' est une chaîne
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows == 0) {
+            // L'utilisateur n'existe pas, insérer dans `users`
+            $stmt->close();
+            $stmt = $this->conn->prepare("INSERT INTO users (numero) VALUES (?)");
+            $stmt->bind_param("s", $user);
+            $stmt->execute();
+        }
+
+        $stmt->close();
+
+        // Étape 2 : Insérer les informations de l'utilisateur dans `account`
+        $stmt = $this->conn->prepare("INSERT INTO account (user, username, hashed_password) VALUES (?, ?, ?)");
+        $stmt->bind_param("iss", $user, $username, $hashed_password); // Utilisation des bons types
+
+        if ($stmt->execute()) {
+            return "Utilisateur ajouté avec succès.";
+        } else {
+            return "Erreur lors de l'ajout de l'utilisateur: " . $stmt->error;
+        }
+
+        $stmt->close();
     }
 
     // Fermer la connexion lors de la destruction de l'objet

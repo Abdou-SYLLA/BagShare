@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once ('/bagshare/config/config.php');
+
 // Inclure le modèle User
 require_once '../models/User.php';
 

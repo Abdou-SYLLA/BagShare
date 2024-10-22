@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-        url: '/BagShare/src/controllers/AnnonceController.php',
+        url: '/bagshare/src/controllers/AnnonceController.php',
         type: 'POST',
         dataType: 'json',
         data: { action: 'getAnnonces' }, // Envoyer une action pour le contrôleur
@@ -65,7 +65,8 @@ $(document).ready(function() {
             }
         },
         error: function(xhr, status, error) {
-            $('#annonceList').append('<p>Erreur lors du chargement des annonces.</p>');
-        }
+            $('#annonceList').append('<p>Erreur lors du chargement des annonces.'+error+'</p>');
+            
+	}
     });
 });
