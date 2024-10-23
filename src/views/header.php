@@ -3,10 +3,15 @@
         <img src="/public/data/images/logo2.png" alt="BagShare"> <!-- Chemin absolu -->
     </div>
     <nav>
-        <a href="/bagshare/public/index.php">Acceuil</a> <!-- Chemin absolu -->
-        <a href="/bagshare/src/views/annonce.php">Annonces</a> <!-- Chemin absolu -->
-        <a href="/bagshare/src/views/about.php">A propos</a> <!-- Chemin absolu -->
-        <a href="/bagshare/src/views/contact.php">Nous contacter</a> <!-- Chemin absolu -->
+        <?php
+        $current_page = basename($_SERVER['PHP_SELF']); // Obtient le nom du fichier PHP en cours
+        
+        // Définir les liens avec une condition pour la classe 'active'
+        ?>
+        <a href="/public/index.php" class="<?= $current_page == 'index.php' ? 'active' : '' ?>">Accueil</a> <!-- Chemin absolu -->
+        <a href="/src/views/annonce.php" class="<?= $current_page == 'annonce.php' ? 'active' : '' ?>">Annonces</a> <!-- Chemin absolu -->
+        <a href="/src/views/about.php" class="<?= $current_page == 'about.php' ? 'active' : '' ?>">A propos</a> <!-- Chemin absolu -->
+        <a href="/src/views/contact.php" class="<?= $current_page == 'contact.php' ? 'active' : '' ?>">Nous contacter</a> <!-- Chemin absolu -->
 
         <?php
         if (isset($_SESSION['user'])) {
