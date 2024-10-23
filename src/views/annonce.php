@@ -18,25 +18,7 @@
 
 <div class="content-container">
     <!-- Header pour la section Annonces -->
-    <header>
-        
-        <div class="logo">
-            <img src="/public/data/images/logo2.png" alt="BagShare"> <!-- Chemin absolu ou relatif -->
-        </div>
-        <nav>
-            <a href="../../public/index.php">Accueil</a> <!-- Chemin absolu ou relatif -->           
-            <?php
-            if (isset($_SESSION['user'])) {
-                echo "<a href=\"#ajouterAnnonce\">Ajouter</a>";
-                // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
-                echo "<a href='#'>" . htmlspecialchars($_SESSION['nom']) . "</a>";
-                echo "<a href='/src/controllers/disconnect.php' class=\"btn-secondary\">Déconnexion</a>";
-            } else {
-                echo "<a href='/src/views/connexion.php' class=\"btn-secondary\">Connexion</a>";
-            }
-            ?>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
 
     <!-- Section pour afficher les annonces sous forme de cartes -->
     <section class="annonces">
