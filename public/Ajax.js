@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.ajax({
-        url: '/bagshare/src/controllers/AnnonceController.php',
+        url: '/src/controllers/AnnonceController.php',
         type: 'POST',
         dataType: 'json',
         data: { action: 'getAnnonces' }, // Envoyer une action pour le contrôleur

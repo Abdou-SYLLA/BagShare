@@ -48,6 +48,13 @@ nav a {
     padding: 10px;
 }
 
+/* CSS pour le lien actif */
+nav a.active {
+    font-weight: bold;
+    color: green;
+}
+
+
 .btn-primary, .btn-secondary {
     padding: 10px 20px;
     border-radius: 25px;

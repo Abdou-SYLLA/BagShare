@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BagShare - Worldwide Delivery</title>
-    <link rel="stylesheet" href="/bagshare/public/styles/styles.css"> 
+    <link rel="stylesheet" href="/public/styles/styles.css"> 
 </head>
 
 <?php include 'header.php'; ?>
@@ -21,7 +21,7 @@
             BagShare représente une alternative flexible et économique aux services de livraison traditionnels.
         </p>
     </div>
-    <img src="/bagshare/public/data/images/apropos.png" alt="apropos">
+    <img src="/public/data/images/apropos.png" alt="apropos">
 </section>
 
 <?php include 'footer.php'; ?>

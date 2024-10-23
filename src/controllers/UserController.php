@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Gérer la déconnexion
 if (isset($_GET['logout'])) {
     $userModel->logout();
-    header('Location: /Bagshare/src/views/connexion.php'); // Redirection après déconnexion
+    header('Location: /src/views/connexion.php'); // Redirection après déconnexion
     exit();
 }
 ?>
