@@ -4,11 +4,11 @@ class User {
     private $conn;
 
     // Constructeur pour établir la connexion à la base de données
-public function __construct() {
-        $servername = "mysql-asylla.alwaysdata.net";
-        $username = "asylla";
+    public function __construct() {
+        $servername = "localhost";
+        $username = "bagshare";
         $password = "Sylla@2024";
-        $dbname = "asylla_bagshare";
+        $dbname = "bagshare";
 
         // Créer une connexion
         $this->conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,38 +17,48 @@ public function __construct() {
         if ($this->conn->connect_error) {
             die("Connexion échouée: " . $this->conn->connect_error);
         }
+
+        // Forcer l'utilisation de l'encodage UTF-8 pour éviter les problèmes d'encodage
+        if (!$this->conn->set_charset("utf8")) {
+            printf("Erreur lors du chargement du jeu de caractères utf8 : %s\n", $this->conn->error);
+            exit();
+        }
     }
 
-    // Méthode pour l'authentification de l'utilisateur
     public function authenticate($username, $password) {
         // Préparer et exécuter la requête pour récupérer les informations d'utilisateur
-        $stmt = $this->conn->prepare("SELECT hashed_password, role, nom FROM account INNER JOIN users ON (user = numero) WHERE username = ?");
+        $req = "SELECT hashed_password, role, nom FROM account 
+                INNER JOIN users ON (user = numero) WHERE username = ?";
+        $stmt = $this->conn->prepare($req);
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $stmt->store_result();
-
+    
         // Si l'utilisateur est trouvé
         if ($stmt->num_rows > 0) {
             $stmt->bind_result($hashed_password, $role, $nom);
             $stmt->fetch();
-
-            // Vérifier le mot de passe
+    
+            // Vérifier si le mot de passe correspond au hachage
             if (password_verify($password, $hashed_password)) {
                 // Si authentification réussie, créer la session
                 $_SESSION['user'] = $username;
                 $_SESSION['role'] = $role;
                 $_SESSION['nom'] = $nom;
-
-                return true; // Retourner true pour indiquer que l'authentification a réussi
+    
+                return true; // Authentification réussie
             } else {
-                return false; // Mot de passe incorrect
+                // Si le mot de passe est incorrect
+                return false;
             }
         } else {
-            return false; // Aucun utilisateur trouvé
+            // Si aucun utilisateur trouvé
+            return false;
         }
-
+    
         $stmt->close();
     }
+    
 
     // Méthode pour déconnecter l'utilisateur
     public function logout() {
@@ -79,6 +89,7 @@ public function __construct() {
         }
     }
 
+    // Création d'un utilisateur
     public function createUser($user, $username, $password) {
         // Hachage du mot de passe
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);

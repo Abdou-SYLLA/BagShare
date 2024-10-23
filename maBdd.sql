@@ -86,8 +86,10 @@ VALUES (
     SHA2(CONCAT(0753320000, 'MotDePasseExemple1!'), 256)
 );
 
+/*scp sauvegarde.sql utilisateur_vm@adresse_ip_de_la_vm:/chemin/vers/le/dossier
+*/
 
-
+scp  utilisateur_vm@adresse_ip_de_la_vm:/chemin/vers/le/dossier
        <?php
 // Connexion à la base de données
 $servername = "127.0.0.1";

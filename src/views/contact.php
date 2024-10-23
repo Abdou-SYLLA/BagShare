@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/bagshare/public/styles/styles.css"> 
+<link rel="stylesheet" href="/public/styles/styles.css"> 
 <?php include 'header.php'; ?>
 <section class="contact-section">
     <div class="container">

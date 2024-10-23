@@ -9,6 +9,6 @@ if (isset($_SESSION['user'])) {
 }
 
 // Redirige vers la page de connexion ou la page d'accueil
-header('Location: /bagshare/public/index.php'); // Rediriger vers la page de connexion
+header('Location: /public/index.php'); // Rediriger vers la page de connexion
 exit();
 ?>
