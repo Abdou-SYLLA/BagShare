@@ -38,7 +38,7 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../../public/Ajax.js"></script> <!-- Lien vers le fichier JS -->
+<script src="../../public/annonces.js"></script> <!-- Lien vers le fichier JS -->
 <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -123,6 +123,59 @@ class User {
         $stmt->close();
     }
 
+     // Méthode pour modifier les informations d'un utilisateur en utilisant le numéro comme clé primaire
+    public function updateUser($nom, $prenom, $role, $numero) {
+        // Préparer la requête SQL pour mettre à jour les informations de l'utilisateur
+        $sql = "UPDATE users SET nom = ?, prenom = ?, role = ? WHERE numero = ?";
+        $stmt = $this->conn->prepare($sql);
+
+        if ($stmt === false) {
+            return "Erreur lors de la préparation de la requête : " . $this->conn->error;
+        }
+
+        // Lier les paramètres (nom, prénom, rôle, numero)
+        $stmt->bind_param("ssss", $nom, $prenom, $role, $numero);
+
+        // Exécuter la requête
+        if ($stmt->execute()) {
+            return "Utilisateur modifié avec succès.";
+        } else {
+            return "Erreur lors de la modification de l'utilisateur : " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+    
+    public function getAllUsers() {
+        // Requête SQL pour récupérer tous les utilisateurs
+        $query = "SELECT nom, prenom, role, numero FROM users ";
+    
+        // Préparer la requête
+        if ($stmt = $this->conn->prepare($query)) {
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+    
+            if ($result->num_rows > 0) {
+                $users = [];
+    
+                while ($row = $result->fetch_assoc()) {
+                    $users[] = $row;
+                }
+                $result->free();
+
+                return $users;
+            } else {
+                // Aucun utilisateur trouvé
+                return [];
+            }
+    
+            $stmt->close();
+        } else {
+            return [];
+        }
+    }
+    
     // Fermer la connexion lors de la destruction de l'objet
     public function __destruct() {
         $this->conn->close();

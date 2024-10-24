@@ -1,0 +1,65 @@
+/* Styles pour la table des utilisateurs */
+#userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+#userTable thead th {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+}
+
+#userTable tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Alternance des couleurs des lignes pour améliorer la lisibilité */
+#userTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#userTable tbody tr:hover {
+    background-color: #f1f1f1; /* Change la couleur au survol pour mieux voir la ligne */
+}
+
+/* Styles pour les boutons Modifier et Supprimer */
+.editBtn, .deleteBtn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.editBtn {
+    background-color: #28a745; /* Vert pour le bouton Modifier */
+    color: white;
+}
+
+.editBtn:hover {
+    background-color: #218838; /* Vert foncé au survol */
+}
+
+.deleteBtn {
+    background-color: #dc3545; /* Rouge pour le bouton Supprimer */
+    color: white;
+}
+
+.deleteBtn:hover {
+    background-color: #c82333; /* Rouge foncé au survol */
+}
+
+/* Centrer les boutons Modifier et Supprimer */
+#userTable tbody td:last-child {
+    text-align: center;
+}
+
+#userTable tbody td:last-child button {
+    margin: 0 5px; /* Espacement entre les boutons */
+}
