@@ -1,0 +1,19 @@
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+footer nav a {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    justify-content: center;
+}
+
+footer nav {
+    justify-content: center;
+}

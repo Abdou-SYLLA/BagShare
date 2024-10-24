@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BagShare - Rentabilisez vos bagages</title>
     <link rel="stylesheet" href="styles/styles.css"> <!-- Inclusion du fichier CSS -->
-    
+   
     <!-- Inclure jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     

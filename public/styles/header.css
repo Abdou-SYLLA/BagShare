@@ -1,0 +1,46 @@
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color:  #FFFFFF;
+    position: relative;
+    z-index: 100;
+}
+
+.logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Style du menu de navigation */
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    padding: 10px;
+}
+
+nav a.active {
+    font-weight: bold;
+    color: green;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        display: none; /* Masquer le logo image */
+    }
+
+    .logo::before {
+        content: "BagShare"; /* Remplacer le logo par du texte */
+        font-size: 2em;
+        font-weight: bold;
+        color: #333;
+    }
+}

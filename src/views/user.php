@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Utilisateurs</title>
     <link rel="stylesheet" href="/public/styles/users.css">
+    <link rel="stylesheet" href="/public/styles/header.css">
+    <link rel="stylesheet" href="/public/styles/footer.css">
 </head>
 <body>
-
+<?php include 'header.php' ?>
 <section class="container">
     <h2>Ajout d'utilisateurs</h2>
     <form action="/ajouter-utilisateur" method="POST" id="addUserForm">
