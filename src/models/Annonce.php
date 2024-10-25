@@ -1,21 +1,13 @@
 <?php
+require_once '../../database/database.php'; 
+
 class Annonce {
     private $conn;
 
     // Constructeur pour établir la connexion à la base de données
-public function __construct() {
-        $servername = "localhost";
-        $username = "bagshare";
-        $password = "Sylla@2024";
-        $dbname = "bagshare";
-
-        // Créer une connexion
-        $this->conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Vérifier la connexion
-        if ($this->conn->connect_error) {
-            die("Connexion échouée: " . $this->conn->connect_error);
-        }
+    public function __construct() {
+        $dbConnection = new DatabaseConnection();
+        $this->conn = $dbConnection->getConnection();
     }
 
     // Méthode pour récupérer toutes les annonces

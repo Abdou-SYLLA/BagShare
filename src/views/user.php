@@ -53,7 +53,7 @@
 </section>
 
 <!-- Modale pour modifier un utilisateur -->
-<div id="editUserModal" style="display: none;">
+<section id="editUserModal" style="display: none;">
     <h2>Modifier l'utilisateur</h2>
     <form id="editUserForm">
         <label for="editNom">Nom :</label>
@@ -73,7 +73,7 @@
 
         <button type="submit">Modifier l'Utilisateur</button>
     </form>
-</div>
+</section>
 
 <!-- Inclusion du script externe -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -1,28 +1,12 @@
 <?php
-
+require_once '../../database/database.php'; 
 class User {
     private $conn;
 
     // Constructeur pour établir la connexion à la base de données
     public function __construct() {
-        $servername = "localhost";
-        $username = "bagshare";
-        $password = "Sylla@2024";
-        $dbname = "bagshare";
-
-        // Créer une connexion
-        $this->conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Vérifier la connexion
-        if ($this->conn->connect_error) {
-            die("Connexion échouée: " . $this->conn->connect_error);
-        }
-
-        // Forcer l'utilisation de l'encodage UTF-8 pour éviter les problèmes d'encodage
-        if (!$this->conn->set_charset("utf8")) {
-            printf("Erreur lors du chargement du jeu de caractères utf8 : %s\n", $this->conn->error);
-            exit();
-        }
+        $dbConnection = new DatabaseConnection();
+        $this->conn = $dbConnection->getConnection();
     }
 
     public function authenticate($username, $password) {
