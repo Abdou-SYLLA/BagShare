@@ -1,3 +1,7 @@
+<?php
+    session_start(); // Nécessaire pour accéder aux variables de session
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -1,3 +1,7 @@
+<?php
+    session_start(); // Nécessaire pour accéder aux variables de session
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -69,6 +73,5 @@
 <!-- Inclusion du script externe -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/public/accounts.js"></script>
-
 </body>
 </html>

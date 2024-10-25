@@ -1,3 +1,7 @@
+<?php
+    session_start(); // Nécessaire pour accéder aux variables de session
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,11 +21,6 @@
     <!-- Inclusion du header -->
     <?php 
     include '../src/views/header.php'; 
-    
-    // Activer l'affichage des erreurs (à désactiver en production)
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     ?>
 
     <!-- Section principale / Hero -->

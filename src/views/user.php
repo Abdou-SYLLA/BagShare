@@ -1,9 +1,14 @@
+<?php
+    session_start(); // Nécessaire pour accéder aux variables de session
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Utilisateurs</title>
+    <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/users.css">
     <link rel="stylesheet" href="/public/styles/header.css">
     <link rel="stylesheet" href="/public/styles/footer.css">
@@ -78,6 +83,5 @@
 <!-- Inclusion du script externe -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/public/users.js"></script>
-
 </body>
 </html>

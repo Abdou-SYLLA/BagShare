@@ -1,3 +1,7 @@
+<?php
+    session_start(); // Nécessaire pour accéder aux variables de session
+?>
+
 <link rel="stylesheet" href="/public/styles/styles.css"> 
 <?php include 'header.php'; ?>
 <section class="contact-section">

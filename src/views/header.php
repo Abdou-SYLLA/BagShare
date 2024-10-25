@@ -27,8 +27,6 @@
         } else {
             echo '<a href="/src/views/connexion.php" class="btn-secondary">Connexion</a>';
         }
-
-        
         ?>
     </nav>
 </header>
