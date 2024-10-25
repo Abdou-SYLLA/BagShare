@@ -1,0 +1,47 @@
+
+
+config ssl:
+Country Name (2 letter code) [AU]:20.234.175.99
+string is too long, it needs to be no more than 2 bytes long
+Country Name (2 letter code) [AU]:FR
+State or Province Name (full name) [Some-State]:RODEZ
+Locality Name (eg, city) []:RODEZ            
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Bagshare
+Organizational Unit Name (eg, section) []:Bagshare
+Common Name (e.g. server FQDN or YOUR name) []:Abdou
+Email Address []:lahat044@gmail.com
+
+
+Config dns :
+certbot --apache -d asylla.bagshare.nip.io
+
+Plugins selected: Authenticator apache, Installer apache
+Enter email address (used for urgent renewal and security notices)
+ (Enter 'c' to cancel): lahat044@gmail.com
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.4-April-3-2024.pdf. You must agree in
+order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: yes
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let's Encrypt project and the non-profit organization that
+develops Certbot? We'd like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: Y  
+Account registered.
+Requesting a certificate for asylla.bagshare.nip.io
+Performing the following challenges:
+http-01 challenge for asylla.bagshare.nip.io
+Enabled Apache rewrite module
+Waiting for verification...
+
+
+certbot --apache -d 20.234.175.99.nip.io
+
+openssl s_client -connect 20.234.175.99.nip.io:443
