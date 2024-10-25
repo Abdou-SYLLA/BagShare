@@ -72,7 +72,7 @@ class Account {
 
     // Méthode pour récupérer tous les comptes
     public function getAllAccounts() {
-        $query = "SELECT user, username FROM account";
+        $query = "SELECT user,nom,prenom, username FROM account INNER JOIN users ON numero = user";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $result = $stmt->get_result();
