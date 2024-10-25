@@ -15,8 +15,8 @@ function loadUsers() {
                         <td>${user.role}</td>
                         <td>${user.numero}</td>
                         <td>
-                            <button class="editBtn" data-numero="${user.numero}">Modifier</button>
-                            <button class="deleteBtn" data-numero="${user.numero}">Supprimer</button>
+                            <button class="edit-btn" data-numero="${user.numero}">Modifier</button>
+                            <button class="delete-btn" data-numero="${user.numero}">Supprimer</button>
                         </td>
                     </tr>
                 `);

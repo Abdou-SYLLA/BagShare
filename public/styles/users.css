@@ -1,65 +1,94 @@
-/* Styles pour la table des utilisateurs */
+/* Styles de base pour la page users.php */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Bouton de suppression en rouge */
+button.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button.delete-btn:hover {
+    background-color: #650f0f;
+}
+
+
+button:hover {
+    background-color: #5a00cc;
+}
+
 #userTable {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
 }
 
-#userTable thead th {
-    background-color: #007bff;
-    color: white;
-    padding: 12px;
-}
-
-#userTable tbody td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Alternance des couleurs des lignes pour améliorer la lisibilité */
-#userTable tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-#userTable tbody tr:hover {
-    background-color: #f1f1f1; /* Change la couleur au survol pour mieux voir la ligne */
-}
-
-/* Styles pour les boutons Modifier et Supprimer */
-.editBtn, .deleteBtn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.editBtn {
-    background-color: #28a745; /* Vert pour le bouton Modifier */
-    color: white;
-}
-
-.editBtn:hover {
-    background-color: #218838; /* Vert foncé au survol */
-}
-
-.deleteBtn {
-    background-color: #dc3545; /* Rouge pour le bouton Supprimer */
-    color: white;
-}
-
-.deleteBtn:hover {
-    background-color: #c82333; /* Rouge foncé au survol */
-}
-
-/* Centrer les boutons Modifier et Supprimer */
-#userTable tbody td:last-child {
+#userTable th, #userTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: center;
 }
 
-#userTable tbody td:last-child button {
-    margin: 0 5px; /* Espacement entre les boutons */
+/* Styles pour la modale d'édition des utilisateurs */
+#editUserModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#editUserModal h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#editUserModal form {
+    display: flex;
+    flex-direction: column;
 }

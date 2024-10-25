@@ -38,6 +38,23 @@ $(document).ready(function() {
         }
     });
 
+    // Supprimer un utilisateur
+    $(document).on('click', '.deleteUserBtn', function() {
+        const userId = $(this).data('id');
+        
+        if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+            $.ajax({
+                url: '/src/controllers/AccountController.php',
+                method: 'POST',
+                data: { action: 'deleteUser', userId: userId },
+                success: function(response) {
+                    alert(response); // Message de succès ou d'erreur renvoyé par le serveur
+                    loadUsers(); // Recharger la liste des utilisateurs
+                }
+            });
+        }
+    });
+
     // Soumettre le formulaire de modification de l'utilisateur
     $('#editUserForm').on('submit', function(event) {
         event.preventDefault();

@@ -56,7 +56,7 @@ if (isset($_POST['action'])) {
             echo "Action inconnue.";
             break;
     }
-} elseif (isset($_GET['action']) && $_GET['action'] === 'getAll') {
+} elseif (isset($_GET['action']) && $_GET['action'] === 'getUserAccounts') {
     $controller = new AccountController();
     $controller->getAllAccounts();
 }
