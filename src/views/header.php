@@ -16,13 +16,12 @@
         <?php
         if (isset($_SESSION['user']) && $_SESSION['role'] === 'admin') {
             // Si l'utilisateur est administrateur, afficher les options de gestion
-            echo '<a href="/src/views/user.php" class="' . ($current_page == 'user.php' ? 'active' : '') . '">Gestion Utilisateurs</a>';
             echo '<a href="/src/views/account.php" class="' . ($current_page == 'account.php' ? 'active' : '') . '">Gestion Comptes</a>';
         }
 
         if (isset($_SESSION['user'])) {
             // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
-            echo '<a href="#">' . htmlspecialchars($_SESSION['nom']) . '</a>';
+            echo '<a href="/src/views/user.php">' . htmlspecialchars($_SESSION['nom']) . '</a>';
             echo '<a href="/src/controllers/disconnect.php" class="btn-secondary">Déconnexion</a>';
         } else {
             echo '<a href="/src/views/connexion.php" class="btn-secondary">Connexion</a>';

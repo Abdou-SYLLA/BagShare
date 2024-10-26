@@ -55,19 +55,25 @@ $(document).ready(function() {
                 $('#editRole').val(account.role);
                 $('#editUsername').val(account.username);
                 $('#editPassword').val('');
-                $('#editUserModal').fadeIn();
+                $('#editUserModal').fadeIn(); // Affiche le modal
                 $('#editUserForm').data('id', accountId);  // Enregistre l'ID du compte dans le formulaire pour l'utiliser lors de la soumission
+    
+                // Faire défiler la page vers le modal
+                $('html, body').animate({
+                    scrollTop: $('#editUserModal').offset().top
+                }, 500); // 500 est la durée de l'animation en millisecondes
             },
             error: function() {
                 alert('Erreur lors de la récupération des informations du compte.');
             }
         });
     });
+    
 
-    // Fermer la modale de modification si l'utilisateur clique en dehors
+    // Ferme le modal lorsque l'utilisateur clique à l'extérieur
     $('#editUserModal').on('click', function(event) {
         if (event.target.id === 'editUserModal') {
-            $('#editUserModal').fadeOut();
+            $('#editUserModal').fadeOut(); 
         }
     });
 

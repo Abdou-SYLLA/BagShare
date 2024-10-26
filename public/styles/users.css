@@ -29,11 +29,11 @@ h2 {
 
 .user-info p {
     font-size: 18px; /* Taille de la police pour les informations utilisateur */
-    margin-bottom: 15px; /* Ajout d'un espacement entre les paragraphes */
+    margin-bottom: 10px; /* Ajout d'un espacement entre les paragraphes */
 }
 
 form label {
-    display: block;
+    display: flex;
     margin-top: 10px;
     font-weight: bold;
     font-size: 18px; /* Augmenter la taille des labels */
