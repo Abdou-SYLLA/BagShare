@@ -22,10 +22,12 @@
         if (isset($_SESSION['user'])) {
             // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
             echo '<a href="/src/views/user.php">' . htmlspecialchars($_SESSION['user']['nom']) . '</a>';
-            echo '<a href="/src/controllers/disconnect.php" class="btn-secondary">Déconnexion</a>';
+            echo '<a href="/src/controllers/logout.php" class="btn-secondary">Déconnexion</a>';
+            
         } else {
             echo '<a href="/src/views/connexion.php" class="btn-secondary">Connexion</a>';
         }
         ?>
+        
     </nav>
 </header>
