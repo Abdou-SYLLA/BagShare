@@ -8,7 +8,6 @@ session_start(); // Nécessaire pour accéder aux variables de session
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon compte</title>
-    <link rel="stylesheet" href="/public/styles/footer.css">
     <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/users.css">
     <link rel="stylesheet" href="/public/styles/header.css">
@@ -31,32 +30,39 @@ session_start(); // Nécessaire pour accéder aux variables de session
 </section>
 
 <!-- Modale pour modifier l'utilisateur -->
-<section id="editUserModal" style="display: none;">
-    <h2>Modifier l'utilisateur</h2>
-    <form id="editUserForm" method="POST" action="controller.php">
-        <label for="editNom">Nom :</label>
-        <input type="text" id="editNom" name="nom" value="<?php echo htmlspecialchars($_SESSION['user']['nom']); ?>" required>
+<section  class="container" id="editUserModal" style="display: none;">
+    <h2>Modifier le Compte</h2>
+    <form id="editUserForm" method="POST">
+        <div class="editable-field">
+            <label for="editNom">Nom :</label>
+            <input type="text" id="editNom" name="editNom" required >
+            <button type="button" class="edit-field-btn" onclick="toggleEdit('editNom')">Modifier</button>
+        </div>
 
-        <label for="editPrenom">Prénom :</label>
-        <input type="text" id="editPrenom" name="prenom" value="<?php echo htmlspecialchars($_SESSION['user']['prenom']); ?>" required>
+        <div class="editable-field">
+            <label for="editPrenom">Prénom :</label>
+            <input type="text" id="editPrenom" name="editPrenom" required >
+            <button type="button" class="edit-field-btn" onclick="toggleEdit('editPrenom')">Modifier</button>
+        </div>
 
-        <label for="editNumero">Numéro de téléphone :</label>
-        <input type="tel" id="editNumero" name="numero" value="<?php echo htmlspecialchars($_SESSION['user']['numero']); ?>" required pattern="[0-9]{10}" placeholder="Ex: 0123456789">
+        <div class="editable-field">
+            <label for="editPassword">Nouveau Mot de passe :</label>
+            <input type="password" id="editPassword" name="editPassword" required >
 
-        <label for="editPassword">Mot de passe :</label>
-        <input type="password" id="editPassword" name="password" required>
+            <label for="validatePassword">Confimation :</label>
+            <input type="password" id="editPassword" name="editPassword" required >
 
-        <label for="editConfirmPassword">Confirmer le mot de passe :</label>
-        <input type="password" id="editConfirmPassword" name="confirm_password" required>
-        
-        <button type="submit" name="action" value="update_user">Enregistrer les modifications</button>
+            <button type="button" class="edit-field-btn" onclick="toggleEdit('editPassword')">Modifier</button>
+        </div>
+
+        <button type="submit" name="action" value="update">Enregistrer les Modifications</button>
     </form>
 </section>
+
 
 <!-- Inclusion des scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/public/users.js"></script>
 
-<?php include 'footer.php'; ?>
 </body>
 </html>
