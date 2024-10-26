@@ -40,22 +40,6 @@ class AccountController {
         echo json_encode($accounts);
     }
 
-    // Action pour l'authentification
-    public function authenticate($username, $password) {
-        $isAuthenticated = $this->accountModel->authenticate($username, $password);
-        if ($isAuthenticated) {
-            echo json_encode(['message' => 'Authentification réussie']);
-        } else {
-            echo json_encode(['message' => 'Nom d\'utilisateur ou mot de passe incorrect']);
-        }
-    }
-
-    // Action pour la déconnexion
-    public function logout() {
-        $this->accountModel->logout();
-        echo json_encode(['message' => 'Déconnexion réussie']);
-    }
-
     // Action pour mettre à jour le mot de passe
     public function updatePassword($numero, $oldPassword, $newPassword) {
         $result = $this->accountModel->updatePassword($numero, $oldPassword, $newPassword);
@@ -66,7 +50,6 @@ class AccountController {
 // Instancier le contrôleur
 $controller = new AccountController();
 
-// Traitement des requêtes POST
 // Traitement des requêtes POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     switch ($_POST['action']) {
@@ -94,20 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             }
             break;
 
-        case 'authenticate':
-            if (isset($_POST['username'], $_POST['password'])) {
-                $controller->authenticate($_POST['username'], $_POST['password']);
-            } else {
-                echo json_encode(['message' => 'Nom d\'utilisateur ou mot de passe manquant']);
-            }
-            break;
-        
         case 'getUserAccounts':
             $controller->getAllAccounts();
-            break;
-
-        case 'logout':
-            $controller->logout();
             break;
 
         case 'updatePassword':

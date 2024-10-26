@@ -21,6 +21,7 @@
 
         <!-- Formulaire de connexion -->
         <form method="post" action="/src/controllers/AuthController.php">
+            <input type="hidden" name="action" value="authenticate">
             <div>
                 <label for="username">Nom d'utilisateur :</label>
                 <input type="text" id="username" name="username" required>

@@ -14,14 +14,14 @@
         <a href="/src/views/contact.php" class="<?= $current_page == 'contact.php' ? 'active' : '' ?>">Nous contacter</a>
 
         <?php
-        if (isset($_SESSION['user']) && $_SESSION['role'] === 'admin') {
+        if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
             // Si l'utilisateur est administrateur, afficher les options de gestion
-            echo '<a href="/src/views/account.php" class="' . ($current_page == 'account.php' ? 'active' : '') . '">Gestion Comptes</a>';
+            echo '<a href="/src/views/account.php" class="' . ($current_page == 'account.php' ? 'active' : '') . '">Gestion des Comptes</a>';
         }
 
         if (isset($_SESSION['user'])) {
             // Si l'utilisateur est connecté, afficher son nom et un bouton de déconnexion
-            echo '<a href="/src/views/user.php">' . htmlspecialchars($_SESSION['nom']) . '</a>';
+            echo '<a href="/src/views/user.php">' . htmlspecialchars($_SESSION['user']['nom']) . '</a>';
             echo '<a href="/src/controllers/disconnect.php" class="btn-secondary">Déconnexion</a>';
         } else {
             echo '<a href="/src/views/connexion.php" class="btn-secondary">Connexion</a>';
