@@ -371,6 +371,15 @@ nav a.active {
     display: block;
 }
 
+.annonce-image {
+    width: 100%;              /* Pour que l'image occupe la largeur du conteneur */
+    max-width: 300px;         /* Largeur maximale pour les écrans plus grands */
+    height: 200px;            /* Hauteur fixe */
+    object-fit: cover;        /* Pour que l'image reste cadrée dans le conteneur */
+    border-radius: 8px;       /* Optionnel : arrondir les coins de l'image */
+    margin-bottom: 10px;      /* Espacement en dessous de l'image */
+}
+
 .actions {
     margin-top: 10px;
 }

@@ -1,73 +1,83 @@
 $(document).ready(function() {
+    const pexelsApiKey = 'sOAuszc1UnoCX3r3LWVDZjRYdHEJ1MoyBA6Y7vURmUL7GEQ4b2gGYpSq'; // Remplacez par votre clé API Pexels
+
     $.ajax({
         url: '/src/controllers/AnnonceController.php',
         type: 'POST',
         dataType: 'json',
-        data: { action: 'getAnnonces' }, // Envoyer une action pour le contrôleur
+        data: { action: 'getAnnonces' },
         success: function(data) {
-            console.log("Données reçues :", data); // Affichez les données dans la console
+            console.log("Données reçues :", data);
             const annonceList = $('#annonceList');
-            annonceList.empty(); // Vider la liste avant d'ajouter de nouvelles annonces
+            annonceList.empty();
             
             if (data.length > 0) {
                 data.forEach(function(annonce) {
-                    let buttons = `<button class="btn-reserver">Réserver maintenant</button>`;
-                    // isUserLoggedIn = true; //test boutton
-                    // Si l'utilisateur est connecté, ajouter le bouton "Supprimer" masqué par défaut
-                    if (isUserLoggedIn) {
-                        buttons += `<button class="btn-supprimer" style="display: none;">Supprimer</button>`;
-                    }                    
-                    // Ajouter l'annonce avec les boutons
-                    annonceList.append(`
-                        <div class='annonce'>
-                            <h3>Destination: ${annonce.arrivee} / ${annonce.ville_destination}  </h3>
-                            <p>Départ: ${annonce.depart} / ${annonce.ville_depart}</p>
-                            <p>Kilos disponibles: ${annonce.kilos_disponibles} kg</p>
-                            <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
-                            <p>Date: ${annonce.date}</p>
-                            <p>Depot: ${annonce.adresse_depot}</p>
-                            <p>Voyageur: ${annonce.nom}</p>
-                            <div class="action-buttons">
-                                ${buttons}
-                            </div>
-                        </div>
-                    `);
-                });
+                    // Appel à l'API de Pexels pour récupérer une image de la ville de destination
+                    $.ajax({
+                        url: `https://api.pexels.com/v1/search?query=${annonce.ville_destination}  iconic spot&per_page=1`,
+                        type: 'GET',
+                        headers: {
+                            Authorization: pexelsApiKey
+                        },
+                        success: function(imageData) {
+                            // Récupération de l'image ou d'une image par défaut si non trouvée
+                            const imageUrl = imageData.photos && imageData.photos.length > 0 ? imageData.photos[0].src.medium : 'default-image.jpg';
 
-                // Gestion des clics sur les annonces
-                $('.annonce').on('click', function() {
-                    // Enlever la classe 'clicked' des autres annonces pour ne garder que celle-ci active
-                    $('.annonce').removeClass('clicked');
-                    $(this).addClass('clicked');
+                            // Construction de l'élément HTML pour l'annonce avec l'image
+                            annonceList.append(`
+                                <div class='annonce'>
+                                    <h3>Destination: ${annonce.arrivee} / ${annonce.ville_destination}</h3>
+                                    <img src="${imageUrl}" alt="Image de ${annonce.ville_destination}" class="annonce-image">
+                                    <p>Départ: ${annonce.depart} / ${annonce.ville_depart}</p>
+                                    <p>Kilos disponibles: ${annonce.kilos_disponibles} kg</p>
+                                    <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
+                                    <p>Date: ${annonce.date}</p>
+                                    <p>Depot: ${annonce.adresse_depot}</p>
+                                    <p>Voyageur: ${annonce.nom}</p>
+                                    <div class="action-buttons">
+                                        <button class="btn-reserver">Réserver maintenant</button>
+                                        ${isUserLoggedIn ? `<button class="btn-supprimer" style="display: none;">Supprimer</button>` : ''}
+                                    </div>
+                                </div>
+                            `);
 
-                    // Si l'utilisateur est connecté, rendre le bouton "Supprimer" visible dans l'annonce cliquée
-                    if (isUserLoggedIn) {
-                        $(this).find('.btn-supprimer').show();
-                    }
-
-                    // Cacher les boutons "Supprimer" des autres annonces
-                    $('.annonce').not(this).find('.btn-supprimer').hide();
-                });
-
-                // Comportement du bouton de réservation
-                $('.btn-reserver').on('click', function(e) {
-                    e.stopPropagation(); // Empêche le clic sur l'annonce elle-même
-                    alert("Vous avez réservé cette annonce !");
-                });
-
-                // Comportement du bouton "Supprimer" (s'il existe)
-                $('.btn-supprimer').on('click', function(e) {
-                    e.stopPropagation(); // Empêche le clic sur l'annonce elle-même
-                    alert("Vous avez supprimé cette annonce !");
-                    // Ajouter ici le code pour réellement supprimer l'annonce si nécessaire
+                            // Configuration des comportements pour les boutons
+                            setupButtons();
+                        },
+                        error: function() {
+                            console.error("Erreur lors du chargement de l'image pour", annonce.ville_destination);
+                        }
+                    });
                 });
             } else {
                 annonceList.append('<p>Aucune annonce trouvée.</p>');
             }
         },
         error: function(xhr, status, error) {
-            $('#annonceList').append('<p>Erreur lors du chargement des annonces.'+error+'</p>');
-            
-	}
+            $('#annonceList').append('<p>Erreur lors du chargement des annonces.' + error + '</p>');
+        }
     });
+
+    function setupButtons() {
+        $('.annonce').on('click', function() {
+            $('.annonce').removeClass('clicked');
+            $(this).addClass('clicked');
+            if (isUserLoggedIn) {
+                $(this).find('.btn-supprimer').show();
+            }
+            $('.annonce').not(this).find('.btn-supprimer').hide();
+        });
+
+        $('.btn-reserver').on('click', function(e) {
+            e.stopPropagation();
+            alert("Vous avez réservé cette annonce !");
+        });
+
+        $('.btn-supprimer').on('click', function(e) {
+            e.stopPropagation();
+            alert("Vous avez supprimé cette annonce !");
+            // Code pour supprimer l'annonce peut être ajouté ici
+        });
+    }
 });
