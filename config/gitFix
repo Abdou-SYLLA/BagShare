@@ -5,3 +5,26 @@ git config --global user.email "syllaa@3il.fr"
 git credential-osxkeychain erase
 ssh-keygen -t rsa -b 4096 -C "syllaa@3il.fr"
 git remote set-url origin git@github.com:Abdou-SYLLA/BagShare.git
+
+
+    <?php
+    // Inclure la classe User (ou l'autoload si nécessaire)
+    // require 'path/to/User.php'; // Adapter le chemin si nécessaire
+
+    // Démarrer la session
+    session_start();
+
+    // Instancier l'objet User
+    $userModel = new User();
+
+    // Informations de l'utilisateur
+    $user = 753320000; // Numéro de l'utilisateur sans le zéro devant
+    $username = 'usernameExemple123';
+    $password = 'MotDePasseExemple1!'; // Mot de passe clair
+
+    // Créer le compte
+    $result = $userModel->updatePassword($user, $password, $password);
+
+    // Afficher le résultat
+    echo $result;
+    ?>

@@ -12,9 +12,9 @@ class Annonce {
 
     // Méthode pour récupérer toutes les annonces
     public function getAllAnnonces() {
-        $sql = "SELECT description, depart, arrivee, date, kilos_disponibles, prix_par_kilo, nom 
+        $sql = "SELECT description, depart,ville_depart, arrivee,ville_destination, date, kilos_disponibles, prix_par_kilo, adresse_depot, nom 
                 FROM annonces 
-                NATURAL JOIN users 
+                INNER JOIN accounts ON accounts.numero = annonces.numero
                 WHERE date >= CURDATE()";
         
         $result = $this->conn->query($sql);
@@ -34,9 +34,9 @@ class Annonce {
     // Méthode pour ajouter une annonce
     public function createAnnonce($data) {
         // Requête préparée pour éviter les injections SQL
-        $stmt = $this->conn->prepare("INSERT INTO annonces (description, depart, arrivee, date, kilos_disponibles, prix_par_kilo, user_id) 
+        $stmt = $this->conn->prepare("INSERT INTO annonces (description, depart,ville_depart, arrivee,ville_destination,  date, kilos_disponibles, prix_par_kilo, adresse_depot, nom ) 
                                       VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssddi", $data['description'], $data['depart'], $data['arrivee'], $data['date'], $data['kilos_disponibles'], $data['prix_par_kilo'], $data['user_id']);
+        $stmt->bind_param("ssssddi", $data['description'], $data['depart'],$data['ville_depart'], $data['arrivee'],$data['ville_destination'], $data['date'], $data['kilos_disponibles'], $data['prix_par_kilo'],$data['adresse_depot'] ,$data['nom']);
         
         if ($stmt->execute()) {
             return true; // Annonce créée avec succès

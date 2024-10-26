@@ -1,105 +1,49 @@
-// Fonction pour récupérer les utilisateurs avec AJAX
-function loadUsers() {
-    $.ajax({
-        url: '/src/controllers/UserController.php', // Action pour charger les utilisateurs
-        method: 'GET',
-        dataType: 'json',
-        data: { action:  "getAllUsers" },
-        success: function(response) {
-            $('#userTable tbody').empty();
-            response.forEach(function(user) {
-                $('#userTable tbody').append(`
-                    <tr>
-                        <td>${user.nom}</td>
-                        <td>${user.prenom}</td>
-                        <td>${user.role}</td>
-                        <td>${user.numero}</td>
-                        <td>
-                            <button class="edit-btn" data-numero="${user.numero}">Modifier</button>
-                            <button class="delete-btn" data-numero="${user.numero}">Supprimer</button>
-                        </td>
-                    </tr>
-                `);
-            });
-        },
-        error: function() {
-            alert('Erreur lors de la récupération des utilisateurs.');
-        }
-    });
-}
-
 $(document).ready(function() {
-    loadUsers();
-
-    // Soumission du formulaire d'ajout d'utilisateur
-    $('#addUserForm').on('submit', function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: '/src/controllers/UserController.php?action=addUser', // Action pour ajouter un utilisateur
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function() {
-                $('#addUserForm')[0].reset();
-                loadUsers();
-            },
-            error: function() {
-                alert('Erreur lors de l\'ajout de l\'utilisateur.');
-            }
-        });
+    // Afficher la modale d'édition des informations de l'utilisateur
+    $('#editUserButton').on('click', function() {
+        $('#editUserModal').fadeIn();  // Affiche la modale
     });
 
-    // Supprimer un utilisateur
-    $(document).on('click', '.deleteBtn', function() {
-        const userNumero = $(this).data('numero');
-        if (confirm("Voulez-vous vraiment supprimer cet utilisateur ?")) {
-            $.ajax({
-                url: '/src/controllers/UserController.php?action=deleteUser', // Action pour supprimer un utilisateur
-                method: 'POST',
-                data: { numero: userNumero },
-                success: function() {
-                    loadUsers();
-                },
-                error: function() {
-                    alert('Erreur lors de la suppression de l\'utilisateur.');
-                }
-            });
+    // Fermer la modale si l'utilisateur clique en dehors du formulaire
+    $(window).on('click', function(event) {
+        if (event.target.id === 'editUserModal') {
+            $('#editUserModal').fadeOut();  // Masque la modale
         }
     });
 
-    // Ouvrir le modal pour modifier un utilisateur
-    $(document).on('click', '.editBtn', function() {
-        const userNumero = $(this).data('numero');
-        $.ajax({
-            url: '/src/controllers/UserController.php?action=getUser', // Action pour obtenir les données d'un utilisateur
-            method: 'GET',
-            data: { numero: userNumero },
-            dataType: 'json',
-            success: function(user) {
-                $('#editNom').val(user.nom);
-                $('#editPrenom').val(user.prenom);
-                $('#editRole').val(user.role);
-                $('#editNumero').val(user.numero); // Le numéro ne change pas, mais il est affiché pour info
-                $('#editUserModal').show(); // Afficher le modal de modification
-            },
-            error: function() {
-                alert('Erreur lors de la récupération des données utilisateur.');
-            }
-        });
-    });
-
-    // Modifier un utilisateur via le formulaire du modal
+    // Soumettre le formulaire de modification des informations utilisateur
     $('#editUserForm').on('submit', function(event) {
-        event.preventDefault();
+        event.preventDefault();  // Empêche le rechargement de la page
+
+        // Vérification que les mots de passe correspondent
+        const password = $('#editPassword').val();
+        const confirmPassword = $('#editConfirmPassword').val();
+        if (password !== confirmPassword) {
+            alert('Les mots de passe ne correspondent pas.');
+            return;
+        }
+
+        // Préparation des données du formulaire
+        const formData = {
+            action: 'update_user',
+            nom: $('#editNom').val(),
+            prenom: $('#editPrenom').val(),
+            numero: $('#editNumero').val(),
+            password: password
+        };
+
+        // Envoi des données au serveur
         $.ajax({
-            url: '/src/controllers/UserController.php?action=editUser', // Action pour modifier un utilisateur
+            url: '/src/controllers/AccountController.php',  // URL du contrôleur PHP pour la mise à jour
             method: 'POST',
-            data: $(this).serialize(),
-            success: function() {
-                $('#editUserModal').hide(); // Cacher le modal après modification
-                loadUsers();
+            data: formData,
+            success: function(response) {
+                alert('Informations modifiées avec succès.');
+                $('#editUserModal').fadeOut();  // Masque la modale après modification
+                location.reload();  // Recharge la page pour mettre à jour les informations
             },
             error: function() {
-                alert('Erreur lors de la modification de l\'utilisateur.');
+                alert('Erreur lors de la modification des informations.');
             }
         });
     });

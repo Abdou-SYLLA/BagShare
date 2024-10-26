@@ -20,11 +20,12 @@ $(document).ready(function() {
                     // Ajouter l'annonce avec les boutons
                     annonceList.append(`
                         <div class='annonce'>
-                            <h3>Destination: ${annonce.arrivee}</h3>
-                            <p>Départ: ${annonce.depart}</p>
+                            <h3>Destination: ${annonce.arrivee} / ${annonce.ville_destination}  </h3>
+                            <p>Départ: ${annonce.depart} / ${annonce.ville_depart}</p>
                             <p>Kilos disponibles: ${annonce.kilos_disponibles} kg</p>
                             <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
                             <p>Date: ${annonce.date}</p>
+                            <p>Depot: ${annonce.adresse_depot}</p>
                             <p>Voyageur: ${annonce.nom}</p>
                             <div class="action-buttons">
                                 ${buttons}

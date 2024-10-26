@@ -1,109 +1,123 @@
 $(document).ready(function() {
-    // Fonction pour charger la liste des utilisateurs
-    function loadUsers() {
+    // Fonction pour charger la liste des comptes utilisateurs
+    function loadAccounts() {
         $.ajax({
-            url: '/src/controllers/AccountController.php',  // URL du contrôleur PHP
-            method: 'GET',  // Méthode HTTP
-            data: { action: 'getUserAccounts' },  // Action à envoyer pour récupérer les comptes
-            success: function(response) {
-                // Convertir la réponse en JSON
-                const users = JSON.parse(response);
-                let userRows = '';  // Variable pour stocker les lignes HTML
+            url: '/src/controllers/AccountController.php',
+            type: 'POST',
+            dataType: 'json',
+            data: { action: 'getUserAccounts' },
+            success: function(data) {
+                console.log("Données reçues :", data);
+                $('#userTable tbody').empty();
 
-                // Générer une ligne HTML pour chaque utilisateur
-                users.forEach(user => {
-                    userRows += `
-                        <tr>
-                            <td>${user.user}</td>
-                            <td>${user.nom}</td>
-                            <td>${user.prenom}</td>
-                            <td>${user.username}</td>
-                            <td>
-                                <button class="edit-btn" data-id="${user.user}">Modifier</button>
-                                <button class="delete-btn" data-id="${user.user}">Supprimer</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-
-                // Insérer les lignes dans le tableau
-                $('#userAccounts tbody').html(userRows);
+                if (data.length > 0) {
+                    data.forEach(account => {
+                        $('#userTable tbody').append(`
+                            <tr>
+                                <td>${account.nom}</td>
+                                <td>${account.prenom}</td>
+                                <td>${account.role}</td>
+                                <td>${account.username}</td>
+                                <td>${account.numero}</td>
+                                <td>
+                                    <button class="editAccountBtn" data-id="${account.user}">Modifier</button>
+                                    <button class="deleteAccountBtn" data-id="${account.user}">Supprimer</button>
+                                </td>
+                            </tr>
+                        `);
+                    });
+                } else {
+                    console.log("Aucun compte trouvé.");
+                }
             },
             error: function(xhr, status, error) {
-                alert('Erreur lors du chargement des utilisateurs : ' + error);
+                console.error("Erreur lors du chargement des comptes :", status, error);
+                alert('Erreur lors du chargement des comptes.');
             }
         });
     }
 
-    // Charger la liste des utilisateurs au chargement de la page
-    loadUsers();
+    // Charger les comptes au démarrage
+    loadAccounts();
 
-    // Ouvrir la modale pour éditer un utilisateur
-    $(document).on('click', '.editUserBtn', function() {
-        const userId = $(this).data('id');  // Récupérer l'ID de l'utilisateur
+    // Ouvrir la modale de modification pour un compte spécifique
+    $(document).on('click', '.editAccountBtn', function() {
+        const accountId = $(this).data('id');
         $.ajax({
             url: '/src/controllers/AccountController.php',
-            method: 'GET',
-            data: { action: 'getUser', userId: userId },
-            success: function(response) {
-                const user = JSON.parse(response);  // Convertir la réponse en JSON
-                $('#editUserName').val(user.username);
+            type: 'POST',
+            data: { action: 'getUser', userId: accountId },
+            dataType: 'json',
+            success: function(account) {
+                // Remplir les champs de la modale avec les données récupérées
+                $('#editNom').val(account.nom);
+                $('#editPrenom').val(account.prenom);
+                $('#editRole').val(account.role);
+                $('#editUsername').val(account.username);
                 $('#editPassword').val('');
-                $('#confirmEditPassword').val('');
-                $('#editUserModal').fadeIn();  // Afficher la modale d'édition
+                $('#editUserModal').fadeIn();
+                $('#editUserForm').data('id', accountId);  // Enregistre l'ID du compte dans le formulaire pour l'utiliser lors de la soumission
+            },
+            error: function() {
+                alert('Erreur lors de la récupération des informations du compte.');
             }
         });
     });
 
-    // Fermer la modale d'édition
+    // Fermer la modale de modification si l'utilisateur clique en dehors
     $('#editUserModal').on('click', function(event) {
         if (event.target.id === 'editUserModal') {
-            $('#editUserModal').fadeOut();  // Fermer la modale
+            $('#editUserModal').fadeOut();
         }
     });
 
-    // Supprimer un utilisateur
-    $(document).on('click', '.deleteUserBtn', function() {
-        const userId = $(this).data('id');  // Récupérer l'ID de l'utilisateur
-        
-        if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+    // Soumettre les modifications du compte
+    $('#editUserForm').on('submit', function(event) {
+        event.preventDefault();
+
+        // Préparation des données pour la mise à jour
+        const formData = {
+            action: 'updateAccount',
+            userId: $(this).data('id'), // Récupérer l'ID du compte depuis les données du formulaire
+            nom: $('#editNom').val(),
+            prenom: $('#editPrenom').val(),
+            role: $('#editRole').val(),
+            username: $('#editUsername').val(),
+            password: $('#editPassword').val()
+        };
+
+        // Envoi de la requête de mise à jour
+        $.ajax({
+            url: '/src/controllers/AccountController.php',
+            type: 'POST',
+            data: formData,
+            success: function() {
+                alert('Compte mis à jour avec succès.');
+                $('#editUserModal').fadeOut();
+                loadAccounts(); // Recharge les comptes mis à jour
+            },
+            error: function() {
+                alert('Erreur lors de la mise à jour du compte.');
+            }
+        });
+    });
+
+    // Suppression d'un compte
+    $(document).on('click', '.deleteAccountBtn', function() {
+        const accountId = $(this).data('id');
+        if (confirm("Voulez-vous vraiment supprimer ce compte ?")) {
             $.ajax({
                 url: '/src/controllers/AccountController.php',
-                method: 'POST',
-                data: { action: 'deleteUser', userId: userId },
+                type: 'POST',
+                data: { action: 'deleteUser', userId: accountId },
                 success: function(response) {
-                    alert(response);  // Message de succès ou d'erreur
-                    loadUsers();  // Recharger la liste des utilisateurs après suppression
+                    alert(response);
+                    loadAccounts(); // Recharge les comptes après suppression
                 },
-                error: function(xhr, status, error) {
-                    alert('Erreur lors de la suppression de l\'utilisateur : ' + error);
+                error: function() {
+                    alert('Erreur lors de la suppression du compte.');
                 }
             });
         }
-    });
-
-    // Soumettre le formulaire de modification de l'utilisateur
-    $('#editUserForm').on('submit', function(event) {
-        event.preventDefault();  // Empêcher le rechargement de la page
-        const formData = {
-            action: 'updateUser',
-            username: $('#editUserName').val(),
-            password: $('#editPassword').val(),
-            confirmPassword: $('#confirmEditPassword').val()
-        };
-
-        $.ajax({
-            url: '/src/controllers/AccountController.php',
-            method: 'POST',
-            data: formData,
-            success: function(response) {
-                alert('Utilisateur modifié avec succès');
-                $('#editUserModal').fadeOut();  // Fermer la modale d'édition
-                loadUsers();  // Recharger la liste des utilisateurs après la mise à jour
-            },
-            error: function(xhr, status, error) {
-                alert('Erreur lors de la modification de l\'utilisateur : ' + error);
-            }
-        });
     });
 });
