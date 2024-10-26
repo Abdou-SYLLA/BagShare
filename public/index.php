@@ -13,9 +13,6 @@
    
     <!-- Inclure jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- Inclure ton fichier JS personnalisé -->
-    <script src="Ajax.js"></script>
 </head>
 <body>
     <!-- Inclusion du header -->
@@ -66,9 +63,8 @@
             <a>Contribue à la réduction de l'empreinte carbone en optimisant l'espace des bagages</a>
         </nav>
     </section>
-
-
     <!-- Inclusion du footer -->
     <?php include '../src/views/footer.php'; ?>
+    
 </body>
 </html>

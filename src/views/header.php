@@ -30,4 +30,6 @@
         ?>
         
     </nav>
+
+    <script src="/public/config.js"></script>
 </header>
