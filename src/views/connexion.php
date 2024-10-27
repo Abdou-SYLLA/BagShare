@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Connexion - BagShare</title>
     
-    <link rel="stylesheet" href="/public/styles/styles.css"> <!-- Lien vers votre feuille de style -->
+    <link rel="stylesheet" href="/public/styles/styles.css"> 
 </head>
 
 <body>

@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BagShare - Rentabilisez vos bagages</title>
     <link rel="stylesheet" href="styles/styles.css"> <!-- Inclusion du fichier CSS -->
+    <link rel="stylesheet" href="styles/header.css"> 
     <link rel="stylesheet" href="styles/footer.css">
    
     <!-- Inclure jQuery -->

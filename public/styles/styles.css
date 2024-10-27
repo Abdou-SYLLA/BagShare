@@ -17,40 +17,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* Header styles */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color:  #FFFFFF;
-    position: relative;
-    z-index: 100;
-}
-
-.logo img {
-    max-width: 200px;
-    height: auto;
-}
-
-/* Navigation menu styles */
-nav {
-    display: flex;
-    gap: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1em;
-    padding: 10px;
-}
-
-nav a.active {
-    font-weight: bold;
-    color: green;
-}
-
 /* Button styles */
 .btn-primary, .btn-secondary {
     padding: 10px 20px;
@@ -83,6 +49,11 @@ nav a.active {
 
 .hero-content {
     max-width: 500px;
+}
+
+.hero img {
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .hero h1 {
@@ -200,17 +171,19 @@ nav a.active {
     align-items: center;
 }
 
+/* Conteneur principal pour le formulaire */
 .contact-section .container {
-    max-width: 800px;
     width: 100%;
+    max-width: 600px; /* Limiter la largeur du conteneur */
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
 
+/* Titre et paragraphe */
 .contact-section h2 {
-    font-size: 28px;
+    font-size: 24px; /* Ajuster la taille de police */
     color: #333;
     text-align: center;
     margin-bottom: 10px;
@@ -223,10 +196,92 @@ nav a.active {
     margin-bottom: 30px;
 }
 
+/* Conteneur du formulaire */
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 15px; /* Espacement entre les champs */
+}
+
+/* Styles des labels */
+form label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Styles des champs de saisie */
+.input-field, .textarea-field {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+/* Styles des champs en focus */
+.input-field:focus, .textarea-field:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.textarea-field {
+    resize: vertical;
+    min-height: 120px; /* Hauteur minimale pour la zone de texte */
+}
+
+/* Styles du bouton d'envoi */
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Styles de responsivité */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 30px 15px; /* Réduire le padding pour les petits écrans */
+    }
+
+    .contact-section .container {
+        padding: 20px; /* Réduire le padding interne du conteneur */
+    }
+
+    .form-container {
+        gap: 10px; /* Réduire l'espacement entre les champs du formulaire */
+    }
+
+    .submit-button {
+        font-size: 14px; /* Ajuster la taille de police pour le bouton */
+        padding: 10px 15px; /* Ajuster le padding du bouton */
+    }
+
+    /* Cacher l'image dans la section hero */
+    .hero img {
+        display: none; /* Masquer l'image */
+    }
+
+    /* Changer la direction de la section how-it-works en colonne */
+    .how-it-works .steps {
+        flex-direction: column; /* Aligner en colonne */
+        align-items: center; /* Centrer les éléments */
+    }
+
+    .how-it-works .step {
+        max-width: 90%; /* Élargir la section sur les petits écrans */
+        margin-bottom: 20px; /* Espacement entre les étapes */
+    }
 }
 
 /* Form Styles */
@@ -276,136 +331,73 @@ form label {
     background-color: #0056b3;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    
-}
-
-
-/* Responsive design for steps */
-@media (max-width: 1024px) {
-    .how-it-works .step {
-        max-width: 45%;
-    }
-}
-
-
 /* Advantages section */
 .advantages {
-    text-align: center;
-    margin: 50px 0;
+    padding: 50px 20px; /* Espacement général de la section */
+    background-color: #f9f9f9; /* Couleur de fond */
+    text-align: center; /* Centre le texte */
 }
 
 .advantages h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 36px; /* Taille du titre */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 40px; /* Espace en bas du titre */
 }
 
 .advantages nav {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: flex; /* Utilise flexbox pour une mise en page flexible */
+    flex-direction: row; /* Aligne les éléments horizontalement */
+    justify-content: center; /* Centre les éléments horizontalement */
+    flex-wrap: wrap; /* Permet le retour à la ligne si l'espace est insuffisant */
+    gap: 20px; /* Espace entre les éléments */
 }
 
 .advantages nav a {
-    display: inline-block;
-    padding: 15px 25px;
-    background-color: #f2f2f2;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #333;
-    font-size: 1em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: inline-block; /* Permet de styliser chaque lien comme un bloc */
+    padding: 15px 25px; /* Espace interne */
+    background-color: #f2f2f2; /* Couleur de fond des liens */
+    border-radius: 8px; /* Coins arrondis */
+    text-decoration: none; /* Pas de soulignement */
+    color: #333; /* Couleur du texte */
+    font-size: 1em; /* Taille de police */
+    transition: transform 0.3s; /* Transition pour l'effet de survol */
 }
 
 .advantages nav a:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Effet de survol */
 }
 
-.advantages nav a {
-    font-size: 18px;
-    color: #007bff;
-    text-decoration: none;
-    padding: 15px 30px;
-    border: 2px solid #007bff;
-    border-radius: 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.advantages nav a:hover {
-    background-color: #007bff;
-    color: white;
-}
-
-/* Responsive adjustments */
+/* Responsive adjustments for advantages */
 @media (max-width: 768px) {
+    .advantages {
+        padding: 30px 15px; /* Réduit le padding pour les petits écrans */
+    }
+
+    .advantages h2 {
+        font-size: 28px; /* Ajustement de la taille du titre */
+    }
+
     .advantages nav {
-        gap: 15px;
-        justify-content: center;
+        flex-direction: column; /* Passe en colonne sur petits écrans */
     }
 
     .advantages nav a {
-        font-size: 16px;
-        padding: 10px 20px;
+        margin: 10px 0; /* Espace entre les éléments en colonne */
+        width: 100%; /* Les éléments prennent toute la largeur */
     }
 
-    .steps {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .logo img {
-        display: none;
-    }
-
-    .logo::before {
-        content: "BagShare";
-        font-size: 2em;
-        font-weight: bold;
-        color: #333;
-    }
-
-    .hero img {
-        display: none;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .how-it-works .steps {
-        flex-direction: column;
-        align-items: center;
+     .how-it-works .steps {
+        flex-direction: column; /* Aligner les étapes en colonne */
     }
 
     .how-it-works .step {
-        max-width: 100%;
-        margin-bottom: 20px;
-    }
-    .contact-section {
-        padding: 30px 15px;
+        max-width: 90%; /* Élargir la section pour les petits écrans */
+        margin-bottom: 20px; /* Ajouter de l'espace entre les étapes */
     }
 
-    .contact-section .container {
-        padding: 20px;
-    }
-
-    .form-container {
-        gap: 10px;
-    }
-
-    .submit-button {
-        font-size: 14px;
-        padding: 10px 15px;
+    /* Cacher l'image dans la section hero */
+    .hero img {
+        display: none; /* Masquer l'image pour les écrans étroits */
     }
 }
+

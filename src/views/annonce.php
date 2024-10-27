@@ -10,6 +10,7 @@
     <title>Liste des Annonces</title>
     <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/annonces.css">
+    <link rel="stylesheet" href="/public/styles/header.css">
     <link rel="stylesheet" href="/public/styles/footer.css">
 </head>
 <body>
