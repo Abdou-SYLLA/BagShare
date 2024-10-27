@@ -12,7 +12,7 @@ class Annonce {
 
     // Méthode pour récupérer toutes les annonces
     public function getAllAnnonces() {
-        $sql = "SELECT description, depart,ville_depart, arrivee,ville_destination, date, kilos_disponibles, prix_par_kilo, adresse_depot, nom 
+        $sql = "SELECT description, depart,ville_depart, arrivee,ville_destination, date, kilos_disponibles, prix_par_kilo, adresse_depot, nom,accounts.numero as numero, id
                 FROM annonces 
                 INNER JOIN accounts ON accounts.numero = annonces.numero
                 WHERE date >= CURDATE()";
@@ -31,24 +31,46 @@ class Annonce {
         }
     }
 
-    // Méthode pour ajouter une annonce
     public function createAnnonce($data) {
         // Requête préparée pour éviter les injections SQL
-        $stmt = $this->conn->prepare("INSERT INTO annonces (description, depart,ville_depart, arrivee,ville_destination,  date, kilos_disponibles, prix_par_kilo, adresse_depot, nom ) 
-                                      VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssddi", $data['description'], $data['depart'],$data['ville_depart'], $data['arrivee'],$data['ville_destination'], $data['date'], $data['kilos_disponibles'], $data['prix_par_kilo'],$data['adresse_depot'] ,$data['nom']);
-        
+        $stmt = $this->conn->prepare("INSERT INTO annonces (description, depart, ville_depart, arrivee, ville_destination, date, kilos_disponibles, prix_par_kilo, adresse_depot, numero) 
+                                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    
+        // Vérification si la préparation a échoué
+        if ($stmt === false) {
+            die("Erreur de préparation de la requête : " . $this->conn->error);
+        }
+    
+        // Liaison des paramètres avec les types corrects
+        $stmt->bind_param(
+            "ssssssidsi", 
+            $data['description'], 
+            $data['depart'],
+            $data['ville_depart'], 
+            $data['arrivee'],
+            $data['ville_destination'], 
+            $data['date'], 
+            $data['kilos_disponibles'], 
+            $data['prix_par_kilo'],
+            $data['adresse_depot'], 
+            $data['numero']
+        );
+    
+        // Exécution de la requête et retour du résultat
         if ($stmt->execute()) {
             return true; // Annonce créée avec succès
         } else {
-            return false; // Erreur lors de la création
+            die("Erreur d'exécution de la requête : " . $stmt->error);
         }
-    }
+    }    
+    
+    
+    
 
     // Méthode pour supprimer une annonce par son ID, si l'utilisateur est l'auteur ou un administrateur
     public function deleteAnnonce($annonceId, $userId, $isAdmin) {
         // Vérifier si l'utilisateur est bien l'auteur ou un admin
-        $stmt = $this->conn->prepare("SELECT user_id FROM annonces WHERE id = ?");
+        $stmt = $this->conn->prepare("SELECT numero FROM annonces WHERE id = ?");
         $stmt->bind_param("i", $annonceId);
         $stmt->execute();
         $stmt->bind_result($annonceOwnerId);

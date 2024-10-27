@@ -1,7 +1,7 @@
-<!-- Section pour ajouter une annonce (visible uniquement pour les utilisateurs authentifiés) -->
 <section class="section-ajout">
     <h2 class="section-title">Ajouter une Annonce</h2>
-    <form id="annonceForm" class="form-ajout">
+    <form id="annonceForm" class="form-ajout" action="/src/controllers/AnnonceController.php" method="POST">
+    <input type="hidden" name="action" value="create">
         <div class="form-group">
             <label for="description" class="form-label">Description :</label>
             <input type="text" id="description" name="description" class="form-input" required>
@@ -40,8 +40,9 @@
         </div>
         <div class="form-group">
             <label for="numero" class="form-label">Numéro de l'utilisateur :</label>
-            <input type="number" id="numero" name="numero" class="form-input" required>
+            <input type="number" id="numero" name="numero" class="form-input" value="<?= $_SESSION['user']['numero'] ?>" required>
         </div>
+
         <div class="form-group actions">
             <button type="submit" class="btn btn-submit">Ajouter l'annonce</button>
         </div>

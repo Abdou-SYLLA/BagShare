@@ -52,47 +52,65 @@ class AnnonceController {
     // Création d'une annonce
     public function creerAnnonce() {
         session_start(); // Démarrer la session pour obtenir l'utilisateur connecté
+    
         // Vérifier si l'utilisateur est connecté
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['user'])) {
             echo json_encode(['error' => 'Utilisateur non connecté']);
             exit;
         }
-
-        // Récupérer les données envoyées
+    
+        // Validation des données reçues
+        $requiredFields = ['description', 'depart', 'ville_depart', 'arrivee', 'ville_destination', 'adresse_depot', 'date', 'kilos_disponibles', 'prix_par_kilo'];
+        foreach ($requiredFields as $field) {
+            if (empty($_POST[$field])) {
+                echo json_encode(['error' => "Le champ $field est requis"]);
+                exit;
+            }
+        }
+    
         $annonceData = [
-            'description' => $_POST['description'],
-            'depart' => $_POST['depart'],
-            'arrivee' => $_POST['arrivee'],
+            'description' => htmlspecialchars($_POST['description']),
+            'depart' => htmlspecialchars($_POST['depart']),
+            'ville_depart' => htmlspecialchars($_POST['ville_depart']),
+            'arrivee' => htmlspecialchars($_POST['arrivee']),
+            'ville_destination' => htmlspecialchars($_POST['ville_destination']),
+            'adresse_depot' => (string)  htmlspecialchars($_POST['adresse_depot']),
             'date' => $_POST['date'],
-            'kilos_disponibles' => $_POST['kilos_disponibles'],
-            'prix_par_kilo' => $_POST['prix_par_kilo'],
-            'user_id' => $_SESSION['user_id'], // L'ID de l'utilisateur connecté
+            'kilos_disponibles' => (int) $_POST['kilos_disponibles'],
+            'prix_par_kilo' => (float) $_POST['prix_par_kilo'],
+            'numero' => (int) $_POST['numero']  // Correction pour être sûr que numero est bien transmis
         ];
-
+        
+    
+        // Appel au modèle pour créer l'annonce
         $annonceModel = new Annonce();
         $result = $annonceModel->createAnnonce($annonceData);
-
+    
+        // Vérifier le résultat et renvoyer une réponse
         if ($result) {
             echo json_encode(['success' => 'Annonce créée avec succès']);
+            header('Location: /src/views/annonce.php');
         } else {
             echo json_encode(['error' => "Erreur lors de la création de l'annonce"]);
+            header('Location: /src/views/annonce.php');
         }
         exit;
     }
+    
 
     // Suppression d'une annonce
     public function supprimerAnnonce() {
         session_start(); // Démarrer la session pour obtenir l'utilisateur connecté
         // Vérifier si l'utilisateur est connecté
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['user'])) {
             echo json_encode(['error' => 'Utilisateur non connecté']);
             exit;
         }
 
         // Récupérer l'ID de l'annonce et de l'utilisateur connecté
-        $annonceId = $_POST['annonce_id'];
-        $userId = $_SESSION['user_id']; // L'ID de l'utilisateur connecté
-        $isAdmin = $_SESSION['is_admin'] ?? false; // Vérifier si l'utilisateur est admin
+        $annonceId = $_POST['id'];
+        $userId = $_SESSION['user']['numero']; // L'ID de l'utilisateur connecté
+        $isAdmin = $_SESSION['user']['role'] == 'admin'; // Vérifier si l'utilisateur est admin
 
         $annonceModel = new Annonce();
         $result = $annonceModel->deleteAnnonce($annonceId, $userId, $isAdmin);
