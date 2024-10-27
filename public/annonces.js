@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    const pexelsApiKey = 'sOAuszc1UnoCX3r3LWVDZjRYdHEJ1MoyBA6Y7vURmUL7GEQ4b2gGYpSq'; // Remplacez par votre clé API Pexels
+    const pexelsApiKey = 'sOAuszc1UnoCX3r3LWVDZjRYdHEJ1MoyBA6Y7vURmUL7GEQ4b2gGYpSq';
 
     $.ajax({
         url: '/src/controllers/AnnonceController.php',
@@ -12,8 +12,10 @@ $(document).ready(function() {
             
             if (data.length > 0) {
                 data.forEach(function(annonce) {
+                    const cityKeyword = `${annonce.ville_destination} iconic`;
+
                     $.ajax({
-                        url: `https://api.pexels.com/v1/search?query=${annonce.ville_destination} iconic&per_page=1`,
+                        url: `https://api.pexels.com/v1/search?query=${encodeURIComponent(cityKeyword)}&per_page=1`,
                         type: 'GET',
                         headers: {
                             Authorization: pexelsApiKey
@@ -26,14 +28,18 @@ $(document).ready(function() {
                                     <h3>Destination: ${annonce.arrivee}, ${annonce.ville_destination}</h3>
                                     <img src="${imageUrl}" alt="Image de ${annonce.ville_destination}" class="annonce-image">
                                     <p>Départ: ${annonce.depart}, ${annonce.ville_depart}</p>
-                                    <p>Kilos disponibles: ${annonce.kilos_disponibles} kg</p>
-                                    <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
                                     <p>Date: ${annonce.date}</p>
-                                    <p>Depot: ${annonce.adresse_depot}</p>
-                                    <p>Voyageur: ${annonce.nom}, Num: ${annonce.numero}</p>
-                                    <div class="action-buttons">
-                                        <button class="btn-reserver">Réserver maintenant</button>
-                                        ${isUserLoggedIn ? `<button class="btn-supprimer" style="display: none;">Supprimer</button>` : ''}
+                                    
+                                    <!-- Détails cachés par défaut -->
+                                    <div class="details" style="display: none;">
+                                        <p>Kilos disponibles: ${annonce.kilos_disponibles} kg</p>
+                                        <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
+                                        <p>Depot: ${annonce.adresse_depot}</p>
+                                        <p>Voyageur: ${annonce.nom}, Num: ${annonce.numero}</p>
+                                        <div class="action-buttons">
+                                            <button class="btn-reserver">Réserver maintenant</button>
+                                            ${isUserLoggedIn ? `<button class="btn-supprimer">Supprimer</button>` : ''}
+                                        </div>
                                     </div>
                                 </div>
                             `);
@@ -52,27 +58,31 @@ $(document).ready(function() {
         }
     });
 
-    // Utilisez la délégation d'événements pour éviter les répétitions
+    // Événement de clic pour afficher/cacher les détails de chaque annonce
     $('#annonceList')
         .off('click', '.annonce') // Détache tout événement click précédent
         .on('click', '.annonce', function() {
-            $('.annonce').removeClass('clicked');
-            $(this).addClass('clicked');
-            if (isUserLoggedIn) {
-                $(this).find('.btn-supprimer').show();
+            const isOpen = $(this).find('.details').is(':visible');
+            $('.details').hide(); // Masquer tous les détails
+            $('.annonce').removeClass('clicked'); // Supprimer la classe de sélection de toutes les annonces
+
+            if (!isOpen) { // Si ce n'est pas déjà ouvert, ouvrir celui-ci
+                $(this).addClass('clicked'); // Ajouter la classe à l'annonce cliquée
+                $(this).find('.details').show(); // Afficher les détails de cette annonce
             }
-            $('.annonce').not(this).find('.btn-supprimer').hide();
         });
 
+    // Gestion de la réservation
     $('#annonceList')
-        .off('click', '.btn-reserver') // Détache tout événement click précédent
+        .off('click', '.btn-reserver')
         .on('click', '.btn-reserver', function(e) {
             e.stopPropagation();
             alert("Vous avez réservé cette annonce !");
         });
 
+    // Gestion de la suppression
     $('#annonceList')
-        .off('click', '.btn-supprimer') // Détache tout événement click précédent
+        .off('click', '.btn-supprimer')
         .on('click', '.btn-supprimer', function(e) {
             e.stopPropagation();
         

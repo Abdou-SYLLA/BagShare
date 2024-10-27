@@ -161,6 +161,21 @@ nav a.active {
     margin-bottom: 40px;
 }
 
+.annonce {
+        transition: all 0.3s ease; /* Ajoute une transition douce pour le changement de taille */
+    }
+
+    .annonce.clicked {
+        /* Exemple de style agrandi */
+        background-color: #f0f8ff; /* Couleur d'arrière-plan */
+        border: 2px solid #007bff; /* Bordure */
+        padding: 10px; /* Espacement */
+        /* Vous pouvez ajouter d'autres styles ici pour agrandir */
+    }
+
+    .details {
+        margin-top: 10px; /* Ajout d'un espace entre le texte principal et les détails */
+    }
 /* Conteneur des étapes */
 .how-it-works .steps {
     display: flex;
@@ -328,6 +343,7 @@ nav a.active {
 
 
 /* Style des cartes d'annonces */
+
 /* Zoom sur l'annonce au survol */
 .annonce {
     background-color: #ffffff;
