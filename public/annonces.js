@@ -12,7 +12,7 @@ $(document).ready(function() {
             
             if (data.length > 0) {
                 data.forEach(function(annonce) {
-                    const cityKeyword = `${annonce.ville_destination} iconic`;
+                    const cityKeyword = `${annonce.ville_destination} iconic spot`;
 
                     $.ajax({
                         url: `https://api.pexels.com/v1/search?query=${encodeURIComponent(cityKeyword)}&per_page=1`,
@@ -30,7 +30,6 @@ $(document).ready(function() {
                                     <p>Départ: ${annonce.depart}, ${annonce.ville_depart}</p>
                                     <p>Date: ${annonce.date}</p>
                                     
-                                    <!-- Détails cachés par défaut -->
                                     <div class="details" style="display: none;">
                                         <p>Kilos disponibles: ${annonce.kilos_disponibles} kg</p>
                                         <p>Prix par kilo: ${annonce.prix_par_kilo} €/kg</p>
@@ -58,57 +57,53 @@ $(document).ready(function() {
         }
     });
 
-    // Événement de clic pour afficher/cacher les détails de chaque annonce
-    $('#annonceList')
-        .off('click', '.annonce') // Détache tout événement click précédent
-        .on('click', '.annonce', function() {
-            const isOpen = $(this).find('.details').is(':visible');
-            $('.details').hide(); // Masquer tous les détails
-            $('.annonce').removeClass('clicked'); // Supprimer la classe de sélection de toutes les annonces
+    // Gestion des clics sur les annonces
+    $('#annonceList').on('click', '.annonce', function() {
+        const details = $(this).find('.details');
+        const isOpen = details.is(':visible');
 
-            if (!isOpen) { // Si ce n'est pas déjà ouvert, ouvrir celui-ci
-                $(this).addClass('clicked'); // Ajouter la classe à l'annonce cliquée
-                $(this).find('.details').show(); // Afficher les détails de cette annonce
-            }
-        });
+        $('.details').hide(); // Masquer tous les détails
+        $('.annonce').removeClass('clicked'); // Supprimer la classe de sélection de toutes les annonces
+
+        if (!isOpen) {
+            $(this).addClass('clicked'); // Ajouter la classe à l'annonce cliquée
+            details.show(); // Afficher les détails de cette annonce
+        }
+    });
 
     // Gestion de la réservation
-    $('#annonceList')
-        .off('click', '.btn-reserver')
-        .on('click', '.btn-reserver', function(e) {
-            e.stopPropagation();
-            alert("Vous avez réservé cette annonce !");
-        });
+    $('#annonceList').on('click', '.btn-reserver', function(e) {
+        e.stopPropagation();
+        alert("Vous avez réservé cette annonce !");
+    });
 
     // Gestion de la suppression
-    $('#annonceList')
-        .off('click', '.btn-supprimer')
-        .on('click', '.btn-supprimer', function(e) {
-            e.stopPropagation();
+    $('#annonceList').on('click', '.btn-supprimer', function(e) {
+        e.stopPropagation();
         
-            const annonceId = $(this).closest('.annonce').data('id');
+        const annonceId = $(this).closest('.annonce').data('id');
         
-            if (confirm("Êtes-vous sûr de vouloir supprimer cette annonce ?")) {
-                $.ajax({
-                    url: '/src/controllers/AnnonceController.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        action: 'delete',
-                        id: annonceId
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            alert("L'annonce a été supprimée avec succès !");
-                            $(`.annonce[data-id="${annonceId}"]`).remove();
-                        } else {
-                            alert("Erreur lors de la suppression de l'annonce : " + response.error);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        alert("Une erreur s'est produite lors de la suppression de l'annonce.");
+        if (confirm("Êtes-vous sûr de vouloir supprimer cette annonce ?")) {
+            $.ajax({
+                url: '/src/controllers/AnnonceController.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'delete',
+                    id: annonceId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert("L'annonce a été supprimée avec succès !");
+                        $(`.annonce[data-id="${annonceId}"]`).remove();
+                    } else {
+                        alert("Erreur lors de la suppression de l'annonce : " + response.error);
                     }
-                });
-            }
-        });
+                },
+                error: function(xhr, status, error) {
+                    alert("Une erreur s'est produite lors de la suppression de l'annonce.");
+                }
+            });
+        }
+    });
 });

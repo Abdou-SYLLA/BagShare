@@ -162,20 +162,30 @@ nav a.active {
 }
 
 .annonce {
-        transition: all 0.3s ease; /* Ajoute une transition douce pour le changement de taille */
-    }
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition douce */
+}
 
-    .annonce.clicked {
-        /* Exemple de style agrandi */
-        background-color: #f0f8ff; /* Couleur d'arrière-plan */
-        border: 2px solid #007bff; /* Bordure */
-        padding: 10px; /* Espacement */
-        /* Vous pouvez ajouter d'autres styles ici pour agrandir */
-    }
+.annonce.clicked {
+    background-color: #e0f7fa; /* Couleur d'arrière-plan quand cliqué */
+    border: 2px solid #007bff; /* Bordure bleue */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
+    transform: scale(1.05); /* Légèrement agrandi */
+}
 
-    .details {
-        margin-top: 10px; /* Ajout d'un espace entre le texte principal et les détails */
-    }
+.details {
+    margin-top: 10px; /* Espacement */
+}
+
 /* Conteneur des étapes */
 .how-it-works .steps {
     display: flex;
