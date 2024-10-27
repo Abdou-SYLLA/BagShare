@@ -8,7 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Annonces</title>
-    <link rel="stylesheet" href="/public/styles/styles.css"> <!-- Fichier CSS partagé -->
+    <link rel="stylesheet" href="/public/styles/styles.css"> 
+    <link rel="stylesheet" href="/public/styles/annonces.css">
+    <link rel="stylesheet" href="/public/styles/footer.css">
 </head>
 <body>
     
@@ -22,7 +24,7 @@
 <div class="content-container">
     <!-- Section pour afficher les annonces sous forme de cartes -->
     <section class="annonces">
-        <h2 class="section-title">Prochains départs</h2> <!-- Titre en h2 centré -->
+        <h2 class="section-title">Prochains départs</h2> 
         <div class="annonce-list" id="annonceList">
             <!-- Les annonces seront ajoutées ici par JavaScript -->
         </div>

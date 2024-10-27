@@ -10,7 +10,6 @@
     <title>Gestion des Utilisateurs et Comptes</title>
     <link rel="stylesheet" href="/public/styles/styles.css">
     <link rel="stylesheet" href="/public/styles/header.css">
-    <link rel="stylesheet" href="/public/styles/footer.css">
     <link rel="stylesheet" href="/public/styles/account.css">
 </head>
 <body>

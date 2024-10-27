@@ -3,6 +3,7 @@
 ?>
 
 <link rel="stylesheet" href="/public/styles/styles.css"> 
+<link rel="stylesheet" href="/public/styles/footer.css"> 
 <?php include 'header.php'; ?>
 <section class="contact-section">
     <div class="container">

@@ -1,21 +1,10 @@
 /* Styles pour les annonces */
-h2{
-    text-align: center;
-}
 
 .annonce-list {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-}
-
-/* Centrer le titre "Prochains départs" */
-.section-title {
-    color: #333;
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
 }
 
 /* Style des cartes d'annonces */
@@ -33,6 +22,21 @@ h2{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Style pour centrer le titre h2 */
+.section-title {
+    color: #333;
+    text-align: center;  
+    font-size: 24px;     
+    margin: 20px 0;      
+    width: 100%;         
+    display: block;      
+}
+
+.section-title h2{
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
 .annonce.clicked {
     background-color: #e0f7fa;
     border: 2px solid #007bff;
@@ -43,6 +47,68 @@ h2{
 .annonce:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton de réservation masqué par défaut */
+.annonce .btn-reserver {
+    display: none;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.annonce .btn-reserver:hover {
+    background-color: #0056b3;
+}
+
+/* Lorsque l'annonce est cliquée, le bouton devient visible */
+.annonce.clicked .btn-reserver {
+    display: block;
+}
+
+.annonce-image {
+    width: 100%;
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Bouton "Supprimer" rouge, masqué par défaut */
+.btn-supprimer {
+    display: none;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.annonce.clicked .btn-supprimer {
+    display: block;
 }
 
 /* Section d'ajout d'annonce */
@@ -58,12 +124,12 @@ h2{
 .form-ajout {
     display: flex;
     flex-direction: column;
-    width: 95%; /* Largeur presque pleine pour s'aligner avec account.css */
-    max-width: 1200px; /* Largeur maximale pour les écrans larges */
+    width: 95%; 
+    max-width: 1200px;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -72,40 +138,36 @@ h2{
 
 .form-label {
     display: block;
+    margin-bottom: 5px;
     font-weight: bold;
-    font-size: 18px;
-    margin-top: 10px;
 }
 
 .form-input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    padding: 10px;
     font-size: 14px;
+    border-radius: 5px;
     border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
-/* Style des boutons */
 .actions {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.btn-submit {
+.btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
     background-color: #28a745;
     color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.btn-submit:hover {
+.btn:hover {
     background-color: #218838;
 }
 
@@ -142,3 +204,5 @@ h2{
 .nav-link:hover {
     color: darkblue;
 }
+
+
