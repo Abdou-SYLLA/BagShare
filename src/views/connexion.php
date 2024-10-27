@@ -14,7 +14,6 @@
         <!-- Ajout du logo -->
         <div class="logo-container">
             <img src="/public/data/images/logo2.png" alt="Logo BagShare" class="logo">
-            <span class="logo-text">BagShare</span> <!-- Texte de remplacement pour petit écran -->
         </div>
 
         <h2>Connexion</h2>
