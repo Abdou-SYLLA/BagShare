@@ -12,24 +12,26 @@ class Annonce {
 
     // Méthode pour récupérer toutes les annonces
     public function getAllAnnonces() {
-        $sql = "SELECT description, depart,ville_depart, arrivee,ville_destination, date, kilos_disponibles, prix_par_kilo, adresse_depot, nom,accounts.numero as numero, id
-                FROM annonces 
-                INNER JOIN accounts ON accounts.numero = annonces.numero
-                WHERE date >= CURDATE()";
+        $sql = "SELECT description, depart, ville_depart, arrivee, ville_destination, date, kilos_disponibles, prix_par_kilo, adresse_depot, nom, R1.numero as numero, annonces.id as id, endroit_populaire 
+        FROM annonces INNER JOIN (SELECT nom, prenom, numero 
+                                FROM accounts)as R1 ON R1.numero = annonces.numero LEFT JOIN lieux ON LOWER(ville_destination) = LOWER(ville) 
+                                WHERE date >= CURDATE()";
         
         $result = $this->conn->query($sql);
     
-        // Vérification des erreurs SQL
         if (!$result) {
-            die("Erreur SQL : " . $this->conn->error);
+            return ["error" => "Erreur SQL : " . $this->conn->error];
         }
     
         if ($result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC); // Retourner un tableau associatif
+            return $result->fetch_all(MYSQLI_ASSOC);
         } else {
-            return []; // Aucun résultat
+            return [];
         }
     }
+    
+    
+    
 
     public function createAnnonce($data) {
         // Requête préparée pour éviter les injections SQL

@@ -12,7 +12,9 @@ $(document).ready(function() {
             
             if (data.length > 0) {
                 data.forEach(function(annonce) {
-                    const cityKeyword = `${annonce.ville_destination} iconic spot`;
+                    //const cityKeyword = `${annonce.endroit_populaire}`;
+                    const cityKeyword = annonce.endroit_populaire ? annonce.endroit_populaire : `${annonce.ville_destination} most visited place`;
+
 
                     $.ajax({
                         url: `https://api.pexels.com/v1/search?query=${encodeURIComponent(cityKeyword)}&per_page=1`,
