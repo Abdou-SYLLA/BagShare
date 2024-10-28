@@ -27,7 +27,9 @@
             <a href="/src/views/user.php"><?= htmlspecialchars($_SESSION['user']['nom']); ?></a>
             <a href="/src/controllers/logout.php" class="btn-secondary">Déconnexion</a>
         <?php else: ?>
-            <a href="/src/views/connexion.php" class="btn-secondary">Connexion</a>
+            <a href="/src/views/connexion.php" class="btn-secondary">
+                <img src="/public/data/images/icons8-account-50.png" alt="Connexion" class="connexion-icon">
+            </a>
         <?php endif; ?>
     </div>
 

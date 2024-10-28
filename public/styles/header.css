@@ -15,7 +15,7 @@ header {
 }
 
 .logo img {
-    max-width: 150px; /* Ajustez la taille selon vos besoins */
+    max-width: 200px; /* Ajustez la taille selon vos besoins */
     height: auto;
 }
 
@@ -50,8 +50,15 @@ nav a.active {
     display: none;
 }
 
+
+
 /* Styles spécifiques pour les appareils de moins de 768px */
 @media (max-width: 768px) {
+    .logo img {
+        max-width: 150px; /* Ajustez la taille selon vos besoins */
+        height: auto;
+    }
+
     /* Cache le menu principal */
     nav {
         display: none;
@@ -105,4 +112,15 @@ nav a.active {
         gap: 10px;
         align-items: center;
     }
+
+    /* Styles pour l'icône */
+    .connexion-icon {
+        width: 40px; /* Ajustez la taille de l'icône */
+        height: 40px; /* Ajustez la taille de l'icône */
+        transition: transform 0.3s ease; /* Transition pour l'effet de zoom */
+    }
+    
+    .btn-secondary:hover .connexion-icon {
+        transform: scale(1.1); /* Zoom léger au survol */
+    }    
 }

@@ -32,11 +32,6 @@ body {
     color: white;
 }
 
-.btn-secondary {
-    background-color: transparent;
-    color: #5a00cc;
-    border: 2px solid #5a00cc;
-}
 
 /* Hero section */
 .hero {
