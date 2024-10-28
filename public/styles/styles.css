@@ -475,5 +475,17 @@ form label {
     .hero img {
         display: none; /* Masquer l'image pour les écrans étroits */
     }
+
+    .connexion-section {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 40px; /* Augmentation du padding pour agrandir la section */
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 100%; /* Augmente la largeur maximale du formulaire */
+        margin: 100px auto;
+        text-align: center;
+        transform: scale(1.2); /* Zoom global sur la section */
+    }
+    
 }
 
