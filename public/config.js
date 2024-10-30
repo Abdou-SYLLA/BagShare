@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Vérifier si l'élément existe avant d'ajouter l'événement
     if (logo) {
+        logo.style.cursor = 'pointer';
         // Ajouter un événement de clic
         logo.addEventListener('click', function() {
             // Rediriger vers la page index
