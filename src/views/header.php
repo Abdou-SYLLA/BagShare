@@ -28,7 +28,7 @@
         <?php if (isset($_SESSION['user'])): ?>
             <a href="/src/views/user.php"><?= htmlspecialchars($_SESSION['user']['nom']); ?></a>
             <a href="/src/controllers/logout.php" class="btn-secondary">
-                <img src="/public/data/images/icons8-logout-50.png" alt="Connexion" class="connexion-icon">
+                <img src="/public/data/images/logout.png" alt="Connexion" class="connexion-icon">
             </a>
         <?php else: ?>
             <a href="/src/views/connexion.php" class="btn-secondary">

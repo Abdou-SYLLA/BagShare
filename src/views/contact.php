@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/public/styles/footer.css"> 
 <link rel="stylesheet" href="/public/styles/header.css">
 <link rel="stylesheet" href="/public/styles/styles.css"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
 <?php include 'header.php'; ?>

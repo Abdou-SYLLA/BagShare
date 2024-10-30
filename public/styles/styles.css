@@ -453,7 +453,7 @@ form label {
         padding: 40px; /* Augmentation du padding pour agrandir la section */
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        max-width: 100%; /* Augmente la largeur maximale du formulaire */
+        max-width: 60%; /* Augmente la largeur maximale du formulaire */
         margin: 100px auto;
         text-align: center;
         transform: scale(1.2); /* Zoom global sur la section */
@@ -482,3 +482,18 @@ form label {
     }
 }
 
+@media (max-width: 480px) {
+    .contact-section .container {
+        max-width: 100%; /* Prend toute la largeur de l’écran */
+        padding: 15px; /* Réduire le padding interne */
+    }
+
+    .contact-section h2 {
+        font-size: 20px; /* Ajuster la taille du titre */
+    }
+
+    .submit-button {
+        font-size: 14px;
+        padding: 8px 12px; /* Ajuster pour un affichage compact */
+    }
+}
