@@ -2,10 +2,13 @@
     session_start(); // Nécessaire pour accéder aux variables de session
 ?>
 
-<link rel="stylesheet" href="/public/styles/styles.css"> 
 <link rel="stylesheet" href="/public/styles/footer.css"> 
 <link rel="stylesheet" href="/public/styles/header.css">
+<link rel="stylesheet" href="/public/styles/styles.css"> 
+
+<body>
 <?php include 'header.php'; ?>
+
 <section class="contact-section">
     <div class="container">
         <div class="form-container">
@@ -32,3 +35,4 @@
 </section>
 
 <?php include 'footer.php'; ?>
+</body>

@@ -27,7 +27,7 @@
             BagShare représente une alternative flexible et économique aux services de livraison traditionnels.
         </p>
     </div>
-    <img src="/public/data/images/apropos.png" alt="apropos">
+    <img src="/public/data/images/apropos3.png" alt="apropos">
 </section>
 
 <?php include 'footer.php'; ?>

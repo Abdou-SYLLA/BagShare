@@ -32,7 +32,7 @@
             </a>
         <?php else: ?>
             <a href="/src/views/connexion.php" class="btn-secondary">
-                <img src="/public/data/images/icons8-account-50.png" alt="Connexion" class="connexion-icon">
+                <img src="/public/data/images/icons-account.png" alt="Connexion" class="connexion-icon">
             </a>
         <?php endif; ?>
     </div>

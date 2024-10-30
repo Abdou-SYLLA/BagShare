@@ -15,12 +15,13 @@ h2 {
 /* Augmentation de la largeur du conteneur */
 .container {
     width: 95%; /* Changer à 95% pour occuper presque tout l'écran */
-    max-width: 1200px; /* Optionnel : limite maximale pour éviter d'être trop large sur des écrans très grands */
+    max-width: 1200px; /* Limite maximale pour éviter d'être trop large sur des écrans très grands */
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Empêche les débordements */
 }
 
 .user-info {
@@ -33,15 +34,19 @@ h2 {
 }
 
 form label {
-    display: flex;
+    display: block; /* Modifié pour s'assurer que chaque label prend toute la largeur disponible */
     margin-top: 10px;
     font-weight: bold;
     font-size: 18px; /* Augmenter la taille des labels */
     white-space: nowrap; /* Empêcher le retour à la ligne pour les labels */
 }
 
-form input, form select, form button {
+form input,
+form select,
+form button {
     width: 100%;
+    max-width: 100%; /* Empêche le débordement */
+    box-sizing: border-box; /* Inclut padding et bordure dans la largeur */
     padding: 8px; /* Diminuer le padding pour réduire la taille des champs */
     margin-top: 5px;
     margin-bottom: 15px;
@@ -127,4 +132,39 @@ button.edit-field-btn:hover {
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
     display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .user-info p {
+        font-size: 16px; /* Réduire la taille de police sur petits écrans */
+    }
+
+    h2 {
+        font-size: 24px; /* Ajuster la taille du titre pour les petits écrans */
+    }
+
+    .container {
+        padding: 15px; /* Réduire le padding pour les petits écrans */
+        margin: 10px auto; /* Réduire la marge */
+    }
+
+    form label {
+        font-size: 16px; /* Réduire la taille des labels */
+    }
+
+    form input,
+    form select,
+    form button {
+        padding: 10px; /* Ajuster le padding des champs pour plus de confort */
+        font-size: 16px; /* Ajuster la taille de police */
+    }
+
+    button {
+        padding: 12px; /* Augmenter le padding des boutons sur petits écrans */
+    }
+
+    button.edit-field-btn {
+        padding: 12px; /* Augmenter le padding des boutons de modification */
+    }
 }

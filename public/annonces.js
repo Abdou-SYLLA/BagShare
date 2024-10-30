@@ -12,9 +12,7 @@ $(document).ready(function() {
             
             if (data.length > 0) {
                 data.forEach(function(annonce) {
-                    //const cityKeyword = `${annonce.endroit_populaire}`;
                     const cityKeyword = annonce.endroit_populaire ? annonce.endroit_populaire : `${annonce.ville_destination} most visited place`;
-
 
                     $.ajax({
                         url: `https://api.pexels.com/v1/search?query=${encodeURIComponent(cityKeyword)}&per_page=1`,
@@ -65,7 +63,7 @@ $(document).ready(function() {
         const isOpen = details.is(':visible');
 
         $('.details').hide(); // Masquer tous les détails
-        $('.annonce').removeClass('clicked'); // Supprimer la classe de sélection de toutes les annonces
+        $('.annonce').removeClass('clicked'); 
 
         if (!isOpen) {
             $(this).addClass('clicked'); // Ajouter la classe à l'annonce cliquée
