@@ -93,7 +93,7 @@ body {
 }
 
 .about-section img {
-    width: 400px; /* Ajout d'unités pour éviter les erreurs */
+    width: 100%; /* Ajout d'unités pour éviter les erreurs */
 }
 
 /* How it works section */
