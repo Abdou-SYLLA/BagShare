@@ -93,7 +93,7 @@ body {
 }
 
 .about-section img {
-    width: 100%; /* Ajout d'unités pour éviter les erreurs */
+    width: 300px; /* Ajout d'unités pour éviter les erreurs */
 }
 
 /* How it works section */
@@ -450,10 +450,10 @@ form label {
 
     .connexion-section {
         background-color: rgba(255, 255, 255, 0.9);
-        padding: 40px; /* Augmentation du padding pour agrandir la section */
+        padding: 60px; /* Augmentation du padding pour agrandir la section */
         border-radius: 10px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        max-width: 60%; /* Augmente la largeur maximale du formulaire */
+        max-width: 100%; /* Augmente la largeur maximale du formulaire */
         margin: 100px auto;
         text-align: center;
         transform: scale(1.2); /* Zoom global sur la section */
