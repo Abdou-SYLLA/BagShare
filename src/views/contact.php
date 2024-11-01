@@ -2,9 +2,8 @@
     session_start(); // Nécessaire pour accéder aux variables de session
 ?>
 
-<link rel="stylesheet" href="/public/styles/footer.css"> 
-<link rel="stylesheet" href="/public/styles/header.css">
 <link rel="stylesheet" href="/public/styles/styles.css"> 
+<link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>

@@ -1,0 +1,194 @@
+/* Styles pour les écrans de moins de 768px */
+@media (max-width: 768px) {
+    /* Section advantages */
+    .advantages {
+        padding: 30px 15px;
+    }
+    .advantages h2 {
+        font-size: 28px;
+    }
+    .advantages nav {
+        flex-direction: column;
+    }
+    .advantages nav a {
+        margin: 10px 0;
+        width: 100%;
+    }
+
+    /* Section how-it-works */
+    .how-it-works .steps {
+        flex-direction: column;
+        align-items: center;
+    }
+    .how-it-works .step {
+        max-width: 90%;
+        margin-bottom: 20px;
+    }
+
+    /* Section hero */
+    .hero img {
+        display: none; /* Masquer l'image pour les écrans étroits */
+    }
+
+    /* Section connexion */
+    .connexion-section {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 60px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
+        margin: 100px auto;
+        text-align: center;
+        transform: scale(1.2);
+    }
+
+    /* Section contact */
+    .contact-section {
+        padding: 30px 15px;
+    }
+    .contact-section .container {
+        padding: 20px;
+    }
+
+    /* Formulaire */
+    .form-container {
+        gap: 10px;
+    }
+    .submit-button {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    /* Logo */
+    .logo img {
+        max-width: 150px;
+        height: auto;
+    }
+
+    /* Menu principal caché et bouton menu mobile */
+    nav {
+        display: none;
+    }
+    
+    #menu-toggle {
+        display: block;
+        font-size: 1.5em;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    #mobile-menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #FFFFFF;
+        padding: 15px;
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        width: 80%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        z-index: 200;
+    }
+    #mobile-menu a {
+        text-decoration: none;
+        color: #333;
+        font-size: 1em;
+        padding: 10px;
+    }
+    #mobile-menu a.active {
+        font-weight: bold;
+        color: green;
+    }
+    #mobile-menu.visible {
+        display: flex;
+    }
+
+    /* User actions et icône */
+    .user-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .connexion-icon {
+        width: 40px;
+        height: 40px;
+        transition: transform 0.3s ease;
+    }
+    .btn-secondary:hover .connexion-icon {
+        transform: scale(1.1);
+    }
+    /*Viewer d'images*/
+    .viewer {
+        width: 100%; /* La largeur prend tout l'écran */
+        height: 300px; /* Réduire la hauteur */
+    }
+
+    .viewer img {
+        max-width: 90%; /* L'image occupe 90% de la largeur du viewer */
+        height: auto;
+    }
+
+    .nav-btn {
+        padding: 8px; /* Réduire la taille des boutons */
+        font-size: 16px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 15px;
+    }
+
+    footer nav a {
+        font-size: 16px;
+        margin: 5px;
+    }
+}
+
+/* Styles pour les écrans de moins de 480px */
+@media (max-width: 480px) {
+    /* Section contact */
+    .contact-section .container {
+        max-width: 100%;
+        padding: 15px;
+    }
+    .contact-section h2 {
+        font-size: 20px;
+    }
+
+    /* Submit button */
+    .submit-button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    /* Footer */
+    footer nav a {
+        font-size: 14px;
+        display: block;
+        margin: 8px 0;
+    }
+
+    .viewer {
+        height: 250px; /* Réduire encore la hauteur pour les très petits écrans */
+    }
+
+    .viewer img {
+        max-width: 80%; /* Réduire l'image pour s'adapter à l'écran */
+    }
+
+    .nav-btn {
+        padding: 6px; /* Taille des boutons plus petite */
+        font-size: 14px; /* Police plus petite pour s'adapter à l'écran */
+    }
+
+    /* Positionner les boutons plus proches du bord de l'image */
+    #prev-btn {
+        left: 5px;
+    }
+
+    #next-btn {
+        right: 5px;
+    }
+}

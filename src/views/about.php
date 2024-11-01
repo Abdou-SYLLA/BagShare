@@ -8,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BagShare - Worldwide Delivery</title>
     <link rel="stylesheet" href="/public/styles/styles.css"> 
-    <link rel="stylesheet" href="/public/styles/footer.css">
-    <link rel="stylesheet" href="/public/styles/header.css">
+    <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
 </head>
 
 <?php include 'header.php'; ?>

@@ -1,5 +1,16 @@
+// Fonction pour basculer entre l'édition et la lecture seule pour chaque champ
+function toggleEdit(fieldId) {
+    const field = document.getElementById(fieldId);
+    if (field.hasAttribute('readonly') || field.hasAttribute('disabled')) {
+        field.removeAttribute('readonly');
+        field.removeAttribute('disabled');
+    } else {
+        field.setAttribute(field.tagName === 'SELECT' ? 'disabled' : 'readonly', true);
+    }
+}
+
 $(document).ready(function() {
-    // Fonction pour charger la liste des comptes utilisateurs
+    // Reste du code pour charger et gérer les comptes
     function loadAccounts() {
         $.ajax({
             url: '/src/controllers/AccountController.php',
@@ -55,20 +66,19 @@ $(document).ready(function() {
                 $('#editRole').val(account.role);
                 $('#editUsername').val(account.username);
                 $('#editPassword').val('');
-                $('#editUserModal').fadeIn(); // Affiche le modal
-                $('#editUserForm').data('id', accountId);  // Enregistre l'ID du compte dans le formulaire pour l'utiliser lors de la soumission
-    
+                $('#editUserModal').fadeIn();
+                $('#editUserForm').data('id', accountId);
+
                 // Faire défiler la page vers le modal
                 $('html, body').animate({
                     scrollTop: $('#editUserModal').offset().top
-                }, 500); // 500 est la durée de l'animation en millisecondes
+                }, 500);
             },
             error: function() {
                 alert('Erreur lors de la récupération des informations du compte.');
             }
         });
     });
-    
 
     // Ferme le modal lorsque l'utilisateur clique à l'extérieur
     $('#editUserModal').on('click', function(event) {
@@ -81,10 +91,9 @@ $(document).ready(function() {
     $('#editUserForm').on('submit', function(event) {
         event.preventDefault();
 
-        // Préparation des données pour la mise à jour
         const formData = {
             action: 'updateAccount',
-            userId: $(this).data('id'), // Récupérer l'ID du compte depuis les données du formulaire
+            userId: $(this).data('id'),
             nom: $('#editNom').val(),
             prenom: $('#editPrenom').val(),
             role: $('#editRole').val(),
@@ -92,7 +101,6 @@ $(document).ready(function() {
             password: $('#editPassword').val()
         };
 
-        // Envoi de la requête de mise à jour
         $.ajax({
             url: '/src/controllers/AccountController.php',
             type: 'POST',
@@ -100,7 +108,7 @@ $(document).ready(function() {
             success: function() {
                 alert('Compte mis à jour avec succès.');
                 $('#editUserModal').fadeOut();
-                loadAccounts(); // Recharge les comptes mis à jour
+                loadAccounts();
             },
             error: function() {
                 alert('Erreur lors de la mise à jour du compte.');
@@ -118,7 +126,7 @@ $(document).ready(function() {
                 data: { action: 'deleteUser', userId: accountId },
                 success: function(response) {
                     alert(response);
-                    loadAccounts(); // Recharge les comptes après suppression
+                    loadAccounts();
                 },
                 error: function() {
                     alert('Erreur lors de la suppression du compte.');

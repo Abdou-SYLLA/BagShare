@@ -8,9 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Utilisateurs et Comptes</title>
-    <link rel="stylesheet" href="/public/styles/header.css">
+    
     <link rel="stylesheet" href="/public/styles/account.css">
-    <link rel="stylesheet" href="/public/styles/styles.css">
+    <link rel="stylesheet" href="/public/styles/styles.css"> 
+    <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
 </head>
 <body>
 
@@ -112,20 +113,7 @@
 
 <!-- Inclusion des scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/public/accounts.js"></script>
-
-<script>
-// Fonction pour basculer entre l'édition et la lecture seule pour chaque champ
-function toggleEdit(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (field.hasAttribute('readonly') || field.hasAttribute('disabled')) {
-        field.removeAttribute('readonly');
-        field.removeAttribute('disabled');
-    } else {
-        field.setAttribute(field.tagName === 'SELECT' ? 'disabled' : 'readonly', true);
-    }
-}
-</script>
+<script src="/public/scripts/accounts.js"></script>
 
 </body>
 </html>

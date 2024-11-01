@@ -7,6 +7,7 @@
     <title>Connexion - BagShare</title>
     
     <link rel="stylesheet" href="/public/styles/styles.css"> 
+    <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
 </head>
 
 <body>

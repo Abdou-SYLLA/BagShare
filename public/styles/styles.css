@@ -7,19 +7,72 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f5f5f5;
 }
 
+/* Styles pour le header en écran large (> 768px) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-width: 200px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+}
+
+/* Style pour le menu principal (grande taille) */
+nav {
+    display: flex; /* Affiche les liens en ligne */
+    gap: 20px;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    padding: 10px;
+}
+
+nav a.active {
+    font-weight: bold;
+    color: green;
+}
+
+/* Style pour les actions utilisateur */
+.user-actions {
+    display: flex; /* Affiche les liens en ligne */
+    gap: 15px;
+    align-items: center;
+}
+
+/* Cache le bouton menu par défaut pour les appareils de grande taille */
+#menu-toggle {
+    display: none;
+}
+
 /* Button styles */
-.btn-primary, .btn-secondary {
+.btn-primary, .btn-secondary, .submit-button, .btn-home {
     padding: 10px 20px;
     border-radius: 25px;
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
 .btn-primary {
@@ -27,6 +80,24 @@ body {
     color: white;
 }
 
+.btn-secondary {
+    background-color: #0274be;
+    color: white;
+}
+
+.btn-secondary:hover, .submit-button:hover, .btn-home:hover {
+    background-color: #0056b3;
+}
+
+.submit-button {
+    background-color: #007bff;
+    font-size: 16px;
+    padding: 12px 20px;
+}
+
+.btn-home {
+    width: 70%;
+}
 
 /* Hero section */
 .hero {
@@ -42,8 +113,8 @@ body {
 }
 
 .hero img {
-    max-width: 100%; /* Responsive image */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100%;
+    height: auto;
 }
 
 .hero h1 {
@@ -72,28 +143,12 @@ body {
 .about-section p {
     font-size: 18px;
     line-height: 1.6;
-    margin-bottom: 20px;
     max-width: 800px;
-    margin: 0 auto;
-}
-
-.about-section .btn-secondary {
-    margin-top: 30px;
-    display: inline-block;
-    background-color: #0274be;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.about-section .btn-secondary:hover {
-    background-color: #00a5bd;
+    margin: 20px auto;
 }
 
 .about-section img {
-    width: 300px; /* Ajout d'unités pour éviter les erreurs */
+    width: 300px;
 }
 
 /* How it works section */
@@ -152,59 +207,45 @@ body {
     padding: 0 10px;
 }
 
-/* Contact Section Styles */
-.contact-section {
+/* Contact section */
+.contact-section, .advantages {
     padding: 50px 20px;
     background-color: #f9f9f9;
-    display: flex;
-    justify-content: center; /* Centre le conteneur dans la section */
-    align-items: flex-start; /* Aligne le conteneur en haut */
+    text-align: center;
 }
 
-/* Conteneur principal pour le formulaire */
-.contact-section .container {
-    width: 100%;
-    max-width: 600px; /* Limiter la largeur du conteneur */
+.contact-section .container, .connexion-section {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    display: flex; /* Utiliser flexbox pour le conteneur du formulaire */
-    flex-direction: column; /* Orienter les éléments en colonne */
-    gap: 15px; /* Espacement entre les éléments du formulaire */
-}
-
-/* Titre et paragraphe */
-.contact-section h2 {
-    font-size: 24px; /* Ajuster la taille de police */
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.contact-section p {
-    font-size: 16px;
-    color: #666;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* Conteneur du formulaire */
-.form-container {
+    max-width: 600px;
+    margin: auto;
     display: flex;
-    flex-direction: column; /* Assure que les éléments sont en colonne */
-    gap: 15px; /* Espacement entre les champs */
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
 }
 
-/* Styles des labels */
+.contact-section h2, .advantages h2, .connexion-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-container, .connexion-section form div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 form label {
     font-size: 16px;
     color: #333;
     margin-bottom: 5px;
 }
 
-/* Styles des champs de saisie */
-.input-field, .textarea-field {
+.input-field, .textarea-field, .connexion-section input[type="text"], .connexion-section input[type="password"] {
     width: 100%;
     padding: 12px 15px;
     font-size: 16px;
@@ -213,51 +254,7 @@ form label {
     transition: border-color 0.3s ease;
 }
 
-/* Styles des champs en focus */
-.input-field:focus, .textarea-field:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.textarea-field {
-    resize: vertical;
-    min-height: 120px; /* Hauteur minimale pour la zone de texte */
-}
-
-/* Styles du bouton d'envoi */
-.submit-button {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
-}
-
-/* Form Styles */
-form label {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.input-field, .textarea-field {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
-}
-
-.input-field:focus, .textarea-field:focus {
+.input-field:focus, .textarea-field:focus, .connexion-section input[type="text"]:focus, .connexion-section input[type="password"]:focus {
     border-color: #007bff;
     outline: none;
 }
@@ -267,144 +264,29 @@ form label {
     min-height: 120px;
 }
 
-.required {
-    color: red;
-}
-
-/* Submit Button */
-.submit-button {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
-}
-
-/* Advantages section */
-.advantages {
-    padding: 50px 20px; /* Espacement général de la section */
-    background-color: #f9f9f9; /* Couleur de fond */
-    text-align: center; /* Centre le texte */
-}
-
-.advantages h2 {
-    font-size: 36px; /* Taille du titre */
-    color: #333; /* Couleur du texte */
-    margin-bottom: 40px; /* Espace en bas du titre */
-}
-
 .advantages nav {
-    display: flex; /* Utilise flexbox pour une mise en page flexible */
-    flex-direction: row; /* Aligne les éléments horizontalement */
-    justify-content: center; /* Centre les éléments horizontalement */
-    flex-wrap: wrap; /* Permet le retour à la ligne si l'espace est insuffisant */
-    gap: 20px; /* Espace entre les éléments */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .advantages nav a {
-    display: inline-block; /* Permet de styliser chaque lien comme un bloc */
-    padding: 15px 25px; /* Espace interne */
-    background-color: #f2f2f2; /* Couleur de fond des liens */
-    border-radius: 8px; /* Coins arrondis */
-    text-decoration: none; /* Pas de soulignement */
-    color: #333; /* Couleur du texte */
-    font-size: 1em; /* Taille de police */
-    transition: transform 0.3s; /* Transition pour l'effet de survol */
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    color: #333;
+    font-size: 1em;
+    text-decoration: none;
+    transition: transform 0.3s;
 }
 
 .advantages nav a:hover {
-    transform: translateY(-5px); /* Effet de survol */
+    transform: translateY(-5px);
 }
 
-/* Page de connexion */
-.connexion-section {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 55px; /* Augmentation du padding pour agrandir la section */
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 450px; /* Augmente la largeur maximale du formulaire */
-    margin: 100px auto;
-    text-align: center;
-    transform: scale(1.2); /* Zoom global sur la section */
-}
-
-.connexion-section h2 {
-    font-size: 28px; /* Augmente la taille du titre */
-    margin-bottom: 30px;
-}
-
-.connexion-section form div {
-    margin-bottom: 25px; /* Augmente l'espacement entre les champs */
-}
-
-.connexion-section input[type="text"],
-.connexion-section input[type="password"] {
-    width: 100%;
-    padding: 15px; /* Augmente la taille des champs de saisie */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 18px; /* Augmente la taille du texte */
-    color: #333;
-}
-
-/* Bouton 'Se connecter' */
-.connexion-section button[type="submit"] {
-    background-color: #007BFF; /* Couleur bleue pour le bouton */
-    color: white;
-    border: none;
-    border-radius: 30px; /* Bordures arrondies */
-    padding: 15px;
-    font-size: 18px;
-    cursor: pointer;
-    width: 70%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-bottom: 20px; /* Ajoute un espacement en dessous du bouton 'Se connecter' */
-}
-
-/* Effet hover pour 'Se connecter' */
-.connexion-section button[type="submit"]:hover {
-    background-color: #0056b3; /* Bleu plus foncé au survol */
-}
-
-/* Bouton 'Retour à l'accueil' */
-.btn-home {
-    background-color: #007BFF; /* Couleur bleue identique */
-    color: white;
-    border: none;
-    border-radius: 30px; /* Bordures arrondies */
-    padding: 15px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 70%;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Effet hover pour 'Retour à l'accueil' */
-.btn-home:hover {
-    background-color: #0056b3; /* Bleu plus foncé au survol */
-}
-
-/* Conteneur du logo */
-.logo-container {
-    text-align: center;
-    margin-bottom: 20px;
-    max-width: 200px;
-    height: auto;
-}
-
-.logo-container img {
-    max-width: 300px;
-    height: auto;
-}
-
+/* Viewer styles */
 .viewer {
     display: flex;
     align-items: center;
@@ -429,10 +311,10 @@ form label {
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    border: none;
     padding: 10px;
-    cursor: pointer;
     font-size: 18px;
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
 }
 
@@ -444,101 +326,55 @@ form label {
     right: 10px;
 }
 
-.nav-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+/* Connexion section */
+.connexion-section {
+    padding: 55px;
+    max-width: 450px;
+    margin: 100px auto;
+    text-align: center;
+    transform: scale(1.2);
 }
 
-
-
-/* Responsive adjustments for advantages */
-@media (max-width: 768px) {
-    .advantages {
-        padding: 30px 15px; /* Réduit le padding pour les petits écrans */
-    }
-
-    .advantages h2 {
-        font-size: 28px; /* Ajustement de la taille du titre */
-    }
-
-    .advantages nav {
-        flex-direction: column; /* Passe en colonne sur petits écrans */
-    }
-
-    .advantages nav a {
-        margin: 10px 0; /* Espace entre les éléments en colonne */
-        width: 100%; /* Les éléments prennent toute la largeur */
-    }
-
-     .how-it-works .steps {
-        flex-direction: column; /* Aligner les étapes en colonne */
-    }
-
-    .how-it-works .step {
-        max-width: 90%; /* Élargir la section pour les petits écrans */
-        margin-bottom: 20px; /* Ajouter de l'espace entre les étapes */
-    }
-
-      /* Changer la direction de la section how-it-works en colonne */
-    .how-it-works .steps {
-        flex-direction: column; /* Aligner en colonne */
-        align-items: center; /* Centrer les éléments */
-    }
-
-    .how-it-works .step {
-        max-width: 90%; /* Élargir la section sur les petits écrans */
-        margin-bottom: 20px; /* Espacement entre les étapes */
-    }
-    /* Cacher l'image dans la section hero */
-    .hero img {
-        display: none; /* Masquer l'image pour les écrans étroits */
-    }
-
-    .connexion-section {
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 60px; /* Augmentation du padding pour agrandir la section */
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        max-width: 100%; /* Augmente la largeur maximale du formulaire */
-        margin: 100px auto;
-        text-align: center;
-        transform: scale(1.2); /* Zoom global sur la section */
-    }
-
-    .contact-section {
-        padding: 30px 15px; /* Réduire le padding pour les petits écrans */
-    }
-
-    .contact-section .container {
-        padding: 20px; /* Réduire le padding interne du conteneur */
-    }
-
-    .form-container {
-        gap: 10px; /* Réduire l'espacement entre les champs du formulaire */
-    }
-
-    .submit-button {
-        font-size: 14px; /* Ajuster la taille de police pour le bouton */
-        padding: 10px 15px; /* Ajuster le padding du bouton */
-    }
-
-    /* Cacher l'image dans la section hero */
-    .hero img {
-        display: none; /* Masquer l'image */
-    }
+.connexion-section input[type="text"], .connexion-section input[type="password"] {
+    padding: 15px;
+    font-size: 18px;
+    color: #333;
 }
 
-@media (max-width: 480px) {
-    .contact-section .container {
-        max-width: 100%; /* Prend toute la largeur de l’écran */
-        padding: 15px; /* Réduire le padding interne */
-    }
-
-    .contact-section h2 {
-        font-size: 20px; /* Ajuster la taille du titre */
-    }
-
-    .submit-button {
-        font-size: 14px;
-        padding: 8px 12px; /* Ajuster pour un affichage compact */
-    }
+.connexion-section button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    width: 70%;
+    margin-bottom: 20px;
+    border-radius: 30px;
 }
+
+.logo-container img {
+    max-width: 300px;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+footer nav a {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    justify-content: center;
+}
+
+footer nav {
+    display: flex; /* Permet d'aligner les éléments dans le footer */
+    justify-content: center;
+    flex-wrap: wrap; /* Permet aux liens de passer sur une nouvelle ligne si l'écran est trop petit */
+}
+

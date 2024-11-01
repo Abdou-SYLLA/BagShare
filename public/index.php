@@ -9,14 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BagShare - Rentabilisez vos bagages</title>
-    <link rel="stylesheet" href="styles/styles.css"> <!-- Fichier CSS principal en Flexbox -->
-    <link rel="stylesheet" href="styles/header.css"> 
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/mediaQueries.css"> <!-- Media queries pour le responsive -->
+    <link rel="stylesheet" href="styles/styles.css"> 
+    <link rel="stylesheet" href="styles/mediaQueries.css"> 
 
     <!-- Inclure jQuery pour AJAX -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="config.js" defer></script> <!-- JavaScript pour le chargement AJAX -->
+    <script src="scripts/config.js" defer></script> <!-- JavaScript pour le chargement AJAX -->
 </head>
 <body>
     <!-- Inclusion du header -->

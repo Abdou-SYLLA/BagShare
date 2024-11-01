@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Annonces</title>
     <link rel="stylesheet" href="/public/styles/styles.css"> 
+    <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
     <link rel="stylesheet" href="/public/styles/annonces.css">
-    <link rel="stylesheet" href="/public/styles/header.css">
-    <link rel="stylesheet" href="/public/styles/footer.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../public/scripts/annonces.js"></script> 
 </head>
 <body>
     
@@ -40,8 +41,6 @@
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../../public/annonces.js"></script> <!-- Lien vers le fichier JS -->
 <?php include 'footer.php'; ?>
 </body>
 </html>

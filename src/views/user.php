@@ -8,10 +8,10 @@ session_start(); // Nécessaire pour accéder aux variables de session
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon compte</title>
+
     <link rel="stylesheet" href="/public/styles/styles.css"> 
-    <link rel="stylesheet" href="/public/styles/users.css">
-    <link rel="stylesheet" href="/public/styles/header.css">
-    
+    <link rel="stylesheet" href="/public/styles/mediaQueries.css">  
+    <link rel="stylesheet" href="/public/styles/users.css">    
 </head>
 <body>
 <?php include 'header.php'; ?>
@@ -62,7 +62,7 @@ session_start(); // Nécessaire pour accéder aux variables de session
 
 <!-- Inclusion des scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/public/users.js"></script>
+<script src="/public/scripts/users.js"></script>
 
 </body>
 </html>
