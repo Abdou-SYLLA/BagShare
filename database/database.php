@@ -9,15 +9,14 @@ class DatabaseConnection {
         $password = "Sylla@2024";
         $dbname = "bagshare";
 
-        $this->conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($this->conn->connect_error) {
-            die("Connexion échouée: " . $this->conn->connect_error);
-        }
-
-        if (!$this->conn->set_charset("utf8")) {
-            printf("Erreur lors du chargement du jeu de caractères utf8 : %s\n", $this->conn->error);
-            exit();
+        try {
+            $dsn = "mysql:host=$servername;dbname=$dbname;charset=utf8";
+            $this->conn = new PDO($dsn, $username, $password);
+            
+            // Définir le mode d'erreur de PDO pour lancer des exceptions
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Connexion échouée : " . $e->getMessage());
         }
     }
 
@@ -26,7 +25,8 @@ class DatabaseConnection {
     }
 
     public function closeConnection() {
-        $this->conn->close();
+        $this->conn = null; // En PDO, on ferme la connexion en assignant null
     }
 }
+
 ?>

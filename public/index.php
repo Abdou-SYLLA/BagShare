@@ -9,18 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BagShare - Rentabilisez vos bagages</title>
-    <link rel="stylesheet" href="styles/styles.css"> <!-- Inclusion du fichier CSS -->
+    <link rel="stylesheet" href="styles/styles.css"> <!-- Fichier CSS principal en Flexbox -->
     <link rel="stylesheet" href="styles/header.css"> 
     <link rel="stylesheet" href="styles/footer.css">
-   
-    <!-- Inclure jQuery -->
+    <link rel="stylesheet" href="styles/mediaQueries.css"> <!-- Media queries pour le responsive -->
+
+    <!-- Inclure jQuery pour AJAX -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="config.js" defer></script> <!-- JavaScript pour le chargement AJAX -->
 </head>
 <body>
     <!-- Inclusion du header -->
-    <?php 
-    include '../src/views/header.php'; 
-    ?>
+    <?php include '../src/views/header.php'; ?>
 
     <!-- Section principale / Hero -->
     <section class="hero">
@@ -32,14 +32,14 @@
         <img src="data/images/globe.png" alt="Illustration de BagShare : globe avec moyens de transport">
     </section>
 
-    <!-- Section "Comment ça marche" -->
+    <!-- Section "Comment ça marche" avec Flexbox -->
     <section class="how-it-works">
         <h2>Comment ça marche ?</h2>
         <div class="steps">
             <div class="step">
                 <img src="data/images/bagshare.jpeg" alt="Inscription">
-                <h3>1. Trouver une annonce </h3>
-                <p>Consulter les annonces des voyageurs prêts à partager leurs bagages.</p>
+                <h3>1. Trouver une annonce</h3>
+                <p>Consultez les annonces des voyageurs prêts à partager leurs bagages.</p>
             </div>
             <div class="step">
                 <img src="data/images/bagages1.jpeg" alt="Réservation de kilos">
@@ -54,19 +54,23 @@
         </div>
     </section>
 
-    <!-- Section avantages économiques et sécurité -->
+    <!-- Section avantages économiques et sécurité avec le viewer d'images et texte dynamique -->
     <section class="advantages">
         <h2>Pourquoi choisir BagShare ?</h2>
-        <nav>
-            <a>Des tarifs flexibles selon le poids et la destination</a>
-            <a>Un réseau mondial de voyageurs prêts à partager leurs bagages</a>
-            <a>Une solution rapide, sécurisée et écologique pour vos envois</a>
-            <a>Un moyen rentable pour les voyageurs d'amortir leurs frais de voyage</a>
-            <a>Contribue à la réduction de l'empreinte carbone en optimisant l'espace des bagages</a>
-        </nav>
+        
+        <!-- Texte chargé dynamiquement depuis la base de données -->
+        <nav id="advantages-text"></nav> <!-- Ce texte sera remplacé via AJAX -->
+        
+        <!-- Viewer d'images -->
+        <div id="image-viewer" class="viewer">
+            <button id="prev-btn" class="nav-btn">◀</button>
+            <img id="current-image" src="" alt="Viewer image">
+            <button id="next-btn" class="nav-btn">▶</button>
+        </div>
+<!-- Les images du viewer seront ajoutées ici en AJAX -->
     </section>
+
     <!-- Inclusion du footer -->
     <?php include '../src/views/footer.php'; ?>
-    
 </body>
 </html>

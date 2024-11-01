@@ -1,0 +1,8 @@
+<!-- IMGViewer.xml dans le répertoire spécifié -->
+<images>
+    <image src="/public/data/images/prix_poids.jpeg" alt="Des tarifs flexibles"/>
+    <image src="/public/data/images/flexible.jpeg" alt="rapport qualité prix"/>
+    <image src="/public/data/images/ecolo.jpeg" alt="ecologic"/>
+    <image src="/public/data/images/durable.jpeg" alt="solution durable"/>
+    <image src="/public/data/images/reseau.jpeg" alt="reseau d'utilisateur"/>
+</images>
