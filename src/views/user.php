@@ -11,8 +11,7 @@ session_start(); // Nécessaire pour accéder aux variables de session
 
     <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/mediaQueries.css">  
-    <link rel="stylesheet" href="/public/styles/users.css">  
-    <script src="/public/scripts/config.js"></script>  
+    <link rel="stylesheet" href="/public/styles/users.css">   
 </head>
 <body>
 <?php include 'header.php'; ?>

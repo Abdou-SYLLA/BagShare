@@ -37,5 +37,5 @@
         <?php endif; ?>
     </div>
 
-    <script src="/public/config.js"></script>
+    <script src="/public/scripts/config.js"></script>
 </header>

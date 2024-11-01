@@ -14,7 +14,6 @@
 
     <!-- Inclure jQuery pour AJAX -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts/config.js" defer></script> <!-- JavaScript pour le chargement AJAX -->
 </head>
 <body>
     <!-- Inclusion du header -->
