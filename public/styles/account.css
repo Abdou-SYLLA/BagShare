@@ -65,47 +65,32 @@ form input, form select, form button {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Couleur de fond des boutons */
     color: white;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s; /* Ajout d'une transition pour les boutons */
-}
-
-/* Bouton de suppression en rouge */
-button.delete-btn {
-    background-color: #f44336;
-}
-
-button.delete-btn:hover {
-    background-color: #650f0f;
+    transition: background-color 0.3s; /* Transition pour les boutons */
 }
 
 button:hover {
-    background-color: #5a00cc;
+    background-color: #5a00cc; /* Couleur au survol */
 }
 
-/* Styles pour la modale d'édition */
+/* Styles spécifiques pour le bouton de suppression */
+ .deleteAccountBtn {
+    background-color: #f44336;
+}
+
+ .deleteAccountBtn:hover {
+    background-color: #650f0f;
+}
+
+
+
+/* Styles pour le formulaire d'édition */
 #editUserModal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#editUserModal h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-#editUserModal form {
-    display: flex;
-    flex-direction: column;
+    width: 80%; /* Remplir la largeur du conteneur */
+    margin-top: 20px; /* Espacement au-dessus du formulaire d'édition */
 }
 
 /* Autres styles spécifiques si nécessaire */
@@ -115,12 +100,13 @@ button:hover {
 
 .edit-field-btn {
     margin-top: 5px;
-    background-color: #007bff; /* Couleur du bouton de modification */
+    background-color: #4CAF50; /* Couleur du bouton de modification */
     color: white;
     padding: 5px;
     border-radius: 4px;
 }
 
 .edit-field-btn:hover {
-    background-color: #0056b3; /* Couleur au survol */
+    background-color: #073609; /* Couleur au survol */
 }
+

@@ -95,3 +95,20 @@ Waiting for verification...
 certbot --apache -d 20.234.175.99.nip.io
 
 openssl s_client -connect 20.234.175.99.nip.io:443
+
+
+
+## Config pour utilisation de http 2 à la place de http 1:
+  # sudo apachectl -M | grep mpm
+  #  sudo a2dismod mpm_prefork
+  #  sudo apt update
+  #  sudo apt install php7.4-fpm
+  #  sudo a2dismod php7.4
+  #  sudo a2enmod mpm_event
+  #  sudo a2dismod mpm_prefork
+  #  sudo a2enmod mpm_event
+  #  sudo a2enmod proxy_fcgi setenvif
+  #  cd ..
+  #  nano sites-available/bagshare.conf 
+  #  sudo systemctl restart php7.4-fpm
+  #  sudo systemctl restart apache2

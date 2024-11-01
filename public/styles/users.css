@@ -1,4 +1,4 @@
-/* Styles de base pour la page */
+/* Styles de base pour la page accounts.php */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,163 +8,120 @@ body {
 
 h2 {
     color: #333;
-    text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Augmentation de la largeur du conteneur */
 .container {
-    width: 95%; /* Changer à 95% pour occuper presque tout l'écran */
-    max-width: 1200px; /* Limite maximale pour éviter d'être trop large sur des écrans très grands */
+    width: 80%;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Empêche les débordements */
 }
 
-.user-info {
-    margin-bottom: 20px; /* Espacement pour séparer des informations de l'utilisateur et du bouton */
+/* Styles pour le tableau des comptes utilisateurs */
+#userTable {
+    width: 100%;
+    border-collapse: collapse; /* Évite les espaces entre les cellules */
+    margin-top: 20px; /* Espacement au-dessus du tableau */
 }
 
-.user-info p {
-    font-size: 18px; /* Taille de la police pour les informations utilisateur */
-    margin-bottom: 10px; /* Ajout d'un espacement entre les paragraphes */
+#userTable th, #userTable td {
+    border: 1px solid #ddd; /* Bordure légère pour les cellules */
+    padding: 12px; /* Espacement interne pour les cellules */
+    text-align: center; /* Centrer le texte */
+}
+
+/* Style pour les en-têtes du tableau */
+#userTable th {
+    background-color: #4CAF50; /* Couleur de fond des en-têtes */
+    color: white; /* Couleur du texte des en-têtes */
+    font-weight: bold; /* Gras pour les en-têtes */
+}
+
+/* Style pour les lignes du tableau */
+#userTable tr:nth-child(even) {
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+}
+
+#userTable tr:hover {
+    background-color: #ddd; /* Couleur au survol des lignes */
+}
+
+/* Styles pour les formulaires */
+form {
+    width: 100%; /* Remplir la largeur du conteneur */
+    max-width: 600px; /* Limite de largeur */
+    margin: 0 auto; /* Centrer le formulaire */
+    padding: 20px; /* Espacement interne */
+    border: 1px solid #ccc; /* Bordure pour les formulaires */
+    border-radius: 4px; /* Coins arrondis */
+    background-color: #fff; /* Couleur de fond */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Ombre pour les formulaires */
 }
 
 form label {
-    display: block; /* Modifié pour s'assurer que chaque label prend toute la largeur disponible */
+    display: block;
     margin-top: 10px;
     font-weight: bold;
-    font-size: 18px; /* Augmenter la taille des labels */
-    white-space: nowrap; /* Empêcher le retour à la ligne pour les labels */
 }
 
-form input,
-form select,
+form input, form select {
+    width: calc(100% - 22px); /* Largeur pleine avec padding */
+    padding: 10px; /* Espacement interne */
+    margin-top: 5px; /* Espacement au-dessus */
+    margin-bottom: 15px; /* Espacement en-dessous */
+    border: 1px solid #ccc; /* Bordure pour les champs */
+    border-radius: 4px; /* Coins arrondis */
+}
+
+/* Styles pour les boutons */
 form button {
-    width: 100%;
-    max-width: 100%; /* Empêche le débordement */
-    box-sizing: border-box; /* Inclut padding et bordure dans la largeur */
-    padding: 8px; /* Diminuer le padding pour réduire la taille des champs */
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 100%; /* Largeur pleine pour le bouton */
+    padding: 10px; /* Espacement interne */
+    margin-top: 10px; /* Espacement au-dessus */
+    border: none; /* Pas de bordure */
+    border-radius: 4px; /* Coins arrondis */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transition pour les boutons */
 }
 
-/* Style des boutons */
 button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    padding: 10px; /* Uniformiser la taille des boutons */
-    font-size: 16px; /* Uniformiser la taille de la police des boutons */
+    background-color: #4CAF50; /* Couleur de fond des boutons */
+}
+
+button.delete-btn {
+    background-color: #f44336; /* Couleur de fond pour le bouton de suppression */
+}
+
+button.delete-btn:hover {
+    background-color: #650f0f; /* Couleur au survol */
 }
 
 button:hover {
-    background-color: #3a8f41;
+    background-color: #5a00cc; /* Couleur au survol */
 }
 
-/* Bouton de modification individuel dans la modale */
-button.edit-field-btn {
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px; /* Uniformiser la taille des boutons */
-    margin-top: 5px;
-    border-radius: 4px;
-    font-size: 16px; /* Uniformiser la taille de la police des boutons */
+/* Styles pour le formulaire d'édition */
+#editUserSection {
+    width: 100%; /* Remplir la largeur du conteneur */
+    margin-top: 20px; /* Espacement au-dessus du formulaire d'édition */
 }
 
-button.edit-field-btn:hover {
-    background-color: #e68a00;
-}
-
-/* Formulaire pour modifier l'utilisateur */
-#editUserModal {
-    width: 100%; /* Largeur 100% pour s'aligner avec les autres éléments */
-    margin-top: 20px; /* Espacement au-dessus du formulaire */
-    padding: 20px; /* Espacement interne */
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-#editUserModal h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-#editUserModal form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Styles pour les champs de saisie dans le formulaire de modification */
+/* Autres styles spécifiques si nécessaire */
 .editable-field {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    margin-bottom: 15px; /* Espacement entre les champs d'édition */
 }
 
-.editable-field input[readonly] {
-    background-color: #e9e9e9;
-    color: #555;
+.edit-field-btn {
+    margin-top: 5px;
+    background-color: #4CAF50; /* Couleur du bouton de modification */
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
 }
 
-.editable-field select[disabled] {
-    background-color: #e9e9e9;
-    color: #555;
-}
-
-/* Overlay pour désactiver l’arrière-plan pendant l'affichage de la modale */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .user-info p {
-        font-size: 16px; /* Réduire la taille de police sur petits écrans */
-    }
-
-    h2 {
-        font-size: 24px; /* Ajuster la taille du titre pour les petits écrans */
-    }
-
-    .container {
-        padding: 15px; /* Réduire le padding pour les petits écrans */
-        margin: 10px auto; /* Réduire la marge */
-    }
-
-    form label {
-        font-size: 16px; /* Réduire la taille des labels */
-    }
-
-    form input,
-    form select,
-    form button {
-        padding: 10px; /* Ajuster le padding des champs pour plus de confort */
-        font-size: 16px; /* Ajuster la taille de police */
-    }
-
-    button {
-        padding: 12px; /* Augmenter le padding des boutons sur petits écrans */
-    }
-
-    button.edit-field-btn {
-        padding: 12px; /* Augmenter le padding des boutons de modification */
-    }
+.edit-field-btn:hover {
+    background-color: #5a00cc; /* Couleur au survol */
 }
