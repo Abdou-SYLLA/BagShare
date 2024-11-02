@@ -1,16 +1,5 @@
-// Fonction pour basculer entre l'édition et la lecture seule pour chaque champ
-function toggleEdit(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (field.hasAttribute('readonly') || field.hasAttribute('disabled')) {
-        field.removeAttribute('readonly');
-        field.removeAttribute('disabled');
-    } else {
-        field.setAttribute(field.tagName === 'SELECT' ? 'disabled' : 'readonly', true);
-    }
-}
-
 $(document).ready(function() {
-    // Reste du code pour charger et gérer les comptes
+    // Fonction pour charger la liste des comptes
     function loadAccounts() {
         $.ajax({
             url: '/src/controllers/AccountController.php',
@@ -18,10 +7,8 @@ $(document).ready(function() {
             dataType: 'json',
             data: { action: 'getUserAccounts' },
             success: function(data) {
-                console.log("Données reçues :", data);
                 $('#userTable tbody').empty();
-
-                if (data.length > 0) {
+                if (data && data.length > 0) {
                     data.forEach(account => {
                         $('#userTable tbody').append(`
                             <tr>
@@ -31,8 +18,8 @@ $(document).ready(function() {
                                 <td>${account.username}</td>
                                 <td>${account.numero}</td>
                                 <td>
-                                    <button class="editAccountBtn" data-id="${account.user}">Modifier</button>
-                                    <button class="deleteAccountBtn" data-id="${account.user}">Supprimer</button>
+                                    <button class="editAccountBtn" data-id="${account.numero}">Modifier</button>
+                                    <button class="deleteAccountBtn" data-id="${account.numero}">Supprimer</button>
                                 </td>
                             </tr>
                         `);
@@ -54,37 +41,30 @@ $(document).ready(function() {
     // Ouvrir la modale de modification pour un compte spécifique
     $(document).on('click', '.editAccountBtn', function() {
         const accountId = $(this).data('id');
+        
         $.ajax({
             url: '/src/controllers/AccountController.php',
             type: 'POST',
             data: { action: 'getUser', userId: accountId },
             dataType: 'json',
             success: function(account) {
-                // Remplir les champs de la modale avec les données récupérées
-                $('#editNom').val(account.nom);
-                $('#editPrenom').val(account.prenom);
-                $('#editRole').val(account.role);
-                $('#editUsername').val(account.username);
-                $('#editPassword').val('');
-                $('#editUserModal').fadeIn();
-                $('#editUserForm').data('id', accountId);
+                if (account) {
+                    $('#editNom').val(account.nom);
+                    $('#editPrenom').val(account.prenom);
+                    $('#editRole').val(account.role);
+                    $('#editUsername').val(account.username);
 
-                // Faire défiler la page vers le modal
-                $('html, body').animate({
-                    scrollTop: $('#editUserModal').offset().top
-                }, 500);
+                    $('#editUserModal').fadeIn();
+                    $('#editUserForm').data('id', accountId);
+                } else {
+                    alert("Aucun utilisateur trouvé.");
+                }
             },
-            error: function() {
+            error: function(xhr, status, error) {
+                console.error("Erreur lors de la récupération des informations du compte :", xhr, status, error);
                 alert('Erreur lors de la récupération des informations du compte.');
             }
         });
-    });
-
-    // Ferme le modal lorsque l'utilisateur clique à l'extérieur
-    $('#editUserModal').on('click', function(event) {
-        if (event.target.id === 'editUserModal') {
-            $('#editUserModal').fadeOut(); 
-        }
     });
 
     // Soumettre les modifications du compte
@@ -105,8 +85,8 @@ $(document).ready(function() {
             url: '/src/controllers/AccountController.php',
             type: 'POST',
             data: formData,
-            success: function() {
-                alert('Compte mis à jour avec succès.');
+            success: function(response) {
+                alert(response.message || 'Compte mis à jour avec succès.');
                 $('#editUserModal').fadeOut();
                 loadAccounts();
             },
@@ -116,6 +96,13 @@ $(document).ready(function() {
         });
     });
 
+    // Fermer la modale lorsque l'utilisateur clique à l'extérieur
+    $('#editUserModal').on('click', function(event) {
+        if (event.target.id === 'editUserModal') {
+            $('#editUserModal').fadeOut();
+        }
+    });
+
     // Suppression d'un compte
     $(document).on('click', '.deleteAccountBtn', function() {
         const accountId = $(this).data('id');
@@ -123,9 +110,9 @@ $(document).ready(function() {
             $.ajax({
                 url: '/src/controllers/AccountController.php',
                 type: 'POST',
-                data: { action: 'deleteUser', userId: accountId },
+                data: { action: 'delete', numero: accountId },
                 success: function(response) {
-                    alert(response);
+                    alert(response.message || 'Compte supprimé avec succès.');
                     loadAccounts();
                 },
                 error: function() {

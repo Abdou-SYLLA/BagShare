@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<?php include 'header.php'; ?> <!-- Inclusion du header -->
+<?php include 'header.php'; ?> 
 
 <section class="container">
     <h2>Créer un Compte Utilisateur</h2>
@@ -82,32 +82,33 @@
 
         <div class="editable-field">
             <label for="editRole">Rôle :</label>
-            <select id="editRole" name="editRole" required>
+            <select id="editRole" name="editRole"  required>
                 <option value="admin">Admin</option>
-                <option value="user">user</option>
+                <option value="user">User</option>
             </select>
             <button type="button" class="edit-field-btn" onclick="toggleEdit('editRole')">Modifier</button>
         </div>
 
         <div class="editable-field">
             <label for="editUsername">Nom d'utilisateur :</label>
-            <input type="text" id="editUsername" name="editUsername" required>
+            <input type="text" id="editUsername" name="editUsername" readonly required>
             <button type="button" class="edit-field-btn" onclick="toggleEdit('editUsername')">Modifier</button>
         </div>
 
         <div class="editable-field">
             <label for="editPassword">Nouveau Mot de passe :</label>
             <input type="password" id="editPassword" name="editPassword" required>
+        </div>
 
+        <div class="editable-field">
             <label for="validatePassword">Confirmation :</label>
             <input type="password" id="validatePassword" name="validatePassword" required>
-
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editPassword')">Modifier</button>
         </div>
 
         <button type="submit" name="action" value="update">Enregistrer les Modifications</button>
     </form>
 </section>
+
 
 
 
