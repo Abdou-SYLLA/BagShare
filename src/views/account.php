@@ -29,8 +29,8 @@ include '../../config/admin.php'; // Protection de la page
         <label for="role">Rôle :</label>
         <select id="role" name="role" required>
             <option value="">Sélectionnez un rôle</option>
-            <option value="admin">Admin</option>
-            <option value="user">Utilisateur</option>
+            <option value="admin">admin</option>
+            <option value="user">user</option>
         </select>
 
         <label for="username">Nom d'utilisateur :</label>

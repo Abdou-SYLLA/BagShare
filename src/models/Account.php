@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
 require_once '../../database/database.php';
 
@@ -14,21 +18,29 @@ class Account {
     // Méthode pour créer un nouveau compte utilisateur
     public function createAccount($numero, $nom, $prenom, $role, $username, $password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
+        
+        // Vérifiez que les valeurs sont valides
+        if (empty($numero) || empty($nom) || empty($prenom) || empty($role) || empty($username) || empty($hashed_password)) {
+            return "Erreur: tous les champs doivent être remplis.";
+        }
+    
         $stmt = $this->conn->prepare("INSERT INTO accounts (numero, nom, prenom, role, username, hashed_password) VALUES (:numero, :nom, :prenom, :role, :username, :hashed_password)");
+        
         $stmt->bindParam(':numero', $numero, PDO::PARAM_INT);
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
         $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
         $stmt->bindParam(':role', $role, PDO::PARAM_STR);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':hashed_password', $hashed_password, PDO::PARAM_STR);
-
+        
         if ($stmt->execute()) {
             return "Utilisateur ajouté avec succès.";
+            
         } else {
             return "Erreur lors de l'ajout de l'utilisateur : " . $stmt->errorInfo()[2];
         }
     }
+    
 
     // Méthode pour authentifier un utilisateur
     public function authenticate($username, $password) {

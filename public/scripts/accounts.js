@@ -67,35 +67,6 @@ $(document).ready(function() {
         });
     });
 
-    // Soumettre les modifications du compte
-    $('#editUserForm').on('submit', function(event) {
-        event.preventDefault();
-
-        const formData = {
-            action: 'updateAccount',
-            userId: $(this).data('id'),
-            nom: $('#editNom').val(),
-            prenom: $('#editPrenom').val(),
-            role: $('#editRole').val(),
-            username: $('#editUsername').val(),
-            password: $('#editPassword').val()
-        };
-
-        $.ajax({
-            url: '/src/controllers/AccountController.php',
-            type: 'POST',
-            data: formData,
-            success: function(response) {
-                alert(response.message || 'Compte mis à jour avec succès.');
-                $('#editUserModal').fadeOut();
-                loadAccounts();
-            },
-            error: function() {
-                alert('Erreur lors de la mise à jour du compte.');
-            }
-        });
-    });
-
     // Fermer la modale lorsque l'utilisateur clique à l'extérieur
     $('#editUserModal').on('click', function(event) {
         if (event.target.id === 'editUserModal') {
@@ -111,6 +82,7 @@ $(document).ready(function() {
                 url: '/src/controllers/AccountController.php',
                 type: 'POST',
                 data: { action: 'delete', numero: accountId },
+                dataType: 'json',
                 success: function(response) {
                     alert(response.message || 'Compte supprimé avec succès.');
                     loadAccounts();
