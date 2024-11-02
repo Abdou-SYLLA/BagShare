@@ -1,5 +1,21 @@
 <?php
-    session_start(); // Démarre la session pour utiliser les variables de session
+session_start(); // Démarre la session pour utiliser les variables de session
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user'])) {
+    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    header('Location: /src/views/connexion.php'); // Changez cela par le chemin de votre page de connexion
+    exit();
+}
+
+// Vérifier si l'utilisateur est un administrateur
+if ($_SESSION['user']['role'] !== 'admin') {
+    // L'utilisateur n'est pas un admin, afficher un message d'erreur ou rediriger
+    echo "Accès interdit : Vous devez être administrateur pour accéder à cette page.";
+    exit();
+}
+
+// Si l'utilisateur est connecté et admin, continuer avec la logique de la page
 ?>
 
 <!DOCTYPE html>

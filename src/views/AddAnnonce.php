@@ -1,3 +1,16 @@
+<?php
+session_start(); // Démarre la session pour utiliser les variables de session
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user'])) {
+    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    header('Location: /src/views/connexion.php'); // Changez cela par le chemin de votre page de connexion
+    exit();
+}
+
+?>
+
+
 <section class="section-ajout">
     <h2 class="section-title">Ajouter une Annonce</h2>
     <form id="annonceForm" class="form-ajout" action="/src/controllers/AnnonceController.php" method="POST">
