@@ -10,7 +10,6 @@ class AuthController {
     }
 
     // Action pour l'authentification
-    // Action pour l'authentification
     public function authenticate($username, $password) {
         $isAuthenticated = $this->accountModel->authenticate($username, $password);
         if ($isAuthenticated) {    
