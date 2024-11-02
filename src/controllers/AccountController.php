@@ -17,10 +17,26 @@ class AccountController {
         echo json_encode(['message' => $result]);
     }
 
-    public function updateAccount($userId, $nom, $prenom, $role, $username, $password = null) {
-        $result = $this->accountModel->updateAccount($userId, $nom, $prenom, $role, $username, $password);
-        echo json_encode(['message' => $result]);
+    public function updateAccount($userId, $nom = null, $prenom = null, $role = null, $newPassword = null) {
+        if ($nom) {
+            $result = $this->accountModel->editNom($userId, $nom);
+        }
+    
+        if ($prenom) {
+            $result = $this->accountModel->editPrenom($userId, $prenom);
+        }
+    
+        if ($role) {
+            $result = $this->accountModel->editRole($userId, $role);
+        }
+    
+        if ($newPassword) {
+            $result = $this->accountModel->editPassword($userId, $newPassword);
+        }
+    
+        echo json_encode(['message' => $result ?? "Aucune modification effectuée."]);
     }
+    
 
     public function deleteAccount($numero) {
         $result = $this->accountModel->deleteAccount($numero);
@@ -47,7 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             break;
 
         case 'updateAccount':
-            $controller->updateAccount($_POST['userId'], $_POST['nom'], $_POST['prenom'], $_POST['role'], $_POST['username'], $_POST['password']);
+            // Extraire les informations pertinentes du formulaire
+            $nom = $_POST['editNom'] ?? null;
+            $prenom = $_POST['editPrenom'] ?? null;
+            $role = $_POST['editRole'] ?? null;
+            $newPassword = $_POST['editPassword'] ?? null; // Mot de passe
+
+            $controller->updateAccount($_POST['userId'], $nom, $prenom, $role, $newPassword);
             break;
 
         case 'delete':
@@ -67,4 +89,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             break;
     }
 }
+
 ?>

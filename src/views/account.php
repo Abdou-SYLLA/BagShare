@@ -83,8 +83,8 @@
         <div class="editable-field">
             <label for="editRole">Rôle :</label>
             <select id="editRole" name="editRole"  required>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="admin">admin</option>
+                <option value="user">user</option>
             </select>
             <button type="button" class="edit-field-btn" onclick="toggleEdit('editRole')">Modifier</button>
         </div>

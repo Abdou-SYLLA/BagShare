@@ -1,8 +1,11 @@
 <!-- IMGViewer.xml dans le répertoire spécifié -->
 <images>
-    <image src="/public/data/images/prix_poids.jpeg" alt="Des tarifs flexibles"/>
-    <image src="/public/data/images/flexible.jpeg" alt="rapport qualité prix"/>
-    <image src="/public/data/images/ecolo.jpeg" alt="ecologic"/>
-    <image src="/public/data/images/durable.jpeg" alt="solution durable"/>
+    <image src="/public/data/images/tarifFlexible.jpeg" alt="rapport qualité prix"/>
     <image src="/public/data/images/reseau.jpeg" alt="reseau d'utilisateur"/>
+    <image src="/public/data/images/prix_poids.jpeg" alt="Des tarifs flexibles"/>
+    <image src="/public/data/images/econome.webp" alt="economique"/>
+    <image src="/public/data/images/ecolo.jpeg" alt="ecologic"/>
+    <image src="/public/data/images/rapide.webp" alt="rapide"/>
+    <image src="/public/data/images/durable.jpeg" alt="solution durable"/>
+    
 </images>

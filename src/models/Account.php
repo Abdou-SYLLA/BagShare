@@ -1,10 +1,5 @@
 <?php
 
-// Activer l'affichage des erreurs
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once '../../database/database.php';
 
 class Account {
@@ -60,25 +55,49 @@ class Account {
         }
     }
 
-    // Méthode pour mettre à jour les informations d'un utilisateur
-    public function updateAccount($numero, $nom, $prenom, $role) {
-        $stmt = $this->conn->prepare("UPDATE accounts SET nom = :nom, prenom = :prenom, role = :role WHERE numero = :numero");
+    // Méthode pour mettre à jour le nom d'un utilisateur
+    public function editNom($username, $nom) {
+        $stmt = $this->conn->prepare("UPDATE accounts SET nom = :nom WHERE username = :username");
         $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-        $stmt->bindParam(':role', $role, PDO::PARAM_STR);
-        $stmt->bindParam(':numero', $numero, PDO::PARAM_INT);
+        $stmt->bindParam(':username', $username, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
-            return "Utilisateur mis à jour avec succès.";
+            return "Nom mis à jour avec succès.";
         } else {
-            return "Erreur lors de la mise à jour de l'utilisateur : " . $stmt->errorInfo()[2];
+            return "Erreur lors de la mise à jour du nom : " . $stmt->errorInfo()[2];
+        }
+    }
+
+    // Méthode pour mettre à jour le prénom d'un utilisateur
+    public function editPrenom($username, $prenom) {
+        $stmt = $this->conn->prepare("UPDATE accounts SET prenom = :prenom WHERE username = :username");
+        $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "Prénom mis à jour avec succès.";
+        } else {
+            return "Erreur lors de la mise à jour du prénom : " . $stmt->errorInfo()[2];
+        }
+    }
+
+    // Méthode pour mettre à jour le rôle d'un utilisateur
+    public function editRole($username, $role) {
+        $stmt = $this->conn->prepare("UPDATE accounts SET role = :role WHERE username = :username");
+        $stmt->bindParam(':role', $role, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "Rôle mis à jour avec succès.";
+        } else {
+            return "Erreur lors de la mise à jour du rôle : " . $stmt->errorInfo()[2];
         }
     }
 
     // Méthode pour mettre à jour le mot de passe d'un utilisateur
-    public function updatePassword($numero, $oldPassword, $newPassword) {
-        $stmt = $this->conn->prepare("SELECT hashed_password FROM accounts WHERE numero = :numero");
-        $stmt->bindParam(':numero', $numero, PDO::PARAM_INT);
+    public function updatePassword($username, $oldPassword, $newPassword) {
+        $stmt = $this->conn->prepare("SELECT hashed_password FROM accounts WHERE username = :username");
+        $stmt->bindParam(':username', $username, PDO::PARAM_INT);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
@@ -86,9 +105,9 @@ class Account {
             if (password_verify($oldPassword, $user['hashed_password'])) {
                 $new_hashed_password = password_hash($newPassword, PASSWORD_DEFAULT);
                 
-                $stmt = $this->conn->prepare("UPDATE accounts SET hashed_password = :hashed_password WHERE numero = :numero");
+                $stmt = $this->conn->prepare("UPDATE accounts SET hashed_password = :hashed_password WHERE username = :username");
                 $stmt->bindParam(':hashed_password', $new_hashed_password, PDO::PARAM_STR);
-                $stmt->bindParam(':numero', $numero, PDO::PARAM_INT);
+                $stmt->bindParam(':username', $username, PDO::PARAM_INT);
 
                 if ($stmt->execute()) {
                     return "Mot de passe modifié avec succès.";
