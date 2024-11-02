@@ -4,7 +4,7 @@ session_start();
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
     // Rediriger vers la page de connexion
-    header('Location: /login.php');
+    header('Location: /src/views/connexion.php');
     exit();
 }
 

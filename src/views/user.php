@@ -7,8 +7,6 @@ if (!isset($_SESSION['user'])) {
     header('Location: /src/views/connexion.php'); // Changez cela par le chemin de votre page de connexion
     exit();
 }
-
-// Si l'utilisateur est connecté et admin, continuer avec la logique de la page
 ?>
 
 <!DOCTYPE html>

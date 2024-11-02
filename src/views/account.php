@@ -1,8 +1,5 @@
 <?php
-include '/config/admin.php'; // Protection de la page
-
-// Code de la page réservée aux administrateurs
-echo "Bienvenue dans la zone réservée aux administrateurs !";
+include '../../config/admin.php'; // Protection de la page
 ?>
 
 <!DOCTYPE html>
