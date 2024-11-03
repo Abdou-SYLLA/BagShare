@@ -44,7 +44,7 @@
                 <p>Sélectionnez la quantité de kilos disponible pour votre envoi et réservez en ligne.</p>
             </div>
             <div class="step">
-                <img src="data/images/bagages.jpeg" alt="Livraison sécurisée">
+                <img src="data/images/bagages.jpeg " alt="Livraison sécurisée">
                 <h3>3. Expédiez en toute sécurité</h3>
                 <p>Confiez vos colis à un voyageur et suivez l'envoi jusqu'à la livraison finale.</p>
             </div>

@@ -75,7 +75,7 @@ Nombre de requêtes	Taille de la page (Ko)	Taille du DOM
 ## 3e run ecoindex
 | Mesure | Requêtes | Taille | DOM | Ecoindex | Eau | CO2 | BP Rouges | BP Jaunes | BP Vertes |
 |--------|----------|--------|-----|----------|-----|-----|-----------|-----------|-----------|
-| 1      |          |        |     |          |     |     |           |           |           |
+| 1      |    16    |        |     |    90.22 | 1.79| 1.20|    3      |    1      |     17    |
 | 2      |          |        |     |          |     |     |           |           |           |
 | 3      |          |        |     |          |     |     |           |           |           |
 | 4      |          |        |     |          |     |     |           |           |           |
