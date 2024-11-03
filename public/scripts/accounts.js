@@ -49,11 +49,11 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(account) {
                 if (account) {
-                    $('#editNom').val(account.nom);
-                    $('#editPrenom').val(account.prenom);
-                    $('#editRole').val(account.role);
-                    $('#editUsername').val(account.username);
-
+                    $('#editNom').val(account.nom).prop('disabled', true);
+                    $('#editPrenom').val(account.prenom).prop('disabled', true);
+                    $('#editRole').val(account.role).prop('disabled', true);
+                    $('#editUsername').val(account.username).prop('disabled', true);
+                    
                     $('#editUserModal').fadeIn();
                     $('#editUserForm').data('id', accountId);
                 } else {
@@ -72,6 +72,47 @@ $(document).ready(function() {
         if (event.target.id === 'editUserModal') {
             $('#editUserModal').fadeOut();
         }
+    });
+
+    // Fonction pour activer/désactiver un champ pour l'édition
+    function enableField(fieldId) {
+        const field = document.getElementById(fieldId);
+        field.disabled = !field.disabled; // Active ou désactive le champ
+        field.focus(); // Met le focus sur le champ
+
+        // Changer le texte du bouton pour indiquer l'état actuel
+        const button = field.nextElementSibling;
+        button.innerText = field.disabled ? "Modifier" : "Annuler";
+    }
+
+    // Gestion de la soumission du formulaire de modification
+    $('#editUserForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        const accountId = $(this).data('id');
+        const data = $(this).serialize() + `&action=updateAccount&userId=${accountId}`;
+        
+        $.ajax({
+            url: '/src/controllers/AccountController.php',
+            type: 'POST',
+            data: data,
+            dataType: 'json',
+            success: function(response) {
+                alert(response.message || 'Modification enregistrée avec succès.');
+                $('#editUserModal').fadeOut();
+                loadAccounts();
+            },
+            error: function(xhr, status, error) {
+                console.error("Erreur lors de la mise à jour :", status, error);
+                alert("Erreur : " + xhr.responseText);
+            }
+        });
+    });
+
+    // Activer la modification de chaque champ individuellement
+    $('#editUserForm .edit-field-btn').on('click', function() {
+        const fieldId = $(this).prev('input, select').attr('id');
+        enableField(fieldId);
     });
 
     // Suppression d'un compte

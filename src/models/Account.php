@@ -69,16 +69,18 @@ class Account {
 
     // Méthode pour mettre à jour le nom d'un utilisateur
     public function editNom($username, $nom) {
-        $stmt = $this->conn->prepare("UPDATE accounts SET nom = :nom WHERE username = :username");
-        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $stmt->bindParam(':username', $username, PDO::PARAM_INT);
-
-        if ($stmt->execute()) {
+        try {
+            $sql = "UPDATE accounts SET nom = :nom WHERE username = :username";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
             return "Nom mis à jour avec succès.";
-        } else {
-            return "Erreur lors de la mise à jour du nom : " . $stmt->errorInfo()[2];
+        } catch (PDOException $e) {
+            return "Erreur : " . $e->getMessage();
         }
     }
+    
 
     // Méthode pour mettre à jour le prénom d'un utilisateur
     public function editPrenom($username, $prenom) {

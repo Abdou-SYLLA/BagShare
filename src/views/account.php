@@ -66,46 +66,39 @@ include '../../config/admin.php'; // Protection de la page
 </section>
 
 <section class="container" id="editUserModal" style="display: none;">
-    <h2>Modifier le Compte </h2> 
-    <form id="editUserForm" method="POST">
+    <h2>Modifier le Compte</h2> 
+    <form action="../controllers/AccountController.php" id="editUserForm" method="POST">
+        <input type="hidden" name="action" value="updateAccount">
+        <input type="hidden" id="editUsername" name="editUsername" >
+
         <div class="editable-field">
             <label for="editNom">Nom :</label>
-            <input type="text" id="editNom" name="editNom" required>
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editNom')">Modifier</button>
+            <input type="text" id="editNom" name="editNom" >
+            <button type="button" onclick="enableField('editNom')">Modifier</button>
         </div>
 
         <div class="editable-field">
             <label for="editPrenom">Prénom :</label>
-            <input type="text" id="editPrenom" name="editPrenom" required>
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editPrenom')">Modifier</button>
+            <input type="text" id="editPrenom" name="editPrenom" >
+            <button type="button" onclick="enableField('editPrenom')">Modifier</button>
         </div>
 
         <div class="editable-field">
             <label for="editRole">Rôle :</label>
-            <select id="editRole" name="editRole"  required>
+            <select id="editRole" name="editRole" >
                 <option value="admin">admin</option>
                 <option value="user">user</option>
             </select>
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editRole')">Modifier</button>
-        </div>
-
-        <div class="editable-field">
-            <label for="editUsername">Nom d'utilisateur :</label>
-            <input type="text" id="editUsername" name="editUsername" readonly required>
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editUsername')">Modifier</button>
+            <button type="button" onclick="enableField('editRole')">Modifier</button>
         </div>
 
         <div class="editable-field">
             <label for="editPassword">Nouveau Mot de passe :</label>
-            <input type="password" id="editPassword" name="editPassword" required>
+            <input type="password" id="editPassword" name="editPassword" >
+            <button type="button" onclick="enableField('editPassword')">Modifier</button>
         </div>
 
-        <div class="editable-field">
-            <label for="validatePassword">Confirmation :</label>
-            <input type="password" id="validatePassword" name="validatePassword" required>
-        </div>
-
-        <button type="submit" name="action" value="update">Enregistrer les Modifications</button>
+        <button type="submit">Enregistrer les Modifications</button>
     </form>
 </section>
 

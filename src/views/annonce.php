@@ -23,23 +23,22 @@
 <!-- Header pour la section Annonces -->
 <?php include 'header.php'; ?>
 
-<div class="content-container">
-    <!-- Section pour afficher les annonces sous forme de cartes -->
-    <section class="annonces">
-        <h2 class="section-title">Prochains départs</h2> 
-        <div class="annonce-list" id="annonceList">
-            <!-- Les annonces seront ajoutées ici par JavaScript -->
-        </div>
-    </section>
 
-    <!-- Section pour ajouter une annonce (visible uniquement pour les utilisateurs authentifiés) -->
-    <?php
-        if (isset($_SESSION['user'])) {
-            include_once ('AddAnnonce.php');
-        }
-    ?>
+<section class="annonces">
+    <h2 class="section-title">Prochains départs</h2> 
+    <div class="annonce-list" id="annonceList">
+        <!-- Les annonces seront ajoutées ici par JavaScript -->
+    </div>
+</section>
 
-</div>
+
+<?php
+    if (isset($_SESSION['user'])) {
+        include_once ('AddAnnonce.php');
+    }
+?>
+
+
 
 <?php include 'footer.php'; ?>
 </body>

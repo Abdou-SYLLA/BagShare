@@ -13,10 +13,12 @@ class AuthController {
     public function authenticate($username, $password) {
         $isAuthenticated = $this->accountModel->authenticate($username, $password);
         if ($isAuthenticated) {    
-            echo json_encode(['message' => 'Authentification réussie']);
+            //echo json_encode(['message' => 'Authentification réussie']);
             header('Location: /public/index.php');
         } else {
-            echo json_encode(['message' => 'Nom d\'utilisateur ou mot de passe incorrect']);
+            //echo json_encode(['message' => 'Nom d\'utilisateur ou mot de passe incorrect']);
+            header('Location: /src/views/connexion.php?error=Nom d\'utilisateur ou mot de passe incorrect');
+            exit();
         }
     }
 }
@@ -32,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $controller->authenticate($_POST['username'], $_POST['password']);
 
             } else {
-                header('Location: /src/views/connexion.php?error=missing'); // Redirection si des données sont manquantes
+                header('Location: /src/views/connexion.php?error=Veuillez remplir tous les champs'); // Redirection si des données sont manquantes
                 exit();
             }
             break;
 
         default:
-            header('Location: /src/views/connexion.php?error=action'); // Redirection si l'action n'est pas reconnue
+            header('Location: /src/views/connexion.php?error=Action non reconnue'); // Redirection si l'action n'est pas reconnue
             exit();
             break;
     }

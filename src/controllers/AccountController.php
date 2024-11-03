@@ -17,25 +17,25 @@ class AccountController {
         echo json_encode(['message' => $result]);
     }
 
-    public function updateAccount($userId, $nom = null, $prenom = null, $role = null, $newPassword = null) {
-        if ($nom) {
-            $result = $this->accountModel->editNom($userId, $nom);
+    public function updateAccount($username, $nom = null, $prenom = null, $role = null, $newPassword = null) {
+        $response = [];
+        if (!empty($nom)) {
+            $response['nom'] = $this->accountModel->editNom($username, $nom);
         }
-    
-        if ($prenom) {
-            $result = $this->accountModel->editPrenom($userId, $prenom);
+        if (!empty($prenom)) {
+            $response['prenom'] = $this->accountModel->editPrenom($username, $prenom);
         }
-    
-        if ($role) {
-            $result = $this->accountModel->editRole($userId, $role);
+        if (!empty($role)) {
+            $response['role'] = $this->accountModel->editRole($username, $role);
         }
-    
-        if ($newPassword) {
-            $result = $this->accountModel->editPassword($userId, $newPassword);
+        if (!empty($newPassword)) {
+            $response['password'] = $this->accountModel->editPassword($username, $newPassword);
         }
-    
-        echo json_encode(['message' => $result ?? "Aucune modification effectuée."]);
+        
+        echo json_encode(['message' => $response ? $response : "Aucune modification effectuée."]);
     }
+    
+    
     
 
     public function deleteAccount($numero) {
@@ -68,9 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $nom = $_POST['editNom'] ?? null;
             $prenom = $_POST['editPrenom'] ?? null;
             $role = $_POST['editRole'] ?? null;
-            $newPassword = $_POST['editPassword'] ?? null; // Mot de passe
+            $newPassword = $_POST['editPassword'] ?? null; 
 
-            $controller->updateAccount($_POST['userId'], $nom, $prenom, $role, $newPassword);
+            $controller->updateAccount($_POST['editUsername'], $nom, $prenom, $role, $newPassword);
             break;
 
         case 'delete':
