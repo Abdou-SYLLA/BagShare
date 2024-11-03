@@ -11,6 +11,8 @@
     <title>BagShare - Rentabilisez vos bagages</title>
     <link rel="stylesheet" href="styles/styles.css"> 
     <link rel="stylesheet" href="styles/mediaQueries.css"> 
+    <link rel="stylesheet" href="styles/print.css" media="print">
+
 
     <!-- Inclure jQuery pour AJAX -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
