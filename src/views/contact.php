@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" href="/public/styles/styles.css"> 
 <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
+<link rel="stylesheet" href="/public/styles/print.css" media="print">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>

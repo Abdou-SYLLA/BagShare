@@ -1,5 +1,5 @@
 <?php
-    session_start(); // Nécessaire pour accéder aux variables de session
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -11,18 +11,13 @@
     <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
     <link rel="stylesheet" href="/public/styles/annonces.css">
+    <link rel="stylesheet" href="/public/styles/print.css" media="print">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../../public/scripts/annonces.js"></script> 
+    <script src="../../public/scripts/annonces.js"></script>
+    <script type="text/javascript">var isUserLoggedIn = <?php echo isset($_SESSION['user']) ? 'true' : 'false'; ?>;</script>
 </head>
 <body>
-    
-<script type="text/javascript">
-    var isUserLoggedIn = <?php echo isset($_SESSION['user']) ? 'true' : 'false'; ?>;
-</script>
-
-<!-- Header pour la section Annonces -->
 <?php include 'header.php'; ?>
-
 
 <section class="annonces">
     <h2 class="section-title">Prochains départs</h2> 
@@ -31,14 +26,11 @@
     </div>
 </section>
 
-
 <?php
     if (isset($_SESSION['user'])) {
         include_once ('AddAnnonce.php');
     }
 ?>
-
-
 
 <?php include 'footer.php'; ?>
 </body>

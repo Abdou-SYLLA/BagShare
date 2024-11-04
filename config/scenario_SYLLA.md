@@ -4,7 +4,7 @@ SYLLA Abdou Lahat
 BagShare est une plateforme de mise en relation entre voyageurs et expéditeurs, permettant de rentabiliser les kilos de bagages inutilisés lors de voyages. Elle offre une solution économique et flexible aux utilisateurs cherchant à envoyer des effets personnels, souvent entre pays et continents, en toute sécurité. Les voyageurs qui disposent d'un excédent de capacité de bagages peuvent ainsi proposer ces kilos à des tarifs avantageux pour d'autres utilisateurs, facilitant le transport de biens personnels.
 
 ## Solution
-Consultation du site : [http:](https://20.234.175.99.nip.io/public/index.php)
+Consultation du site : [http:](https://20.234.175.99.nip.io/public/index.php) ou [http:](https://bagshares.codelib.re)
 La solution BagShare repose sur un système de mise en relation permettant aux utilisateurs de :
 - Trouver et réserver des kilos de bagages disponibles sur le trajet d’un voyageur.
 - Contacter le voyageur et organiser l'envoi sécurisé de leurs biens en suivant les étapes de dépôt et de réservation.
@@ -70,16 +70,18 @@ Nombre de requêtes	Taille de la page (Ko)	Taille du DOM
 | 2      |  30      | 199 KB | 117 |   85.90  | 1.28| 1.92|   5       |      4    |     12    |
 | 3      |  9       | 431 KB |  45 |    91.96 | 1.74| 1.16|   5       |      4    |     12    |
 | 4      |  10      | 81 KB  |  65 |   91.90  | 1.74| 1.16|   5       |      1    |     15    |
-| 5      | 11       | 82 KB  | 122 |   89.48  | 1.82| 1.21|   5       |      1    |   15      |
+| 5      | 11       | 82 KB  | 122 |   89.48  | 1.82| 1.21|   5       |      1    |     15    |
+
+
 
 ## 3e run ecoindex
 | Mesure | Requêtes | Taille | DOM | Ecoindex | Eau | CO2 | BP Rouges | BP Jaunes | BP Vertes |
 |--------|----------|--------|-----|----------|-----|-----|-----------|-----------|-----------|
-| 1      |    16    |        |     |    90.22 | 1.79| 1.20|    3      |    1      |     17    |
-| 2      |          |        |     |          |     |     |           |           |           |
-| 3      |          |        |     |          |     |     |           |           |           |
-| 4      |          |        |     |          |     |     |           |           |           |
-| 5      |          |        |     |          |     |     |           |           |           |
+| 1      |    17    | 127 KB |  72 |    90.04 | 1.80| 1.20|    1      |    1      |     19    |
+| 2      |     30   | 190 KB | 104 |    86.33 | 1.91| 1.27|    2      |    4      |     15    |
+| 3      |    10    |  43 KB | 45  |   93.64  | 1.68| 1.12|    1      |    1      |     19    |
+| 4      |    12    |  46 KB |  66 |   91.76  | 1.75| 1.16|    1      |    1      |     19    |
+| 5      |    13    |  48 KB | 109 |   89.81  | 1.81| 1.20|    1      |    1      |     19    |
 
 
 

@@ -9,6 +9,7 @@
     <title>BagShare - Worldwide Delivery</title>
     <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/mediaQueries.css"> 
+    <link rel="stylesheet" href="/public/styles/print.css" media="print">
 </head>
 
 <?php include 'header.php'; ?>
