@@ -12,6 +12,7 @@ if (!isset($_SESSION['user'])) {
 if ($_SESSION['user']['role'] !== 'admin') {
     // Afficher un message d'erreur ou rediriger
     echo "Accès interdit : Vous devez être administrateur pour accéder à cette page.";
-    exit();
+    header('HTTP/1.0 403 Forbidden');
+    exit(403);
 }
 ?>
