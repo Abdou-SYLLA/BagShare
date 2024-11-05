@@ -24,13 +24,14 @@
     <div class="annonce-list" id="annonceList">
         <!-- Les annonces seront ajoutées ici par JavaScript -->
     </div>
-</section>
-
-<?php
+    <?php
     if (isset($_SESSION['user'])) {
         include_once ('AddAnnonce.php');
     }
-?>
+    ?>
+</section>
+
+
 
 <?php include 'footer.php'; ?>
 </body>
