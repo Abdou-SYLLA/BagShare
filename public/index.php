@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="styles/styles.css"> 
     <link rel="stylesheet" href="styles/mediaQueries.css"> 
     <link rel="stylesheet" href="styles/print.css" media="print">
-
-
-    <!-- Inclure jQuery pour AJAX -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -68,7 +65,6 @@
         </div>
 <!-- Les images du viewer seront ajoutées ici en AJAX -->
     </section>
-
     <!-- Inclusion du footer -->
     <?php include '../src/views/footer.php'; ?>
 </body>

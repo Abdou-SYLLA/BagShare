@@ -5,7 +5,7 @@
     
     <!-- Bouton menu pour appareils <768px -->
     <button id="menu-toggle" class="menu-icon">
-        <img src="/public/data/images/icons8-top-menu-50.png" alt="Menu" width="24" height="24">
+        <img src="/public/data/images/icons8-top-menu-50.png" alt="Menu" >
     </button>
 
     <!-- Menu de navigation principal pour les appareils <768px -->
@@ -39,3 +39,4 @@
 
     <script src="/public/scripts/config.js"></script>
 </header>
+

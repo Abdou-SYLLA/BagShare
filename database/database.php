@@ -4,10 +4,10 @@ class DatabaseConnection {
     private $conn;
 
     public function __construct() {
-        $servername = "localhost";
-        $username = "bagshare";
+        $servername = "mysql-asylla.alwaysdata.net";
+        $username = "asylla";
         $password = "Sylla@2024";
-        $dbname = "bagshare";
+        $dbname = "asylla_bagshare";
 
         try {
             $dsn = "mysql:host=$servername;dbname=$dbname;charset=utf8";

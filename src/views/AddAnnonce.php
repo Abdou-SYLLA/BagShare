@@ -1,13 +1,10 @@
 <?php
-session_start(); // Démarre la session pour utiliser les variables de session
-
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user'])) {
     // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
     header('Location: /src/views/connexion.php'); // Changez cela par le chemin de votre page de connexion
     exit();
 }
-
 ?>
 
 
