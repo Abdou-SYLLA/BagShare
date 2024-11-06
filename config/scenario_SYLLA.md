@@ -4,7 +4,7 @@ SYLLA Abdou Lahat
 BagShare est une plateforme de mise en relation entre voyageurs et expéditeurs, permettant de rentabiliser les kilos de bagages inutilisés lors de voyages. Elle offre une solution économique et flexible aux utilisateurs cherchant à envoyer des effets personnels, souvent entre pays et continents, en toute sécurité. Les voyageurs qui disposent d'un excédent de capacité de bagages peuvent ainsi proposer ces kilos à des tarifs avantageux pour d'autres utilisateurs, facilitant le transport de biens personnels.
 
 ## Solution
-Consultation du site : [http:](https://20.234.175.99.nip.io/public/index.php) ou [http:](https://bagshares.codelib.re)
+Consultation du site : [http:](https://asylla.alwaysdata.net)
 La solution BagShare repose sur un système de mise en relation permettant aux utilisateurs de :
 - Trouver et réserver des kilos de bagages disponibles sur le trajet d’un voyageur.
 - Contacter le voyageur et organiser l'envoi sécurisé de leurs biens en suivant les étapes de dépôt et de réservation.
