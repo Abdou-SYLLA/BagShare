@@ -1,5 +1,5 @@
 <?php
-    session_start(); // Nécessaire pour accéder aux variables de session
+session_start(); // Assurez-vous que la session est démarrée pour accéder aux variables de session
 ?>
 
 <link rel="stylesheet" href="/public/styles/styles.css"> 
@@ -16,7 +16,7 @@
             <h2>Nous contacter</h2>
             <p>Nous vous répondrons sous un jour ouvrable.</p>
             
-            <form action="/submit_contact_form" method="POST">
+            <form action="/src/controllers/ContactController.php" method="POST">
                 <label for="first-name">Prénom</label>
                 <input type="text" id="first-name" class="input-field" name="first-name" required>
                 
@@ -31,6 +31,19 @@
                 
                 <input type="submit" class="submit-button" value="ENVOYER">
             </form>
+
+            <?php
+            // Vérifier s'il y a un message d'erreur ou de succès et l'afficher
+            if (isset($_SESSION['error'])) {
+                echo "<div class='error-message'>" . $_SESSION['error'] . "</div>";
+                unset($_SESSION['error']); // Supprimer le message après l'affichage
+            }
+
+            if (isset($_SESSION['success'])) {
+                echo "<div class='success-message'>" . $_SESSION['success'] . "</div>";
+                unset($_SESSION['success']); // Supprimer le message après l'affichage
+            }
+            ?>
         </div>
     </div>
 </section>
