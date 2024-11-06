@@ -5,7 +5,7 @@
     
     <!-- Bouton menu pour appareils <768px -->
     <button id="menu-toggle" class="menu-icon">
-        <img src="/public/data/images/icons8-top-menu-50.png" alt="Menu" >
+        <img src="/public/data/images/icons8-menu-64.png" alt="Menu" class="connexion-icon">
     </button>
 
     <!-- Menu de navigation principal pour les appareils <768px -->

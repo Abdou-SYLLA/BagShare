@@ -1,1 +1,121 @@
-body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#f5f5f5}h2{color:#333}.container{width:80%;margin:20px auto;padding:20px;background-color:#fff;border-radius:8px;box-shadow:0 4px 8px rgb(0 0 0 / .1)}#userTable{width:100%;border-collapse:collapse;margin-top:20px}#userTable th,#userTable td{border:1px solid #ddd;padding:12px;text-align:center}#userTable th{background-color:#4CAF50;color:#fff;font-weight:700}#userTable tr:nth-child(even){background-color:#f2f2f2}#userTable tr:hover{background-color:#ddd}form{width:100%;max-width:600px;margin:0 auto;padding:20px;border:1px solid #ccc;border-radius:4px;background-color:#fff;box-shadow:0 2px 4px rgb(0 0 0 / .1)}form label{display:block;margin-top:10px;font-weight:700}form input,form select{width:calc(100% - 22px);padding:10px;margin-top:5px;margin-bottom:15px;border:1px solid #ccc;border-radius:4px}form button{width:100%;padding:10px;margin-top:10px;border:none;border-radius:4px;color:#fff;cursor:pointer;transition:background-color 0.3s}button{background-color:#4CAF50}button.delete-btn{background-color:#f44336}button.delete-btn:hover{background-color:#650f0f}button:hover{background-color:#5a00cc}#editUserSection{width:100%;margin-top:20px}.editable-field{margin-bottom:15px}.edit-field-btn{margin-top:5px;background-color:#4CAF50;color:#fff;padding:5px;border-radius:4px}.edit-field-btn:hover{background-color:#5a00cc}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+h2 {
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / .1);
+}
+
+#userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#userTable th,
+#userTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+#userTable th {
+    background-color: #4CAF50;
+    color: #fff;
+    font-weight: 700;
+}
+
+#userTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#userTable tr:hover {
+    background-color: #ddd;
+}
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgb(0 0 0 / .1);
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+form input,
+form select {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button {
+    background-color: #4CAF50;
+}
+
+button.delete-btn {
+    background-color: #f44336;
+}
+
+button.delete-btn:hover {
+    background-color: #650f0f;
+}
+
+button:hover {
+    background-color: #5a00cc;
+}
+
+#editUserSection {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.editable-field {
+    margin-bottom: 15px;
+}
+
+.edit-field-btn {
+    margin-top: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.edit-field-btn:hover {
+    background-color: #5a00cc;
+}
