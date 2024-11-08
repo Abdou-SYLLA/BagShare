@@ -18,13 +18,12 @@ if (!isset($_SESSION['user'])) {
 
     <link rel="stylesheet" href="/public/styles/styles.css"> 
     <link rel="stylesheet" href="/public/styles/mediaQueries.css">  
-    <link rel="stylesheet" href="/public/styles/users.css">
     <link rel="stylesheet" href="/public/styles/print.css" media="print">  
 </head>
 <body>
 <?php include 'header.php'; ?>
 
-<section class="container">
+<section class="userInfo-container">
     <h1>Mon Compte</h1>
 
     <!-- Affichage des informations de l'utilisateur -->
@@ -33,45 +32,12 @@ if (!isset($_SESSION['user'])) {
         <p><span class="label">Prénom :</span> <?php echo htmlspecialchars($_SESSION['user']['prenom']); ?></p>
         <p><span class="label">Numéro de téléphone :</span> <?php echo htmlspecialchars($_SESSION['user']['numero']); ?></p>
         <p><span class="label">Nom d'utilisateur :</span> <?php echo htmlspecialchars($_SESSION['user']['username']); ?></p>
-        <button id="editUserButton">Modifier mes informations</button>
     </div>
 
 </section>
 
-<!-- Modale pour modifier l'utilisateur -->
-<section  class="container" id="editUserModal" style="display: none;">
-    <h2>Modifier le Compte</h2>
-    <form id="editUserForm" method="POST">
-        <div class="editable-field">
-            <label for="editNom">Nom :</label>
-            <input type="text" id="editNom" name="editNom" required >
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editNom')">Modifier</button>
-        </div>
-
-        <div class="editable-field">
-            <label for="editPrenom">Prénom :</label>
-            <input type="text" id="editPrenom" name="editPrenom" required >
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editPrenom')">Modifier</button>
-        </div>
-
-        <div class="editable-field">
-            <label for="editPassword">Nouveau Mot de passe :</label>
-            <input type="password" id="editPassword" name="editPassword" required >
-
-            <label for="validatePassword">Confimation :</label>
-            <input type="password" id="editPassword" name="editPassword" required >
-
-            <button type="button" class="edit-field-btn" onclick="toggleEdit('editPassword')">Modifier</button>
-        </div>
-
-        <button type="submit" name="action" value="update">Enregistrer les Modifications</button>
-    </form>
-</section>
-
-
-<!-- Inclusion des scripts -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/public/scripts/users.js"></script>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

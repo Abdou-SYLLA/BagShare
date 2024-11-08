@@ -86,7 +86,7 @@ $(document).ready(function() {
     $('#editUserForm').on('submit', function(e) {
         e.preventDefault();
         const accountId = $(this).data('id');
-        const data = $(this).serialize() + `&action=updateAccount&userId=${accountId}`;
+        const data = $(this).serialize() + `&action=updatePasswordAdmin&userId=${accountId}`;
         
         $.ajax({
             url: '/src/controllers/AccountController.php',

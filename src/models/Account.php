@@ -136,6 +136,19 @@ class Account {
         }
     }
 
+    //mise à jour par l'admin
+    public function updatePasswordByAdmin($username, $newPassword) {
+        $stmt = $this->conn->prepare("UPDATE accounts SET hashed_password = :hashed_password WHERE username = :username");
+        $stmt->bindParam(':hashed_password', $new_hashed_password, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return "Mot de passe modifié avec succès.";
+        } else {
+            return "Erreur lors de la modification du mot de passe : " . $stmt->errorInfo()[2];
+        }
+    }
+
     // Méthode pour récupérer un utilisateur par ID
     public function getUserAccount($userId) {
         $stmt = $this->conn->prepare("SELECT nom, prenom, role, username FROM accounts WHERE numero = :userId");

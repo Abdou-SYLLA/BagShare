@@ -61,7 +61,7 @@ include '../../config/admin.php'; // Protection de la page
             </tr>
         </thead>
         <tbody>
-            <!-- Les comptes récupérés via AJAX seront insérés ici -->
+            <!-- Les comptes récupérés via AJAX seront insérés ici par JavaScript -->
         </tbody>
     </table>
 </section>

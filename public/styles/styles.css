@@ -361,6 +361,42 @@ form label {
     height: auto;
 }
 
+/* Conteneur principal (section de contenu) */
+.userInfo-container {
+    flex: 1; /* Permet à la section principale d'occuper tout l'espace possible */
+    width: 90%; /* Occupe 90% de la largeur */
+    max-width: 1200px; /* Largeur maximale pour grand écran */
+    margin: auto; /* Centre horizontalement */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 90%; /* Hauteur minimale : 90% de la hauteur de l'écran */
+}
+
+/* Titre principal */
+.userInfo-container h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+}
+
+/* Bloc des informations utilisateur */
+.user-info p {
+    margin-bottom: 15px; /* Espacement entre les lignes */
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.user-info .label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+}
+/*footer*/
 footer {
     background-color: #333;
     color: #fff;

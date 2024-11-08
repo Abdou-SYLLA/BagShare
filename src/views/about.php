@@ -1,5 +1,5 @@
 <?php
-    session_start(); // Nécessaire pour accéder aux variables de session
+    session_start();
 ?>
 
 <head>

@@ -31,12 +31,9 @@ class AccountController {
         if (!empty($newPassword)) {
             $response['password'] = $this->accountModel->editPassword($username, $newPassword);
         }
-        
+
         echo json_encode(['message' => $response ? $response : "Aucune modification effectuée."]);
     }
-    
-    
-    
 
     public function deleteAccount($numero) {
         $result = $this->accountModel->deleteAccount($numero);
@@ -60,18 +57,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     switch ($_POST['action']) {
         case 'create':
             $controller->createAccount($_POST['numero'], $_POST['nom'], $_POST['prenom'], $_POST['role'], $_POST['username'], $_POST['password']);
-            header('Location: ../views/account.php');
             break;
 
-        case 'updateAccount':
-            // Extraire les informations pertinentes du formulaire
-            $nom = $_POST['editNom'] ?? null;
-            $prenom = $_POST['editPrenom'] ?? null;
-            $role = $_POST['editRole'] ?? null;
-            $newPassword = $_POST['editPassword'] ?? null; 
-
-            $controller->updateAccount($_POST['editUsername'], $nom, $prenom, $role, $newPassword);
+        case 'updateName':
+            $nom = $_POST['nom'] ?? null;
+            $prenom = $_POST['prenom'] ?? null;
+            if ($nom && $prenom) {
+                echo json_encode(['message' => $controller->accountModel->updateNameAndPrenom($_SESSION['user']['username'], $nom, $prenom)]);
+            } else {
+                echo json_encode(['message' => "Nom ou prénom manquant."]);
+            }
             break;
+
+        case 'updatePassword':
+            $oldPassword = $_POST['oldPassword'] ?? null;
+            $newPassword = $_POST['newPassword'] ?? null;
+            if ($oldPassword && $newPassword) {
+                echo json_encode(['message' => $controller->accountModel->updatePassword($_SESSION['user']['username'], $oldPassword, $newPassword)]);
+            } else {
+                echo json_encode(['message' => "Veuillez fournir l'ancien et le nouveau mot de passe."]);
+            }
+            break;
+        
+            case 'updatePasswordAdmin':
+                $newPassword = $_POST['newPassword'] ?? null;
+                if ($newPassword) {
+                    echo json_encode(['message' => $controller->accountModel->updatePasswordByAdmin($_SESSION['user']['username'], $newPassword)]);
+                } else {
+                    echo json_encode(['message' => "Erreur lors de la modification du mot de passe ."]);
+                }
+                break;
 
         case 'delete':
             $controller->deleteAccount($_POST['numero']);
