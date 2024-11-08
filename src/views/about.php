@@ -16,16 +16,14 @@
 
 <section class="about-section">
     <div class="container">
-        <h1>À propos de BagShare</h1>
-        <p>
-            BagShare est une plateforme qui met en relation des voyageurs souhaitant rentabiliser les kilos de bagages inutilisés en les proposant à d'autres utilisateurs à des tarifs compétitifs, variables en fonction du poids et du type de produit.
-        </p>
-        <p>
-            Les utilisateurs peuvent acquérir ces kilos pour expédier leurs affaires entre pays et continents, en toute sécurité et à des prix réduits. Par exemple, un voyageur se rendant en Italie peut proposer ses kilos excédentaires à un tarif qui dépendra du poids et de la nature des bagages.
-        </p>
-        <p>
-            BagShare représente une alternative flexible et économique aux services de livraison traditionnels.
-        </p>
+    <h1>À propos de BagShare</h1>
+    <p>
+        BagShare est une plateforme privée de mise en relation pour voyageurs souhaitant rentabiliser leurs kilos de bagages inutilisés en les proposant à d’autres utilisateurs à un prix compétitif. L’objectif est de permettre aux utilisateurs de partager ou d’acheter des kilos de bagages excédentaires pour envoyer leurs affaires entre pays et continents, en toute sécurité et à moindre coût.
+    </p>
+    <p>
+        Les annonces sont récupérées depuis la base de données (BDD) et les utilisateurs peuvent proposer leurs kilos excédentaires ou en acheter. L’administrateur de la plateforme a un contrôle total sur la gestion des annonces et des comptes utilisateurs, tandis que les auteurs d’annonces peuvent supprimer celles qu’ils ont créées.
+    </p>
+
     </div>
     <img src="/public/data/images/apropos3.png" alt="apropos">
 </section>

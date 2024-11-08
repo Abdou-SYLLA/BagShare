@@ -20,7 +20,7 @@
 <?php include 'header.php'; ?>
 
 <section class="annonces">
-    <h2 class="section-title">Prochains départs</h2> 
+    <h1 class="section-title">Prochains départs</h1> 
     <div class="annonce-list" id="annonceList">
         <!-- Les annonces seront ajoutées ici par JavaScript -->
     </div>
@@ -30,8 +30,6 @@
     }
     ?>
 </section>
-
-
 
 <?php include 'footer.php'; ?>
 </body>

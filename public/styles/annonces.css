@@ -1,3 +1,7 @@
+.annonces{ 
+    flex: 1;  
+}
+
 .annonce-list {
     display: flex;
     flex-wrap: wrap;

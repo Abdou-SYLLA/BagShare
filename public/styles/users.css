@@ -18,10 +18,21 @@ h2 {
     box-shadow: 0 4px 8px rgb(0 0 0 / .1);
 }
 
+
 #userTable {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+.user-info p {
+    margin-bottom: 15px; /* Ajoute de l'espace entre les paragraphes */
+    line-height: 10px;    
+}
+
+.user-info .label {
+    font-weight: bold;   /* Applique le style 'strong' */
+    margin-right: 10px;  /* Espace entre le label et la valeur */
 }
 
 #userTable th,
@@ -47,13 +58,11 @@ h2 {
 
 form {
     width: 100%;
-    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
-    box-shadow: 0 2px 4px rgb(0 0 0 / .1);
 }
 
 form label {
@@ -96,7 +105,7 @@ button.delete-btn:hover {
 }
 
 button:hover {
-    background-color: #5a00cc;
+    background-color: #81a9b5;
 }
 
 #editUserSection {

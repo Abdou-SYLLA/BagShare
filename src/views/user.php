@@ -25,16 +25,17 @@ if (!isset($_SESSION['user'])) {
 <?php include 'header.php'; ?>
 
 <section class="container">
-    <h2>Mon Compte</h2>
+    <h1>Mon Compte</h1>
 
     <!-- Affichage des informations de l'utilisateur -->
     <div class="user-info">
-        <p><strong>Nom :</strong> <?php echo htmlspecialchars($_SESSION['user']['nom']); ?></p>
-        <p><strong>Prénom :</strong> <?php echo htmlspecialchars($_SESSION['user']['prenom']); ?></p>
-        <p><strong>Numéro de téléphone :</strong> <?php echo htmlspecialchars($_SESSION['user']['numero']); ?></p>
-        <p><strong>nom d'utilisateur :</strong> <?php echo htmlspecialchars($_SESSION['user']['username']); ?></p>
+        <p><span class="label">Nom :</span> <?php echo htmlspecialchars($_SESSION['user']['nom']); ?></p>
+        <p><span class="label">Prénom :</span> <?php echo htmlspecialchars($_SESSION['user']['prenom']); ?></p>
+        <p><span class="label">Numéro de téléphone :</span> <?php echo htmlspecialchars($_SESSION['user']['numero']); ?></p>
+        <p><span class="label">Nom d'utilisateur :</span> <?php echo htmlspecialchars($_SESSION['user']['username']); ?></p>
         <button id="editUserButton">Modifier mes informations</button>
     </div>
+
 </section>
 
 <!-- Modale pour modifier l'utilisateur -->
