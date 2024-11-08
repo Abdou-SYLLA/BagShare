@@ -9,6 +9,14 @@ body {
     background-color: #f5f5f5;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -363,15 +371,14 @@ form label {
 
 /* Conteneur principal (section de contenu) */
 .userInfo-container {
-    flex: 1; /* Permet à la section principale d'occuper tout l'espace possible */
-    width: 90%; /* Occupe 90% de la largeur */
-    max-width: 1200px; /* Largeur maximale pour grand écran */
-    margin: auto; /* Centre horizontalement */
+    flex: 1; 
+    width: 90%; 
+    max-width: 1200px; 
+    margin: auto; 
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-height: 90%; /* Hauteur minimale : 90% de la hauteur de l'écran */
 }
 
 /* Titre principal */
